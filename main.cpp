@@ -21,7 +21,7 @@ int main()
 
 	} while(ActType != EXIT);
 	
-	//testing github2
+	//testing github3
 	
 	return 0;
 }

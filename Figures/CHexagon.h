@@ -7,6 +7,7 @@ class CHexagon : public CFigure
 private:
 	Point Center;
 public:
+	CHexagon(void);
 	CHexagon(Point, GfxInfo FigureGfxInfo);
 	virtual void Draw(Output* pOut) const;
 	virtual bool IsInside(int, int);

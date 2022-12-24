@@ -10,6 +10,7 @@ private:
 	Point Corner2;
 	Point Corner3;
 public:
+	CTriangle(void);
 	CTriangle(Point, Point, Point, GfxInfo FigureGfxInfo);
 	virtual void Draw(Output* pOut) const;
 	virtual bool IsInside(int, int);

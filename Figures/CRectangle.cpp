@@ -1,4 +1,6 @@
 #include "CRectangle.h"
+#include "../Actions/SaveAction.h"
+#include "../Actions/SaveAction.cpp"
 
 CRectangle::CRectangle(Point P1, Point P2, GfxInfo FigureGfxInfo):CFigure(FigureGfxInfo)
 {
@@ -6,7 +8,38 @@ CRectangle::CRectangle(Point P1, Point P2, GfxInfo FigureGfxInfo):CFigure(Figure
 	Corner2 = P2;
 	
 }
-	
+
+string SaveAction::convertcolorToString(color color) {
+
+	if (color == BLACK)
+	{
+		return "BLACK";
+	}
+	else if (color == YELLOW)
+	{
+		return "YELLOW";
+	}
+	else if (color == ORANGE)
+	{
+		return "ORANGE";
+	}
+	else if (color == RED)
+	{
+		return "RED";
+	}
+	else if (color == GREEN)
+	{
+		return "GREEN";
+	}
+	else if (color == BLUE)
+	{
+		return "BLUE";
+	}
+	else
+	{
+		return " ";
+	}
+}
 
 void CRectangle::Draw(Output* pOut) const
 {
@@ -27,3 +60,9 @@ void CRectangle::PrintInfo(Output* pOut) {
 	string MESSAGE = "Figure Type: Rectangle, ID: " + to_string(ID) + ", Corners Points:(" + to_string(Corner1.x) + "," + to_string(Corner1.y) + ")-(" + to_string(Corner2.x) + "," + to_string(Corner2.y) + "), Length="+to_string(length)+", Width="+to_string(width);
 	pOut->PrintMessage(MESSAGE);
 }
+void CRectangle::save(ofstream& outputfile) {
+	outputfile << "RECT" << " " << getID() << " " << Corner1.x << " " << Corner1.y << " " << Corner2.x << " " << Corner2.y << " " << convertcolorToString(FigGfxInfo.DrawClr) << " " 
+		<<( (convertcolorToString(FigGfxInfo.FillClr).empty()) ? "NO_FILL" : convertcolorToString(FigGfxInfo.FillClr)) << endl;
+
+}
+

@@ -8,10 +8,14 @@ class CSquare : public CFigure
 private:
 	Point Center;
 public:
+	CSquare(void);
 	CSquare(Point, GfxInfo FigureGfxInfo);
 	virtual void Draw(Output* pOut) const;
 	virtual bool IsInside(int, int) ;
 	virtual void PrintInfo(Output*) ;
+
+	void save(ofstream& outputfile);
+	void load(ifstream& inputfile);
 };
 
 #endif

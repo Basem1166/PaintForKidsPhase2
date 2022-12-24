@@ -5,6 +5,7 @@
 #include "Actions\AddHexaAction.h"
 #include "Actions\AddCircAction.h"
 #include "Actions\SelectOneAction.h"
+#include "Actions\DeleteFigureAction.h"
 //Constructor
 ApplicationManager::ApplicationManager()
 {
@@ -53,6 +54,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case SelectOne:
 			pAct = new SelectOneAction(this);
 			break;
+		case _DELETE:
+			pAct = new DeleteFigureAction(this);
+			break;
 		case EXIT:
 			///create ExitAction here
 			
@@ -87,6 +91,17 @@ void ApplicationManager::AddFigure(CFigure* pFig)
 {
 	if (FigCount < MaxFigCount) {
 		FigList[FigCount++] = pFig;
+	}
+}
+/////////////////////////////////////////////////////////////////////////////////////
+void ApplicationManager::DeleteFigure() {
+	for (int i = 0; i < FigCount; i++) {
+		if(GetSelectedFigure() == FigList[i]) {
+			delete FigList[i];
+			FigList[i] = FigList[FigCount - 1];
+			FigList[(FigCount--) - 1] = NULL;
+
+		}
 	}
 }
 ////////////////////////////////////////////////////////////////////////////////////

@@ -5,6 +5,7 @@
 #include "Actions\AddHexaAction.h"
 #include "Actions\AddCircAction.h"
 #include "Actions\SelectOneAction.h"
+#include "Actions\DeleteFigureAction.h"
 //Constructor
 ApplicationManager::ApplicationManager()
 {
@@ -53,6 +54,10 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case SelectOne:
 			pAct = new SelectOneAction(this);
 			break;
+		case _DELETE:
+			if(GetSelectedFigure()!=NULL)
+			pAct = new DeleteFigureAction(this);
+			break;
 		case EXIT:
 			///create ExitAction here
 			
@@ -89,6 +94,23 @@ void ApplicationManager::AddFigure(CFigure* pFig)
 		FigList[FigCount++] = pFig;
 	}
 }
+/////////////////////////////////////////////////////////////////////////////////////
+void ApplicationManager::DeleteFigure() {
+	int c;
+	for (int i = 0; i < FigCount; i++) {
+		
+		if(FigList[i]->IsSelected()) {
+			c = i;
+			delete FigList[i];
+			break;
+		}
+	}
+		for (int i = c; i < FigCount - 1; i++) {
+			FigList[i] = FigList[i + 1];
+		}
+		FigList[--FigCount] = NULL;
+		SelectedFig = NULL;
+}
 ////////////////////////////////////////////////////////////////////////////////////
 CFigure *ApplicationManager::GetFigure(int x, int y) const
 {
@@ -112,6 +134,7 @@ CFigure *ApplicationManager::GetFigure(int x, int y) const
 //Draw all figures on the user interface
 void ApplicationManager::UpdateInterface() const
 {	
+	pOut->ClearDrawArea();
 	for(int i=0; i<FigCount; i++)
 		FigList[i]->Draw(pOut);		//Call Draw function (virtual member fn)
 }

@@ -44,20 +44,4 @@ void SelectOneAction::Execute() {
 		pManager->SetSelectedFigure(FigNew);
 		FigNew->PrintInfo(pOut);
 	}
-
-
-
-
-	//if (SelectedFig != NULL && SelectedFig->IsSelected() == 1) {//Cases for selected figure
-		//if (SelectedFig == FigPtr) {
-		//	SelectedFig->SetSelected(0);
-		//}
-		//else if (SelectedFig != FigPtr) {
-			//SelectedFig->SetSelected(0);
-		//	FigPtr->SetSelected(1);
-		//}
-	//}
-	//else {
-	//	FigPtr->SetSelected(1);
-	//}
 }

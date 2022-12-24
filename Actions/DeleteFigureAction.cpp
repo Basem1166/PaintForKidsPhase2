@@ -20,5 +20,5 @@ void DeleteFigureAction::Execute()
 	//Delete  selected  figure
 	pManager->DeleteFigure();
 
-	pOut->PrintMessage("Delete Figure: Click on the figure");
+	pOut->PrintMessage("Deleted Figure");
 }

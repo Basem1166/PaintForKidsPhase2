@@ -10,6 +10,7 @@ public:
 	CHexagon(Point, GfxInfo FigureGfxInfo);
 	virtual void Draw(Output* pOut) const;
 	virtual bool IsInside(int, int);
+	void PrintInfo(Output* pOut);
 };
 
 #endif

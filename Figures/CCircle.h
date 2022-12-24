@@ -10,8 +10,9 @@ private:
 	Point Point2;
 public:
 	CCircle(Point, Point, GfxInfo FigureGfxInfo);
-	virtual void Draw(Output* pOut) const;
+	virtual void Draw(Output*) const;
 	virtual bool IsInside(int, int);
+	void PrintInfo(Output*);
 };
 
 #endif

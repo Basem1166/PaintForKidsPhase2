@@ -17,28 +17,32 @@ void SelectOneAction::ReadActionParameters() {
 
 	//Reads a point and stores it in P
 	pIn->GetPointClicked(P.x, P.y);
+	pOut->ClearStatusBar();
 }
 void SelectOneAction::Execute() {
 	ReadActionParameters();
 	Output* pOut = pManager->GetOutput();
-	CFigure* FigPtr = pManager->GetFigure(P.x, P.y); //Checks if the points clicked are inside a figure
+	CFigure* FigNew = pManager->GetFigure(P.x, P.y); //Checks if the points clicked are inside a figure
 	CFigure* SelectedFig = pManager->GetSelectedFigure(); //Returns the old selected figure
-	if (SelectedFig == NULL && FigPtr == NULL) {
+	if (FigNew == NULL) {
 		pOut->PrintMessage("A Click on an Empty Area");
 	}
-	else if (SelectedFig == NULL && FigPtr != NULL) {
-		FigPtr->SetSelected(1);
-		pManager->SetSelectedFigure(FigPtr);
+	else if (SelectedFig == NULL && FigNew != NULL) {
+		FigNew->SetSelected(1);
+		pManager->SetSelectedFigure(FigNew);
+		FigNew->PrintInfo(pOut);
 	}
-	else if (SelectedFig == FigPtr) {
+	else if (SelectedFig == FigNew) {
 		SelectedFig->SetSelected(0);
-		FigPtr->SetSelected(0);
+		FigNew->SetSelected(0);
 		pManager->SetSelectedFigure(NULL);
+		pOut->PrintMessage("Figure Unselected");
 	}
-	else if (SelectedFig->IsSelected() == 1 && FigPtr != NULL) {
+	else if (SelectedFig->IsSelected() == 1 && FigNew != NULL) {
 		SelectedFig->SetSelected(0);
-		FigPtr->SetSelected(1);
-		pManager->SetSelectedFigure(FigPtr);
+		FigNew->SetSelected(1);
+		pManager->SetSelectedFigure(FigNew);
+		FigNew->PrintInfo(pOut);
 	}
 
 

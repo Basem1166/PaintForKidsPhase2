@@ -2,15 +2,16 @@
 CHexagon::CHexagon(Point P1, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 {
 	Center = P1;
+	
 }
 
 
 void CHexagon::Draw(Output* pOut) const
 {
-	//Call Output::DrawHexagon to draw a rectangle on the screen	
+	//Call Output::DrawHexagon to draw a hexagon on the screen	
 	pOut->DrawHexagon(Center, FigGfxInfo, Selected);
 }
-bool CHexagon::IsInside(int x, int y) {
+bool CHexagon::IsInside(int x, int y){
 	//co-ordinates of Hexagon from origin	
 	float X[6] = { 100,50,-50,-100,-50,50 };
 	float Y[6] = { 0,sqrt(3) * 50,sqrt(3) * 50,0,-1 * (sqrt(3) * 50),-1 * (sqrt(3) * 50) };
@@ -30,4 +31,8 @@ bool CHexagon::IsInside(int x, int y) {
 	float A6 = abs((x * (Y[5] - Y[0]) + X[5] * (Y[0] - y) + X[0] * (y - Y[5])) / 2.0f);
 	float total = A1 + A2 + A3 + A4 + A5 + A6;
 	return abs((A -total))<=0.01;//adding an error tolerance
+}
+void CHexagon::PrintInfo(Output* pOut){
+	string MESSAGE = "Figure Type: Hexagon, ID: " + to_string(ID) + ", Center Point:(" + to_string(Center.x) + "," + to_string(Center.y) + "), Side Length=100";
+	pOut->PrintMessage(MESSAGE);
 }

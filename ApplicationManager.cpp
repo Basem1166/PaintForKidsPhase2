@@ -11,7 +11,6 @@ ApplicationManager::ApplicationManager()
 	//Create Input and output
 	pOut = new Output;
 	pIn = pOut->CreateInput();
-	
 	FigCount = 0;
 	SelectedFig = NULL;
 	//Create an array of figure pointers and set them to NULL		
@@ -88,7 +87,6 @@ void ApplicationManager::AddFigure(CFigure* pFig)
 {
 	if (FigCount < MaxFigCount) {
 		FigList[FigCount++] = pFig;
-		pFig->SetID(FigCount);
 	}
 }
 ////////////////////////////////////////////////////////////////////////////////////

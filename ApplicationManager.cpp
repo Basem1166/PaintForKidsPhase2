@@ -145,6 +145,22 @@ Input *ApplicationManager::GetInput() const
 //Return a pointer to the output
 Output *ApplicationManager::GetOutput() const
 {	return pOut; }
+
+////////////////////////////////////////////////////////////////////////////////////BASEEEEEEEEEEEEEEEEEEEEEM #2
+int ApplicationManager::SaveAll(ofstream& filename) const {
+
+	for (int i = 0;i < FigCount;i++) {
+		//FigList[i]->save(filename);  i still didnt add save() for each shape 
+	}
+	return FigCount;
+}
+void ApplicationManager::clearAll() {
+
+	for (int i = 0;i < FigCount;i++) {
+		FigList[i] = NULL;
+	}
+}
+
 ////////////////////////////////////////////////////////////////////////////////////
 //Destructor
 ApplicationManager::~ApplicationManager()

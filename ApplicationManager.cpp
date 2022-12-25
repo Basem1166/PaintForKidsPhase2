@@ -164,6 +164,6 @@ ApplicationManager::~ApplicationManager()
 //save & load management functions RHG
 
 
-void ApplicationManager::SaveFigcount(ofstream& outputFile,string filename) { //writing figcount into the file
+void ApplicationManager::SaveFigcount(ofstream& outputFile) { //writing figcount into the file
 	outputFile << to_string(FigCount) << endl;
 }

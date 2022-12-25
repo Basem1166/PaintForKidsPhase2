@@ -6,6 +6,7 @@
 #include "Actions\AddCircAction.h"
 #include "Actions\SelectOneAction.h"
 #include "Actions\DeleteFigureAction.h"
+#include "Actions\SaveAction.h"
 //Constructor
 ApplicationManager::ApplicationManager()
 {
@@ -57,6 +58,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case _DELETE:
 			if(GetSelectedFigure()!=NULL)
 			pAct = new DeleteFigureAction(this);
+			break;
+		case SAVE_GRAPH:
+				pAct = new SaveAction(this);
 			break;
 		case EXIT:
 			///create ExitAction here
@@ -154,4 +158,12 @@ ApplicationManager::~ApplicationManager()
 	delete pIn;
 	delete pOut;
 	
+}
+
+///////////////////////////////////////////////////////////////////////////////////
+//save & load management functions RHG
+
+
+void ApplicationManager::SaveFigcount(ofstream& outputFile,string filename) { //writing figcount into the file
+	outputFile << to_string(FigCount) << endl;
 }

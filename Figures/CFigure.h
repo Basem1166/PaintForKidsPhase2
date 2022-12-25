@@ -38,8 +38,8 @@ public:
 
 	virtual void PrintInfo(Output*) = 0;	//print all figure info on the status bar
 
-	//virtual void save(ofstream & outputfile) = 0;                //Write Datamember of shape into txt file
-	//virtual void load(ifstream & inputfile) = 0;                //reading from files to set data member and create shape 
+	virtual void save(ofstream & outputfile) = 0;                //Write Datamember of shape into txt file
+	virtual void load(ifstream & inputfile) = 0;                //reading from files to set data member and create shape 
 
 };
 

@@ -15,9 +15,9 @@ public:
 	virtual void Draw(Output* pOut) const;
 	virtual bool IsInside(int, int);
 	virtual void PrintInfo(Output*);
-	//string convertcolorToString(color color);
-	//void save(ofstream& outputfile) ;
-	//void load(ifstream& inputfile) ;
+	string convertcolorToString(color color);
+	void save(ofstream& outputfile) ;
+	void load(ifstream& inputfile) ;
 };
 
 #endif

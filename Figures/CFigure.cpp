@@ -22,3 +22,38 @@ void CFigure::ChngFillClr(color Fclr)
 	FigGfxInfo.FillClr = Fclr; 
 }
 int CFigure::count = 1;
+
+string CFigure::convertcolorToString(color color) {
+
+	if (color == BLACK)
+	{
+		return "BLACK";
+	}
+	else if (color == YELLOW)
+	{
+		return "YELLOW";
+	}
+	else if (color == ORANGE)
+	{
+		return "ORANGE";
+	}
+	else if (color == RED)
+	{
+		return "RED";
+	}
+	else if (color == GREEN)
+	{
+		return "GREEN";
+	}
+	else if (color == BLUE)
+	{
+		return "BLUE";
+	}
+	else
+	{
+		return "NO_FILL";
+	}
+}
+int CFigure::getid() {
+	return ID;
+}

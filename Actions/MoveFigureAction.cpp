@@ -35,5 +35,5 @@ void MoveFigureAction::Execute()
 	Input* pIn = pManager->GetInput();
 	CFigure* SelectedFig = pManager->GetSelectedFigure();
 	SelectedFig->Move(P1.x, P1.y); // Moves Figure to new Center;
-	pOut->PrintMessage("Figure Moved");
+	
 }

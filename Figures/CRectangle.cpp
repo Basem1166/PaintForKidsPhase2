@@ -9,37 +9,6 @@ CRectangle::CRectangle(Point P1, Point P2, GfxInfo FigureGfxInfo):CFigure(Figure
 	
 }
 
-string SaveAction::convertcolorToString(color color) {
-
-	if (color == BLACK)
-	{
-		return "BLACK";
-	}
-	else if (color == YELLOW)
-	{
-		return "YELLOW";
-	}
-	else if (color == ORANGE)
-	{
-		return "ORANGE";
-	}
-	else if (color == RED)
-	{
-		return "RED";
-	}
-	else if (color == GREEN)
-	{
-		return "GREEN";
-	}
-	else if (color == BLUE)
-	{
-		return "BLUE";
-	}
-	else
-	{
-		return " ";
-	}
-}
 
 void CRectangle::Draw(Output* pOut) const
 {
@@ -54,15 +23,17 @@ bool CRectangle::IsInside(int x, int y){ //Checking if the point is inside the r
 		return 0;
 	}
 }
+
 void CRectangle::PrintInfo(Output* pOut) {
 	int length = abs(Corner1.x-Corner2.x)>=abs(Corner1.y-Corner2.y)? abs(Corner1.x - Corner2.x): abs(Corner1.y - Corner2.y);
 	int width = abs(Corner1.x - Corner2.x) < abs(Corner1.y - Corner2.y) ? abs(Corner1.x - Corner2.x) : abs(Corner1.y - Corner2.y);
 	string MESSAGE = "Figure Type: Rectangle, ID: " + to_string(ID) + ", Corners Points:(" + to_string(Corner1.x) + "," + to_string(Corner1.y) + ")-(" + to_string(Corner2.x) + "," + to_string(Corner2.y) + "), Length="+to_string(length)+", Width="+to_string(width);
 	pOut->PrintMessage(MESSAGE);
 }
-void CRectangle::save(ofstream& outputfile) {
-	outputfile << "RECT" << " " << getID() << " " << Corner1.x << " " << Corner1.y << " " << Corner2.x << " " << Corner2.y << " " << convertcolorToString(FigGfxInfo.DrawClr) << " " 
-		<<( (convertcolorToString(FigGfxInfo.FillClr).empty()) ? "NO_FILL" : convertcolorToString(FigGfxInfo.FillClr)) << endl;
 
-}
+//void CRectangle::save(ofstream& outputfile) {
+//	outputfile << "RECT" << " " << getID() << " " << Corner1.x << " " << Corner1.y << " " << Corner2.x << " " << Corner2.y << " " << convertcolorToString(FigGfxInfo.DrawClr) << " " 
+//		<<( (convertcolorToString(FigGfxInfo.FillClr).empty()) ? "NO_FILL" : convertcolorToString(FigGfxInfo.FillClr)) << endl;
+//	return;
+//}
 

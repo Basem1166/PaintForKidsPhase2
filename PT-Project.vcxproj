@@ -133,6 +133,7 @@
     <ClCompile Include="Actions\AddSqrAction.cpp" />
     <ClCompile Include="Actions\AddTriAction.cpp" />
     <ClCompile Include="Actions\DeleteFigureAction.cpp" />
+    <ClCompile Include="Actions\LoadAction.cpp" />
     <ClCompile Include="Actions\SaveAction.cpp" />
     <ClCompile Include="Actions\SelectOneAction.cpp" />
     <ClCompile Include="CMUgraphicsLib\auxil.cpp" />
@@ -181,7 +182,6 @@
     <ClCompile Include="GUI\Input.cpp" />
     <ClCompile Include="GUI\Output.cpp" />
     <ClCompile Include="ApplicationManager.cpp" />
-    <ClCompile Include="LoadAction.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -190,6 +190,7 @@
     <ClInclude Include="Actions\AddSqrAction.h" />
     <ClInclude Include="Actions\AddTriAction.h" />
     <ClInclude Include="Actions\DeleteFigureAction.h" />
+    <ClInclude Include="Actions\LoadAction.h" />
     <ClInclude Include="Actions\SaveAction.h" />
     <ClInclude Include="Actions\SelectOneAction.h" />
     <ClInclude Include="CMUgraphicsLib\auxil.h" />
@@ -225,7 +226,6 @@
     <ClInclude Include="GUI\UI_Info.h" />
     <ClInclude Include="ApplicationManager.h" />
     <ClInclude Include="DEFS.h" />
-    <ClInclude Include="LoadAction.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

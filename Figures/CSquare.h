@@ -14,8 +14,7 @@ public:
 	virtual bool IsInside(int, int) ;
 	virtual void PrintInfo(Output*) ;
 
-	void save(ofstream& outputfile);
-	void load(ifstream& inputfile);
+	
 };
 
 #endif

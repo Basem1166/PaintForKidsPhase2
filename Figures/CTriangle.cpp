@@ -21,6 +21,19 @@ bool CTriangle::IsInside(int x, int y) {
 	float A3 = abs((x * (Corner1.y - Corner3.y) + Corner1.x * (Corner3.y - y) + Corner3.x * (y - Corner1.y)) / 2.0f);
 	return (A == A1 + A2 + A3);
 }
+void CTriangle::Move(int x, int y) {
+	int xcenter = (Corner1.x + Corner2.x + Corner3.x) / 3; //getting intersection of medians of triangle
+	int ycenter = (Corner1.y + Corner2.y + Corner3.y) / 3;
+	int xtranslate = xcenter - x;
+	int ytranslate = ycenter - x;
+	Corner1.x -= xtranslate;
+	Corner1.y -= ytranslate;
+	Corner2.x -= xtranslate;
+	Corner2.y -= ytranslate;
+	Corner3.x -= xtranslate;
+	Corner3.y -= ytranslate;
+
+}
 void CTriangle :: PrintInfo(Output* pOut){
 	string MESSAGE = "Figure Type: Triangle, ID: " + to_string(ID) + ", Corners Points:(" + to_string(Corner1.x) + "," + to_string(Corner1.y) + ")-(" + to_string(Corner2.x) + "," + to_string(Corner2.y) + ")-(" + to_string(Corner3.x) + "," + to_string(Corner3.y) + ")";
 	pOut->PrintMessage(MESSAGE);

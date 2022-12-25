@@ -15,6 +15,7 @@ public:
 	virtual bool IsInside(int, int);
 	void PrintInfo(Output*);
 	void Save(ofstream& outputFile);
+	virtual void Move(int, int);
 };
 
 #endif

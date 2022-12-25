@@ -13,6 +13,7 @@ public:
 	CRectangle(Point , Point, GfxInfo FigureGfxInfo );
 	virtual void Draw(Output* pOut) const;
 	virtual bool IsInside(int, int);
+	virtual void Move(int, int);
 	virtual void PrintInfo(Output*);
 	void Save(ofstream& outputFile);
 };

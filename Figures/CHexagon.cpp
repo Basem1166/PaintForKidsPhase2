@@ -33,6 +33,10 @@ bool CHexagon::IsInside(int x, int y){
 	float total = A1 + A2 + A3 + A4 + A5 + A6;
 	return abs((A -total))<=0.01;//adding an error tolerance
 }
+void CHexagon::Move(int x, int y) {
+	Center.x = x;
+	Center.y = y;
+}
 void CHexagon::PrintInfo(Output* pOut){
 	string MESSAGE = "Figure Type: Hexagon, ID: " + to_string(ID) + ", Center Point:(" + to_string(Center.x) + "," + to_string(Center.y) + "), Side Length=100";
 	pOut->PrintMessage(MESSAGE);

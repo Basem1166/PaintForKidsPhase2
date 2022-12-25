@@ -23,11 +23,6 @@ bool CTriangle::IsInside(int x, int y) {
 }
 void CTriangle::Move(int x, int y) {
 	int xcenter = (Corner1.x + Corner2.x + Corner3.x) / 3; //getting intersection of medians of triangle
-
-	int ycenter = (Corner1.y + Corner2.y + Corner3.y) / 3; 
-	int xtranslate = xcenter - x;
-	int ytranslate = ycenter - y; 
-	Corner1.x -= xtranslate;
 	int ycenter = (Corner1.y + Corner2.y + Corner3.y) / 3;
 	int xtranslate = xcenter - x;//calculating the needed translation in both axis
 	int ytranslate = ycenter - y;

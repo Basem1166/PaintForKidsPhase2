@@ -1,5 +1,5 @@
 #include "CTriangle.h"
-
+#include <fstream>
 CTriangle::CTriangle(Point P1, Point P2, Point P3, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 {
 	Corner1 = P1;
@@ -37,4 +37,13 @@ void CTriangle::Move(int x, int y) {
 void CTriangle :: PrintInfo(Output* pOut){
 	string MESSAGE = "Figure Type: Triangle, ID: " + to_string(ID) + ", Corners Points:(" + to_string(Corner1.x) + "," + to_string(Corner1.y) + ")-(" + to_string(Corner2.x) + "," + to_string(Corner2.y) + ")-(" + to_string(Corner3.x) + "," + to_string(Corner3.y) + ")";
 	pOut->PrintMessage(MESSAGE);
+}
+void CTriangle::Save(ofstream& outputFile) {
+	outputFile << "TRIANG" << " " << getid() << " "
+		<< Corner1.x << " " << Corner1.y << " "
+		<< Corner2.x << " " << Corner2.y << " "
+		<< Corner3.x << " " << Corner3.y << " "
+		<< convertcolorToString(currentGfxInfo.DrawClr) << " "
+		<< ((currentGfxInfo.FillClr==BLACK) ? "NO_FILL" : convertcolorToString(currentGfxInfo.FillClr)) << endl;
+
 }

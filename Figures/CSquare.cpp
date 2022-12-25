@@ -21,7 +21,7 @@ bool CSquare::IsInside(int x, int y){ //Checking if the point is inside the squa
 	}
 }
 void CSquare::Move(int x, int y) {
-	Center.x = x; // assigning new centerr
+	Center.x = x; // assigning new centerrr
 	Center.y = y;
 }
 void CSquare::PrintInfo(Output* pOut){

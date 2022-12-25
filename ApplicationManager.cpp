@@ -7,9 +7,7 @@
 #include "Actions\SelectOneAction.h"
 #include "Actions\DeleteFigureAction.h"
 #include "Actions\SaveAction.h"
-#include".\Figures\CFigure.h"
 #include "Actions\MoveFigureAction.h"
-
 //Constructor
 ApplicationManager::ApplicationManager()
 {
@@ -173,15 +171,4 @@ ApplicationManager::~ApplicationManager()
 
 void ApplicationManager::SaveFigcount(ofstream& outputFile) { //writing figcount into the file
 	outputFile << to_string(FigCount) << endl;
-}
-
-void ApplicationManager::SaveAll(ofstream& outputFile) {
-	for (int i = 0;i < FigCount;i++) {
-		FigList[i]->Save(outputFile);
-	}
-}
-void ApplicationManager::clearAll() {
-	for (int i = 0;i < FigCount;i++) {
-		FigList[i] = NULL;
-	}
 }

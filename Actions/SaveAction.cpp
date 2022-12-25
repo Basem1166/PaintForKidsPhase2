@@ -56,7 +56,6 @@ void SaveAction::ReadActionParameters() {
 void SaveAction::Execute() {
 
 	ReadActionParameters();
-
 	ofstream outputFile;
 	outputFile.open(filename, ios::out); //if we 've used ofstream(write into files) we dont need to open file  
 
@@ -65,14 +64,14 @@ void SaveAction::Execute() {
 	string Current_Draw_Color = convertcolorToString(currentGfxInfo.DrawClr);
 	string Current_Fill_Color = convertcolorToString(currentGfxInfo.FillClr);
 
-
 	outputFile << Current_Draw_Color << " " << Current_Fill_Color << endl; //saving data of current draw and fill color first line in txt file
 
 	//saving number of figures in figlist by calling function saveficount in application manager
+
 	pManager->SaveFigcount(outputFile);
 
 	//calls ApplicationManager::SaveAll(…) to write data members of each shape into text file 
-	//pManager->SaveAll(outputFile);
+	pManager->SaveAll(outputFile);
 
 	outputFile.close();
 }

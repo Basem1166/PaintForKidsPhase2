@@ -8,11 +8,12 @@
 class CFigure
 {
 protected:
+
 	static int count;
 	int ID;		//Each figure has an ID
 	bool Selected;	//true if the figure is selected.
 	GfxInfo FigGfxInfo;	//Figure graphis info
-	
+
 	/// Add more parameters if needed.
 
 public:
@@ -33,10 +34,14 @@ public:
 	///Decide the parameters that you should pass to each function	
 
 
-	//virtual void Save(ofstream &OutFile) = 0;	//Save the figure parameters to the file
+	virtual void Save(ofstream &OutFile) = 0;	//Save the figure parameters to the file
 	//virtual void Load(ifstream &Infile) = 0;	//Load the figure parameters to the file
 
 	virtual void PrintInfo(Output*) = 0;	//print all figure info on the status bar
+
+	//converting color type to string to be able to write it in text files
+	string convertcolorToString(color color);
+	int getid(); //for save action to be able to  write it into file
 };
 
 #endif

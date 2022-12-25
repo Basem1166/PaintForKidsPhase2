@@ -1,4 +1,5 @@
 #include "CHexagon.h"
+#include <fstream>
 CHexagon::CHexagon(Point P1, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 {
 	Center = P1;
@@ -35,4 +36,11 @@ bool CHexagon::IsInside(int x, int y){
 void CHexagon::PrintInfo(Output* pOut){
 	string MESSAGE = "Figure Type: Hexagon, ID: " + to_string(ID) + ", Center Point:(" + to_string(Center.x) + "," + to_string(Center.y) + "), Side Length=100";
 	pOut->PrintMessage(MESSAGE);
+}
+void CHexagon::Save(ofstream& outputFile) {
+	outputFile << "HEXAG" << " " << getid() << " "
+		<< Center.x << " " << Center.y << " "
+		<< convertcolorToString(currentGfxInfo.DrawClr) << " "
+		<< ((currentGfxInfo.FillClr == BLACK) ? "NO_FILL" : convertcolorToString(currentGfxInfo.FillClr)) << endl;
+
 }

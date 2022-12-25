@@ -22,6 +22,15 @@ bool CCircle::IsInside(int x, int y){ //Checking if the point is inside the rect
 		return 0;
 	}
 }
+void CCircle::Move(int x, int y) {
+	int xtranslate = Point1.x-x;
+	int ytranslate = Point1.y-y;
+	Point1.x = x;
+	Point1.y = y;
+	Point2.x -= xtranslate;
+	Point2.y -= ytranslate;
+
+}
 void CCircle::PrintInfo(Output* pOut) {
 	string MESSAGE = "Figure Type: Circle, ID: " + to_string(ID) + ", Center Point:(" + to_string(Point1.x) + "," + to_string(Point1.y) + ")-Radius="+to_string(sqrt(pow((Point1.x - Point2.x), 2) + pow((Point1.y - Point2.y), 2)));
 	pOut->PrintMessage(MESSAGE);

@@ -13,6 +13,7 @@ public:
 	virtual void Draw(Output*) const;
 	virtual bool IsInside(int, int);
 	void PrintInfo(Output*);
+	virtual void Move(int, int);
 };
 
 #endif

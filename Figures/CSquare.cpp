@@ -20,6 +20,10 @@ bool CSquare::IsInside(int x, int y){ //Checking if the point is inside the squa
 		return 0;
 	}
 }
+void CSquare::Move(int x, int y) {
+	Center.x = x; // assigning new center
+	Center.y = y;
+}
 void CSquare::PrintInfo(Output* pOut){
 	string MESSAGE = "Figure Type: Square, ID: " + to_string(ID) + ", Center Point:(" + to_string(Center.x) + "," + to_string(Center.y) + "), Side Length=50";
 	pOut->PrintMessage(MESSAGE);

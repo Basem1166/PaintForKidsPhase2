@@ -11,6 +11,7 @@ public:
 	virtual void Draw(Output* pOut) const;
 	virtual bool IsInside(int, int);
 	void PrintInfo(Output* pOut);
+	virtual void Move(int, int);
 };
 
 #endif

@@ -7,6 +7,7 @@
 #include "Actions\SelectOneAction.h"
 #include "Actions\DeleteFigureAction.h"
 #include "Actions\SaveAction.h"
+#include "Actions\MoveFigureAction.h"
 //Constructor
 ApplicationManager::ApplicationManager()
 {
@@ -58,6 +59,10 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case _DELETE:
 			if(GetSelectedFigure()!=NULL)
 			pAct = new DeleteFigureAction(this);
+			break;
+		case MOVE_SHAPE:
+			if (GetSelectedFigure() != NULL)
+				pAct = new MoveFigureAction(this);
 			break;
 		case SAVE_GRAPH:
 				pAct = new SaveAction(this);

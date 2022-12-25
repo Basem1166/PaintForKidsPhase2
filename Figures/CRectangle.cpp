@@ -21,6 +21,16 @@ bool CRectangle::IsInside(int x, int y){ //Checking if the point is inside the r
 		return 0;
 	}
 }
+void CRectangle :: Move(int x, int y) {
+	int xcenter = (Corner1.x + Corner2.x) / 2;//getting x coordinates of center of rectangle
+	int ycenter = (Corner1.y + Corner2.y) / 2;//getting y coordinates of center of rectangle
+	int xtranslate = xcenter-x;
+	int ytranslate= ycenter-y;
+	Corner1.x -= xtranslate; //translating points
+	Corner1.y -= ytranslate;
+	Corner2.x -= xtranslate;
+	Corner2.y -= ytranslate;
+}
 void CRectangle::PrintInfo(Output* pOut) {
 	int length = abs(Corner1.x-Corner2.x)>=abs(Corner1.y-Corner2.y)? abs(Corner1.x - Corner2.x): abs(Corner1.y - Corner2.y);
 	int width = abs(Corner1.x - Corner2.x) < abs(Corner1.y - Corner2.y) ? abs(Corner1.x - Corner2.x) : abs(Corner1.y - Corner2.y);

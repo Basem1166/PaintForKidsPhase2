@@ -43,7 +43,7 @@ public:
 	void UpdateInterface() const;	//Redraws all the drawing window	
 
 	//-- Save Management Functions RHG
-	void SaveFigcount(ofstream & outputFile, string filename);
+	void SaveFigcount(ofstream & outputFile);
 };
 
 #endif

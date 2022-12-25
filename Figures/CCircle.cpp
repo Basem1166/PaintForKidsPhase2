@@ -23,9 +23,9 @@ bool CCircle::IsInside(int x, int y){ //Checking if the point is inside the rect
 	}
 }
 void CCircle::Move(int x, int y) {
-	int xtranslate = Point1.x-x;
-	int ytranslate = Point1.y-y;
-	Point1.x = x;
+	int xtranslate = Point1.x-x;//calculating the needed translate for new point 2 x cooridantes
+	int ytranslate = Point1.y-y;//calculating the needed translate for new point 2 y cooridantes
+	Point1.x = x; //translating points to new coordinates
 	Point1.y = y;
 	Point2.x -= xtranslate;
 	Point2.y -= ytranslate;

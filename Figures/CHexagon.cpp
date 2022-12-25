@@ -33,7 +33,7 @@ bool CHexagon::IsInside(int x, int y){
 	return abs((A -total))<=0.01;//adding an error tolerance
 }
 void CHexagon::Move(int x, int y) {
-	Center.x = x;
+	Center.x = x;//assinging new center coordinates for Hexagon
 	Center.y = y;
 }
 void CHexagon::PrintInfo(Output* pOut){

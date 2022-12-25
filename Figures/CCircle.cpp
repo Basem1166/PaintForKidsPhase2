@@ -42,6 +42,6 @@ void CCircle::Save(ofstream& outputFile) {
 		<< Point1.x << " " << Point1.y   << " "
 		<< Point2.x << " " << Point2.y   << " "
 		<< convertcolorToString(currentGfxInfo.DrawClr)<<" "
-		<< ((currentGfxInfo.FillClr == BLACK) ? "NO_FILL" : convertcolorToString(currentGfxInfo.FillClr)) << endl;
+		<< ((currentGfxInfo.isFilled) ? "NO_FILL" : convertcolorToString(currentGfxInfo.FillClr)) << endl;
 	
 }

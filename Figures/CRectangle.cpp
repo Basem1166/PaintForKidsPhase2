@@ -42,6 +42,6 @@ void CRectangle::Save(ofstream& outputFile) {
 		<< Corner1.x << " " << Corner1.y << " "
 		<< Corner2.x << " " << Corner2.y << " "
 		<< convertcolorToString(currentGfxInfo.DrawClr) << " "
-		<< ((currentGfxInfo.FillClr == BLACK) ? "NO_FILL" : convertcolorToString(currentGfxInfo.FillClr)) << endl;
+		<< ((currentGfxInfo.isFilled) ? "NO_FILL" : convertcolorToString(currentGfxInfo.FillClr)) << endl;
 
 }

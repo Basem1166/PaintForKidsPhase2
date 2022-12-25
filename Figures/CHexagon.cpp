@@ -45,6 +45,6 @@ void CHexagon::Save(ofstream& outputFile) {
 	outputFile << "HEXAG" << " " << getid() << " "
 		<< Center.x << " " << Center.y << " "
 		<< convertcolorToString(currentGfxInfo.DrawClr) << " "
-		<< ((currentGfxInfo.FillClr == BLACK) ? "NO_FILL" : convertcolorToString(currentGfxInfo.FillClr)) << endl;
+		<< ((currentGfxInfo.isFilled) ? "NO_FILL" : convertcolorToString(currentGfxInfo.FillClr)) << endl;
 
 }

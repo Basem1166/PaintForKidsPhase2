@@ -21,7 +21,7 @@ bool CSquare::IsInside(int x, int y){ //Checking if the point is inside the squa
 	}
 }
 void CSquare::Move(int x, int y) {
-	Center.x = x; // assigning new center
+	Center.x = x; // assigning new centerrr
 	Center.y = y;
 }
 void CSquare::PrintInfo(Output* pOut){
@@ -32,6 +32,6 @@ void CSquare::Save(ofstream& outputFile) {
 	outputFile << "SQUAR" << " " << getid() << " "
 		<< Center.x << " " << Center.y << " "
 		<< convertcolorToString(currentGfxInfo.DrawClr) << " "
-		<< ((currentGfxInfo.FillClr == BLACK) ? "NO_FILL" : convertcolorToString(currentGfxInfo.FillClr)) << endl;
+		<< ((currentGfxInfo.isFilled) ? "NO_FILL" : convertcolorToString(currentGfxInfo.FillClr)) << endl;
 
 }

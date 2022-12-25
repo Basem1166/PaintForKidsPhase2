@@ -45,6 +45,6 @@ void CTriangle::Save(ofstream& outputFile) {
 		<< Corner2.x << " " << Corner2.y << " "
 		<< Corner3.x << " " << Corner3.y << " "
 		<< convertcolorToString(currentGfxInfo.DrawClr) << " "
-		<< ((currentGfxInfo.FillClr==BLACK) ? "NO_FILL" : convertcolorToString(currentGfxInfo.FillClr)) << endl;
+		<< ((currentGfxInfo.isFilled) ? "NO_FILL" : convertcolorToString(currentGfxInfo.FillClr)) << endl;
 
 }

@@ -3,7 +3,7 @@
 
 #include "..\defs.h"
 #include "..\GUI\Output.h"
-#include <fstream>
+
 //Base class for all figures
 class CFigure
 {
@@ -21,7 +21,7 @@ public:
 	void SetSelected(bool s);	//select/unselect the figure
 	bool IsSelected() const;	//check whether fig is selected
 	void SetID(int);
-	int getID();
+
 	virtual void Draw(Output* pOut) const  = 0 ;		//Draw the figure
 	
 	void ChngDrawClr(color Dclr);	//changes the figure's drawing color
@@ -37,10 +37,6 @@ public:
 	//virtual void Load(ifstream &Infile) = 0;	//Load the figure parameters to the file
 
 	virtual void PrintInfo(Output*) = 0;	//print all figure info on the status bar
-
-	virtual void save(ofstream & outputfile) = 0;                //Write Datamember of shape into txt file
-	virtual void load(ifstream & inputfile) = 0;                //reading from files to set data member and create shape 
-
 };
 
 #endif

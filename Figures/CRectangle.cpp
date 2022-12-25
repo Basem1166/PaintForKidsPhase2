@@ -1,5 +1,5 @@
 #include "CRectangle.h"
-#include <fstream>
+
 CRectangle::CRectangle(Point P1, Point P2, GfxInfo FigureGfxInfo):CFigure(FigureGfxInfo)
 {
 	Corner1 = P1;
@@ -36,12 +36,4 @@ void CRectangle::PrintInfo(Output* pOut) {
 	int width = abs(Corner1.x - Corner2.x) < abs(Corner1.y - Corner2.y) ? abs(Corner1.x - Corner2.x) : abs(Corner1.y - Corner2.y);
 	string MESSAGE = "Figure Type: Rectangle, ID: " + to_string(ID) + ", Corners Points:(" + to_string(Corner1.x) + "," + to_string(Corner1.y) + ")-(" + to_string(Corner2.x) + "," + to_string(Corner2.y) + "), Length="+to_string(length)+", Width="+to_string(width);
 	pOut->PrintMessage(MESSAGE);
-}
-void CRectangle::Save(ofstream& outputFile) {
-	outputFile << "RECT" << " " << getid() << " "
-		<< Corner1.x << " " << Corner1.y << " "
-		<< Corner2.x << " " << Corner2.y << " "
-		<< convertcolorToString(currentGfxInfo.DrawClr) << " "
-		<< ((currentGfxInfo.FillClr == BLACK) ? "NO_FILL" : convertcolorToString(currentGfxInfo.FillClr)) << endl;
-
 }

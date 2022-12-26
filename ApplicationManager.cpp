@@ -38,6 +38,7 @@ void ApplicationManager::UndoPrevAction()
 	if (UndoRedoCount < 5&&ActionListCount>0) {
 		UndoRedoCount++;
 		ActionList[--ActionListCount]->Undo();
+		SelectedFig = NULL;
 	}
 }
 void ApplicationManager::RedoPrevAction()
@@ -45,6 +46,7 @@ void ApplicationManager::RedoPrevAction()
 	if (UndoRedoCount > 0 && ActionListCount <5) {
 		UndoRedoCount--;
 		ActionList[ActionListCount++]->Redo();
+		SelectedFig = NULL;
 	}
 }
 void ApplicationManager::DeleteLastFigure()

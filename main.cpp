@@ -21,8 +21,6 @@ int main()
 
 	} while(ActType != EXIT);
 	
-	//testing 11111111 anime 
-	//asdsadass
 	return 0;
 }
 

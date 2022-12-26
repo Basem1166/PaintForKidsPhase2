@@ -37,3 +37,12 @@ void MoveFigureAction::Execute()
 	SelectedFig->Move(P1.x, P1.y); // Moves Figure to new Center;
 	pOut->PrintMessage("Figure Moved");
 }
+
+void MoveFigureAction::Undo()
+{
+
+}
+void MoveFigureAction::Redo()
+{
+
+}

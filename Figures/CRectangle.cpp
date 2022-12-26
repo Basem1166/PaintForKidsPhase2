@@ -38,7 +38,7 @@ void CRectangle::PrintInfo(Output* pOut) {
 	pOut->PrintMessage(MESSAGE);
 }
 void CRectangle::Save(ofstream& outputFile) {
-	outputFile << "RECT" << " " << getid() << " "
+	outputFile << "RECT" << " " << GetID() << " "
 		<< Corner1.x << " " << Corner1.y << " "
 		<< Corner2.x << " " << Corner2.y << " "
 		<< convertcolorToString(currentGfxInfo.DrawClr) << " "

@@ -22,3 +22,12 @@ void DeleteFigureAction::Execute()
 
 	pOut->PrintMessage("Deleted Figure");
 }
+void DeleteFigureAction::Undo()
+{
+
+}
+
+void DeleteFigureAction::Redo()
+{
+
+}

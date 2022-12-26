@@ -52,3 +52,13 @@ void AddTriAction::Execute()
 	//Add the triangle to the list of figures
 	pManager->AddFigure(T);
 }
+
+void AddTriAction::Undo()
+{
+
+}
+
+void AddTriAction::Redo()
+{
+
+}

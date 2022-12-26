@@ -9,6 +9,9 @@
 #include "Actions\SaveAction.h"
 #include".\Figures\CFigure.h"
 #include "Actions\MoveFigureAction.h"
+#include"Actions\Action.h"
+#include"Actions\RedoAction.h"
+#include"Actions\UndoAction.h"
 
 //Constructor
 ApplicationManager::ApplicationManager()
@@ -17,6 +20,8 @@ ApplicationManager::ApplicationManager()
 	pOut = new Output;
 	pIn = pOut->CreateInput();
 	FigCount = 0;
+	UndoRedoCount = 0;
+	ActionListCount = 0;
 	SelectedFig = NULL;
 	//Create an array of figure pointers and set them to NULL		
 	for(int i=0; i<MaxFigCount; i++)
@@ -30,6 +35,38 @@ ActionType ApplicationManager::GetUserAction() const
 {
 	//Ask the input to get the action from the user.
 	return pIn->GetUserAction();		
+}
+void ApplicationManager::UndoPrevAction()
+{
+	if (UndoRedoCount < 5 && ActionListCount>0) {
+		UndoRedoCount++;
+		ActionList[--ActionListCount]->Undo();
+		SelectedFig = NULL;
+	}
+}
+void ApplicationManager::RedoPrevAction()
+{
+	if (UndoRedoCount > 0 && ActionListCount < 5) {
+		UndoRedoCount--;
+		ActionList[ActionListCount++]->Redo();
+		SelectedFig = NULL;
+	}
+}
+void ApplicationManager::DeleteLastFigure()
+{
+	int LastID = -1;
+	int index = 0;
+	for (int i = 0; i < FigCount; i++)
+	{
+		if (FigList[i]->GetID() > LastID)
+		{
+			LastID = FigList[i]->GetID();
+			index = i;
+		}
+	}
+	delete FigList[index];
+	FigList[index] = FigList[--FigCount];
+	FigList[FigCount] = NULL;
 }
 ////////////////////////////////////////////////////////////////////////////////////
 //Creates an action and executes it
@@ -69,6 +106,12 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case SAVE_GRAPH:
 				pAct = new SaveAction(this);
 			break;
+		case UNDO:
+			pAct = new UndoAction(this);
+			break;
+		case REDO:
+			pAct = new RedoAction(this);
+			break;
 		case EXIT:
 			///create ExitAction here
 			
@@ -79,11 +122,33 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	}
 	
 	//Execute the created action
-	if(pAct != NULL)
+	if (pAct != NULL)
 	{
-		pAct->Execute();//Execute
-		delete pAct;	//You may need to change this line depending to your implementation
-		pAct = NULL;
+		if (ActType <= 12)
+		{
+			if (ActionListCount < 5)
+			{
+				ActionList[ActionListCount++] = pAct;
+			}
+			else
+			{
+				if (ActionList[0])
+					delete ActionList[0];
+				for (int i = 0; i < ActionListCount - 1; i++)
+				{
+					ActionList[i] = ActionList[i + 1];
+				}
+				ActionList[ActionListCount - 1] = NULL;
+			}
+			UndoRedoCount = 0;
+			pAct->Execute();//Execute
+		}
+		else
+		{
+			pAct->Execute();//Execute
+			delete pAct;
+			pAct = NULL;
+		}
 	}
 }
 void ApplicationManager::SetSelectedFigure(CFigure* fig)

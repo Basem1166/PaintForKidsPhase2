@@ -18,6 +18,10 @@ public:
 	//Add Triangle to the ApplicationManager
 	virtual void Execute();
 
+	void Undo();
+
+	void Redo();
+
 };
 
 #endif

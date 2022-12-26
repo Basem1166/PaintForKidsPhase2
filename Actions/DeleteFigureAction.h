@@ -13,7 +13,8 @@ public:
 
 	//Delete selected figure from FigList ApplicationManager
 	virtual void Execute();
-
+	void Undo();
+	void Redo();
 };
 
 #endif

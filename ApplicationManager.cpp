@@ -35,13 +35,17 @@ ActionType ApplicationManager::GetUserAction() const
 }
 void ApplicationManager::UndoPrevAction()
 {
-	UndoRedoCount++;
-	ActionList[--ActionListCount]->Undo();
+	if (UndoRedoCount < 5&&ActionListCount>0) {
+		UndoRedoCount++;
+		ActionList[--ActionListCount]->Undo();
+	}
 }
 void ApplicationManager::RedoPrevAction()
 {
-	UndoRedoCount--;
-	ActionList[ActionListCount++]->Redo();
+	if (UndoRedoCount > 0 && ActionListCount <5) {
+		UndoRedoCount--;
+		ActionList[ActionListCount++]->Redo();
+	}
 }
 void ApplicationManager::DeleteLastFigure()
 {
@@ -92,6 +96,12 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 		case SAVE_GRAPH:
 				pAct = new SaveAction(this);
+			break;
+		case UNDO:
+			pAct = new UndoAction(this);
+			break;
+		case REDO:
+			pAct = new RedoAction(this);
 			break;
 		case EXIT:
 			///create ExitAction here

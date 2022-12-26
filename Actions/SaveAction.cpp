@@ -78,3 +78,12 @@ void SaveAction::Execute() {
 }
 
 SaveAction::~SaveAction(void) {}
+void SaveAction::Undo()
+{
+
+}
+
+void SaveAction::Redo()
+{
+
+}

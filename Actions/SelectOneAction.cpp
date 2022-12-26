@@ -45,3 +45,12 @@ void SelectOneAction::Execute() {
 		FigNew->PrintInfo(pOut);
 	}
 }
+void SelectOneAction::Undo()
+{
+
+}
+
+void SelectOneAction::Redo()
+{
+
+}

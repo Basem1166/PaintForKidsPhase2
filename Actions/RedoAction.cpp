@@ -13,3 +13,12 @@ void RedoAction::Execute()
 {
 	pManager->RedoPrevAction();
 }
+void RedoAction::Undo()
+{
+
+}
+
+void RedoAction::Redo()
+{
+
+}

@@ -1,5 +1,5 @@
 #include "CSquare.h"
-
+#include <fstream>
 CSquare::CSquare(Point P1, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 {
 	Center = P1;
@@ -20,7 +20,18 @@ bool CSquare::IsInside(int x, int y){ //Checking if the point is inside the squa
 		return 0;
 	}
 }
+void CSquare::Move(int x, int y) {
+	Center.x = x; // assigning new centerrr
+	Center.y = y;
+}
 void CSquare::PrintInfo(Output* pOut){
 	string MESSAGE = "Figure Type: Square, ID: " + to_string(ID) + ", Center Point:(" + to_string(Center.x) + "," + to_string(Center.y) + "), Side Length=50";
 	pOut->PrintMessage(MESSAGE);
+}
+void CSquare::Save(ofstream& outputFile) {
+	outputFile << "SQUAR" << " " << getid() << " "
+		<< Center.x << " " << Center.y << " "
+		<< convertcolorToString(currentGfxInfo.DrawClr) << " "
+		<< ((currentGfxInfo.isFilled) ? "NO_FILL" : convertcolorToString(currentGfxInfo.FillClr)) << endl;
+
 }

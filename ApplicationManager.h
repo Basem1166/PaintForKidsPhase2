@@ -51,6 +51,8 @@ public:
 
 	//-- Save Management Functions RHG
 	void SaveFigcount(ofstream & outputFile);
+	void clearAll();
+	void SaveAll(ofstream& outputFile);
 };
 
 #endif

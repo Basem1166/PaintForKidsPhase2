@@ -10,6 +10,10 @@
 #include"Actions\Action.h"
 #include"Actions\RedoAction.h"
 #include"Actions\UndoAction.h"
+
+#include".\Figures\CFigure.h"
+#include "Actions\MoveFigureAction.h"
+
 //Constructor
 ApplicationManager::ApplicationManager()
 {
@@ -95,6 +99,10 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case _DELETE:
 			if(GetSelectedFigure()!=NULL)
 			pAct = new DeleteFigureAction(this);
+			break;
+		case MOVE_SHAPE:
+			if (GetSelectedFigure() != NULL)
+				pAct = new MoveFigureAction(this);
 			break;
 		case SAVE_GRAPH:
 				pAct = new SaveAction(this);
@@ -231,4 +239,15 @@ ApplicationManager::~ApplicationManager()
 
 void ApplicationManager::SaveFigcount(ofstream& outputFile) { //writing figcount into the file
 	outputFile << to_string(FigCount) << endl;
+}
+
+void ApplicationManager::SaveAll(ofstream& outputFile) {
+	for (int i = 0;i < FigCount;i++) {
+		FigList[i]->Save(outputFile);
+	}
+}
+void ApplicationManager::clearAll() {
+	for (int i = 0;i < FigCount;i++) {
+		FigList[i] = NULL;
+	}
 }

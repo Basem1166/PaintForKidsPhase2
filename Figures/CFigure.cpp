@@ -21,4 +21,14 @@ void CFigure::ChngFillClr(color Fclr)
 	FigGfxInfo.isFilled = true;
 	FigGfxInfo.FillClr = Fclr; 
 }
+
 int CFigure::count = 1;
+
+int CFigure::GetID() {
+	return ID;
+}
+
+void CFigure::SetID(int ID)
+{
+	this->ID = ID;
+}

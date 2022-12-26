@@ -22,6 +22,8 @@ public:
 	void SetSelected(bool s);	//select/unselect the figure
 	bool IsSelected() const;	//check whether fig is selected
 	
+	int GetID();
+	void SetID(int);
 
 	virtual void Draw(Output* pOut) const  = 0 ;		//Draw the figure
 	
@@ -42,7 +44,6 @@ public:
 
 	//converting color type to string to be able to write it in text files
 	string convertcolorToString(color color);
-	int getid(); //for save action to be able to  write it into file
 };
 
 #endif

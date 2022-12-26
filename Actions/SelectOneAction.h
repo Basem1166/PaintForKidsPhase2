@@ -13,7 +13,8 @@ public:
 	SelectOneAction(ApplicationManager* pApp);
 	virtual void ReadActionParameters();
 	virtual void Execute();
-	
+	void Undo();
+	void Redo();
 };
 
 #endif

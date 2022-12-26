@@ -29,7 +29,7 @@ void CSquare::PrintInfo(Output* pOut){
 	pOut->PrintMessage(MESSAGE);
 }
 void CSquare::Save(ofstream& outputFile) {
-	outputFile << "SQUAR" << " " << getid() << " "
+	outputFile << "SQUAR" << " " << GetID() << " "
 		<< Center.x << " " << Center.y << " "
 		<< convertcolorToString(currentGfxInfo.DrawClr) << " "
 		<< ((currentGfxInfo.isFilled) ? "NO_FILL" : convertcolorToString(currentGfxInfo.FillClr)) << endl;

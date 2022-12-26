@@ -135,8 +135,10 @@
     <ClCompile Include="Actions\DeleteFigureAction.cpp" />
     <ClCompile Include="Actions\LoadAction.cpp" />
     <ClCompile Include="Actions\MoveFigureAction.cpp" />
+    <ClCompile Include="Actions\RedoAction.cpp" />
     <ClCompile Include="Actions\SaveAction.cpp" />
     <ClCompile Include="Actions\SelectOneAction.cpp" />
+    <ClCompile Include="Actions\UndoAction.cpp" />
     <ClCompile Include="CMUgraphicsLib\auxil.cpp" />
     <ClCompile Include="CMUgraphicsLib\CMUgraphics.cpp" />
     <ClCompile Include="CMUgraphicsLib\colors.cpp" />
@@ -193,8 +195,10 @@
     <ClInclude Include="Actions\DeleteFigureAction.h" />
     <ClInclude Include="Actions\LoadAction.h" />
     <ClInclude Include="Actions\MoveFigureAction.h" />
+    <ClInclude Include="Actions\RedoAction.h" />
     <ClInclude Include="Actions\SaveAction.h" />
     <ClInclude Include="Actions\SelectOneAction.h" />
+    <ClInclude Include="Actions\UndoAction.h" />
     <ClInclude Include="CMUgraphicsLib\auxil.h" />
     <ClInclude Include="CMUgraphicsLib\CMUgraphics.h" />
     <ClInclude Include="CMUgraphicsLib\colors.h" />

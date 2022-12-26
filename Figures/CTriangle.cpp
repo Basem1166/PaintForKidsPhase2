@@ -40,7 +40,7 @@ void CTriangle :: PrintInfo(Output* pOut){
 	pOut->PrintMessage(MESSAGE);
 }
 void CTriangle::Save(ofstream& outputFile) {
-	outputFile << "TRIANG" << " " << getid() << " "
+	outputFile << "TRIANG" << " " << GetID() << " "
 		<< Corner1.x << " " << Corner1.y << " "
 		<< Corner2.x << " " << Corner2.y << " "
 		<< Corner3.x << " " << Corner3.y << " "

@@ -41,3 +41,13 @@ void AddSqrAction::Execute()
 	//Add the Square to the list of figures
 	pManager->AddFigure(S);
 }
+
+void AddSqrAction::Undo()
+{
+
+}
+
+void AddSqrAction::Redo()
+{
+
+}

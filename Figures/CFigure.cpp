@@ -54,6 +54,11 @@ string CFigure::convertcolorToString(color color) {
 		return "NO_FILL";
 	}
 }
-int CFigure::getid() {
+int CFigure::GetID() {
 	return ID;
+}
+
+void CFigure::SetID(int ID)
+{
+	this->ID = ID;
 }

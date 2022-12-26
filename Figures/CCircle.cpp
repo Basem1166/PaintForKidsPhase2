@@ -38,7 +38,7 @@ void CCircle::PrintInfo(Output* pOut) {
 }
 
 void CCircle::Save(ofstream& outputFile) {
-	outputFile << "CIRC" <<" "<< getid() << " " 
+	outputFile << "CIRC" <<" "<< GetID() << " " 
 		<< Point1.x << " " << Point1.y   << " "
 		<< Point2.x << " " << Point2.y   << " "
 		<< convertcolorToString(currentGfxInfo.DrawClr)<<" "

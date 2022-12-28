@@ -45,8 +45,8 @@ void CTriangle::Save(ofstream& outputFile) {
 		<< Corner1.x << " " << Corner1.y << " "
 		<< Corner2.x << " " << Corner2.y << " "
 		<< Corner3.x << " " << Corner3.y << " "
-		<< convertcolorToString(currentGfxInfo.DrawClr) << " "
-		<< ((currentGfxInfo.isFilled) ? "NO_FILL" : convertcolorToString(currentGfxInfo.FillClr)) << endl;
+		<< convertcolorToString(FigGfxInfo.DrawClr) << " "
+		<< ((FigGfxInfo.isFilled) ? convertcolorToString(FigGfxInfo.FillClr) :"NO_FILL") << endl;
 
 }
 
@@ -68,12 +68,17 @@ void CTriangle::Load(ifstream& inputFile) {
 	Corner3.y = stoi(Corner3y);
 
 	//set current drawclr and currentfillclr
-	currentGfxInfo.DrawClr = convertStringToColor(currentdrawclr);
+	if (FigGfxInfo.DrawClr != MAGENTA)
+	{
+		Selected = false;
+	}
+	FigGfxInfo.DrawClr = convertStringToColor(currentdrawclr);
 	if (currentfillclr == "NO_FILL")
 	{
-		currentGfxInfo.isFilled = false;
+		FigGfxInfo.isFilled = false;
+		FigGfxInfo.FillClr = LIGHTGOLDENRODYELLOW;
 	}
 	else {
-		currentGfxInfo.FillClr = convertStringToColor(currentfillclr);
+		FigGfxInfo.FillClr = convertStringToColor(currentfillclr);
 	}
 }

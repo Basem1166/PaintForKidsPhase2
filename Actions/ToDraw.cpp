@@ -19,7 +19,7 @@ void ToDraw::Execute() {
 	pOut->ClearDrawArea();
 
 	pOut->CreateDrawToolBar();
-	//TODO:i should here load the graph saved in toplaymode  RHG
+	//TODO:i should here load the graph saved in toplaymode RHG
 	
 	pOut->ClearStatusBar();
 

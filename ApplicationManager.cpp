@@ -12,7 +12,7 @@
 #include"Actions\Action.h"
 #include"Actions\RedoAction.h"
 #include"Actions\UndoAction.h"
-
+#include "Actions\LoadAction.h"
 //Constructor
 ApplicationManager::ApplicationManager()
 {
@@ -105,6 +105,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 		case SAVE_GRAPH:
 				pAct = new SaveAction(this);
+			break;
+		case LOAD_GRAPH:
+			pAct = new LoadAction(this);
 			break;
 		case UNDO:
 			pAct = new UndoAction(this);
@@ -246,7 +249,9 @@ void ApplicationManager::SaveAll(ofstream& outputFile) {
 	}
 }
 void ApplicationManager::clearAll() {
+	pOut->ClearDrawArea();
 	for (int i = 0;i < FigCount;i++) {
 		FigList[i] = NULL;
 	}
+	FigCount = 0;
 }

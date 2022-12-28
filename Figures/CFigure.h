@@ -17,6 +17,7 @@ protected:
 	/// Add more parameters if needed.
 
 public:
+	CFigure(); //to allow zero argument constructor in children
 	CFigure(GfxInfo FigureGfxInfo);
 
 	void SetSelected(bool s);	//select/unselect the figure
@@ -38,12 +39,14 @@ public:
 
 
 	virtual void Save(ofstream &OutFile) = 0;	//Save the figure parameters to the file
-	//virtual void Load(ifstream &Infile) = 0;	//Load the figure parameters to the file
+	virtual void Load(ifstream &Infile) = 0;	//Load the figure parameters to the file
 
 	virtual void PrintInfo(Output*) = 0;	//print all figure info on the status bar
 
 	//converting color type to string to be able to write it in text files
 	string convertcolorToString(color color);
+	//converting string type to color to be able to read it from text files
+	color convertStringToColor(string color);
 };
 
 #endif

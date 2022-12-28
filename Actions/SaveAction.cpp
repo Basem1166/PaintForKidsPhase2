@@ -30,10 +30,6 @@ string SaveAction::convertcolorToString(color color) {
 	{
 		return "BLUE";
 	}
-	else
-	{
-		return "NO_FILL";
-	}
 }
 
 void SaveAction::ReadActionParameters() {

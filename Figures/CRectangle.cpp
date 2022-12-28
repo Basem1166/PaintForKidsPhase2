@@ -1,5 +1,7 @@
 #include "CRectangle.h"
 #include <fstream>
+
+CRectangle::CRectangle() {}
 CRectangle::CRectangle(Point P1, Point P2, GfxInfo FigureGfxInfo):CFigure(FigureGfxInfo)
 {
 	Corner1 = P1;
@@ -44,4 +46,28 @@ void CRectangle::Save(ofstream& outputFile) {
 		<< convertcolorToString(currentGfxInfo.DrawClr) << " "
 		<< ((currentGfxInfo.isFilled) ? "NO_FILL" : convertcolorToString(currentGfxInfo.FillClr)) << endl;
 
+}
+
+void CRectangle::Load(ifstream& inputFile) {
+	string id, Corner1x, Corner1y, Corner2x, Corner2y, currentdrawclr, currentfillclr;
+	inputFile >> id >> Corner1x >> Corner1y >> Corner2x >> Corner2y >> currentdrawclr >> currentfillclr;
+
+	//set id
+	SetID(stoi(id));
+
+	//set point 1
+	Corner1.x = stoi(Corner1x);
+	Corner1.y = stoi(Corner1y);
+	//set point 2
+	Corner2.x = stoi(Corner2x);
+	Corner2.y = stoi(Corner2y);
+	//set current drawclr and currentfillclr
+	currentGfxInfo.DrawClr = convertStringToColor(currentdrawclr);
+	if (currentfillclr == "NO_FILL")
+	{
+		currentGfxInfo.isFilled = false;
+	}
+	else {
+		currentGfxInfo.FillClr = convertStringToColor(currentfillclr);
+	}
 }

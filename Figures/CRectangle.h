@@ -10,12 +10,14 @@ private:
 	Point Corner2;
 	GfxInfo currentGfxInfo;
 public:
+	CRectangle(); //for load function to allow read of type and then set parameters in each shape later
 	CRectangle(Point , Point, GfxInfo FigureGfxInfo );
 	virtual void Draw(Output* pOut) const;
 	virtual bool IsInside(int, int);
 	virtual void Move(int, int);
 	virtual void PrintInfo(Output*);
 	void Save(ofstream& outputFile);
+	void Load(ifstream& inputFile);
 };
 
 #endif

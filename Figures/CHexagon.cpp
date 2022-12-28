@@ -1,5 +1,6 @@
 #include "CHexagon.h"
 #include <fstream>
+CHexagon::CHexagon() {}
 CHexagon::CHexagon(Point P1, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 {
 	Center = P1;
@@ -47,4 +48,25 @@ void CHexagon::Save(ofstream& outputFile) {
 		<< convertcolorToString(currentGfxInfo.DrawClr) << " "
 		<< ((currentGfxInfo.isFilled) ? "NO_FILL" : convertcolorToString(currentGfxInfo.FillClr)) << endl;
 
+}
+void CHexagon::Load(ifstream& inputFile) {
+	string id, Centerx, Centery,currentdrawclr, currentfillclr;
+	inputFile >> id >> Centerx >> Centery >> currentdrawclr >> currentfillclr;
+
+	//set id
+	SetID(stoi(id));
+
+	//set center
+	Center.x = stoi(Centerx);
+	Center.y = stoi(Centery);
+
+	//set current drawclr and currentfillclr
+	currentGfxInfo.DrawClr = convertStringToColor(currentdrawclr);
+	if (currentfillclr == "NO_FILL")
+	{
+		currentGfxInfo.isFilled = false;
+	}
+	else {
+		currentGfxInfo.FillClr = convertStringToColor(currentfillclr);
+	}
 }

@@ -1,5 +1,6 @@
 #include "CTriangle.h"
 #include <fstream>
+CTriangle::CTriangle() {}
 CTriangle::CTriangle(Point P1, Point P2, Point P3, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 {
 	Corner1 = P1;
@@ -47,4 +48,32 @@ void CTriangle::Save(ofstream& outputFile) {
 		<< convertcolorToString(currentGfxInfo.DrawClr) << " "
 		<< ((currentGfxInfo.isFilled) ? "NO_FILL" : convertcolorToString(currentGfxInfo.FillClr)) << endl;
 
+}
+
+void CTriangle::Load(ifstream& inputFile) {
+	string id, Corner1x, Corner1y, Corner2x, Corner2y, Corner3x, Corner3y, currentdrawclr, currentfillclr;
+	inputFile >> id >> Corner1x >> Corner1y >> Corner2x >> Corner2y>> Corner3x >> Corner3y >> currentdrawclr >> currentfillclr;
+
+	//set id
+	SetID(stoi(id));
+
+	//set corner 1
+	Corner1.x = stoi(Corner1x);
+	Corner1.y = stoi(Corner1y);
+	//set corner 2
+	Corner2.x = stoi(Corner2x);
+	Corner2.y = stoi(Corner2y);
+	//set corner 3
+	Corner3.x = stoi(Corner3x);
+	Corner3.y = stoi(Corner3y);
+
+	//set current drawclr and currentfillclr
+	currentGfxInfo.DrawClr = convertStringToColor(currentdrawclr);
+	if (currentfillclr == "NO_FILL")
+	{
+		currentGfxInfo.isFilled = false;
+	}
+	else {
+		currentGfxInfo.FillClr = convertStringToColor(currentfillclr);
+	}
 }

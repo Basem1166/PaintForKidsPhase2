@@ -1,5 +1,6 @@
 #include "CFigure.h"
 
+CFigure::CFigure() {}
 CFigure::CFigure(GfxInfo FigureGfxInfo)
 { 
 	FigGfxInfo = FigureGfxInfo;	//Default status is non-filled.
@@ -61,4 +62,32 @@ int CFigure::GetID() {
 void CFigure::SetID(int ID)
 {
 	this->ID = ID;
+}
+
+color CFigure::convertStringToColor(string color) {
+
+	if (color == "BLACK")
+	{
+		return  BLACK;
+	}
+	else if (color == "YELLOW")
+	{
+		return YELLOW;
+	}
+	else if (color == "ORANGE")
+	{
+		return ORANGE;
+	}
+	else if (color == "RED")
+	{
+		return  RED;
+	}
+	else if (color == "GREEN")
+	{
+		return GREEN;
+	}
+	else if (color == "BLUE")
+	{
+		return  BLUE;
+	}
 }

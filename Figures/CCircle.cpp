@@ -1,6 +1,9 @@
 #include "CCircle.h"
 #include <fstream> 
 #include"..\Actions\SaveAction.h"
+
+CCircle::CCircle() {}
+
 CCircle::CCircle(Point P1, Point P2, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 {
 	Point1 = P1;
@@ -44,4 +47,27 @@ void CCircle::Save(ofstream& outputFile) {
 		<< convertcolorToString(currentGfxInfo.DrawClr)<<" "
 		<< ((currentGfxInfo.isFilled) ? "NO_FILL" : convertcolorToString(currentGfxInfo.FillClr)) << endl;
 	
+}
+void CCircle::Load(ifstream& inputFile) {
+	string id, Point1x, Point1y, Point2x, Point2y,currentdrawclr,currentfillclr;
+	inputFile >> id >> Point1x >> Point1y >> Point2x >> Point2y >> currentdrawclr >> currentfillclr;
+
+	//set id
+	SetID(stoi(id));
+
+	//set point 1
+	Point1.x = stoi(Point1x);
+	Point1.y = stoi(Point1y);
+	//set point 2
+	Point2.x = stoi(Point2x);
+	Point2.y = stoi(Point2y);
+	//set current drawclr and currentfillclr
+	currentGfxInfo.DrawClr = convertStringToColor(currentdrawclr);
+	if (currentfillclr=="NO_FILL")
+	{
+		currentGfxInfo.isFilled = false;
+	}
+	else {
+		currentGfxInfo.FillClr = convertStringToColor(currentfillclr);
+	}
 }

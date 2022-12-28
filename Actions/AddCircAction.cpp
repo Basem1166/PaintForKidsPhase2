@@ -41,14 +41,14 @@ void AddCircAction::Execute()
 	ReadActionParameters();
 
 	//Create a rectangle with the parameters read from the user
-	CCircle* C = new CCircle(P1, P2, CircGfxInfo);
+	FigPtr = new CCircle(P1, P2, CircGfxInfo);
 
 	//Add the circle to the list of figures
-	pManager->AddFigure(C);
+	pManager->AddFigure(FigPtr);
 }
 void AddCircAction::Undo()
 {
-
+	pManager->DeleteFigure(FigPtr);
 }
 
 void AddCircAction::Redo()

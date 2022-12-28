@@ -17,14 +17,16 @@ void DeleteFigureAction::Execute()
 	Output* pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();
 
-	//Delete  selected  figure
-	pManager->DeleteFigure();
+	FigPtr = pManager->GetSelectedFigure();
 
+	//Delete  selected  figure
+
+	pManager->DeleteFigure(FigPtr);
 	pOut->PrintMessage("Deleted Figure");
 }
 void DeleteFigureAction::Undo()
 {
-
+	
 }
 
 void DeleteFigureAction::Redo()

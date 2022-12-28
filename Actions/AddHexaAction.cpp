@@ -37,16 +37,14 @@ void AddHexaAction::Execute()
 	ReadActionParameters();
 
 	//Create a hexagon with the parameters read from the user
-	CHexagon* H = new CHexagon(P1, HexaGfxInfo);
-	ID = H->GetID();
-	//Add the rectangle to the list of figures
-	pManager->AddFigure(H);
+	FigPtr = new CHexagon(P1, HexaGfxInfo);
+
+	//Add the circle to the list of figures
+	pManager->AddFigure(FigPtr);
 }
 void AddHexaAction::Undo()
 {
-	Hexagon = new CHexagon(P1, HexaGfxInfo);
-	Hexagon->SetID(ID);
-	pManager->DeleteLastFigure();
+	pManager->DeleteFigure(FigPtr);
 }
 
 void AddHexaAction::Redo()

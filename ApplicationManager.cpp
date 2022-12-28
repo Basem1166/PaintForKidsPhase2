@@ -149,7 +149,6 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		else
 		{
 			pAct->Execute();//Execute
-			delete pAct;
 			pAct = NULL;
 		}
 	}
@@ -174,21 +173,23 @@ void ApplicationManager::AddFigure(CFigure* pFig)
 	}
 }
 /////////////////////////////////////////////////////////////////////////////////////
-void ApplicationManager::DeleteFigure() {
-	int c;
+void ApplicationManager::DeleteFigure(CFigure* pFig) {
+	int c ;
+
 	for (int i = 0; i < FigCount; i++) {
 		
-		if(FigList[i]->IsSelected()) {
+		if(FigList[i]->GetID() == pFig->GetID()) {
 			c = i;
-			delete FigList[i];
 			break;
 		}
 	}
-		for (int i = c; i < FigCount - 1; i++) {
-			FigList[i] = FigList[i + 1];
-		}
-		FigList[--FigCount] = NULL;
-		SelectedFig = NULL;
+	
+	for (int i = c; i < FigCount - 2; i++) {
+		FigList[i] = FigList[i + 1];
+	}
+
+	FigList[--FigCount] = NULL;
+	SelectedFig = NULL;
 }
 ////////////////////////////////////////////////////////////////////////////////////
 CFigure *ApplicationManager::GetFigure(int x, int y) const

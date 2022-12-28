@@ -1,15 +1,15 @@
-#ifndef START_RECORD
-#define START_RECORD
+#ifndef STOP_RECORD
+#define STOP_RECORD
 
 #include "Action.h"
 
-class StartRecordingAction :public Action {
+class StopRecordingAction :public Action {
 
 private:
-	
+
 public:
 
-	StartRecordingAction(ApplicationManager* pApp);
+	StopRecordingAction(ApplicationManager* pApp);
 
 	virtual void Execute();
 	virtual void ReadActionParameters();

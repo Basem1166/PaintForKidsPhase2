@@ -15,6 +15,10 @@
 #include "Actions\LoadAction.h"
 #include"Actions\ToDraw.h"
 #include "Actions\SwitchToPlayAction.h"
+#include "Actions\StartRecordingAction.h"
+#include "Actions\StopRecordingAction.h"
+#include "Actions\PlayRecordingAction.h"
+
 //Constructor
 ApplicationManager::ApplicationManager()
 {
@@ -24,6 +28,8 @@ ApplicationManager::ApplicationManager()
 	FigCount = 0;
 	UndoRedoCount = 0;
 	ActionListCount = 0;
+	RecordingListCount = 0;
+	WillRecord = 0;
 	SelectedFig = NULL;
 	//Create an array of figure pointers and set them to NULL		
 	for(int i=0; i<MaxFigCount; i++)
@@ -123,6 +129,15 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case TO_PLAY:
 			pAct = new SwitchToPlayAction(this);
 			break;
+		case START_RECORDING :
+			pAct = new StartRecordingAction(this);
+			break;
+		case STOP_RECORDING :
+			pAct = new StopRecordingAction(this);
+			break;
+		case PLAY_RECORDING :
+			pAct = new PlayRecordingAction(this);
+
 		case EXIT:
 			///create ExitAction here
 			
@@ -133,8 +148,17 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	}
 	
 	//Execute the created action
+
 	if (pAct != NULL)
 	{
+		if(WillRecord==1&& RecordingListCount<20){
+		
+			RecordingList[RecordingListCount++] = pAct;
+		}
+		if (ActType==14)
+		{
+
+		}
 		if (ActType <= 12)
 		{
 			if (ActionListCount < 5)
@@ -254,6 +278,30 @@ void ApplicationManager::SaveFigcount(ofstream& outputFile) { //writing figcount
 void ApplicationManager::SaveAll(ofstream& outputFile) {
 	for (int i = 0;i < FigCount;i++) {
 		FigList[i]->Save(outputFile);
+	}
+}
+bool ApplicationManager::IsEmpty()
+{
+	if (FigCount==0)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	};
+}
+void ApplicationManager::StartRecording(bool RecordingAction)
+{
+	 WillRecord = RecordingAction;
+}
+void ApplicationManager::PlayRecording()
+{
+	pOut->ClearDrawArea();
+	for (int i = 0; i < RecordingListCount-1; i++)
+	{
+		RecordingList[i++]->Execute();
+		
 	}
 }
 void ApplicationManager::clearAll() {

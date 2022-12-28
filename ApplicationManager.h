@@ -17,7 +17,10 @@ private:
 	int FigCount;//Actual number of figures
 	int UndoRedoCount;
 	int ActionListCount;
+	int RecordingListCount;
+	bool WillRecord;
 	Action* ActionList[5];
+	Action* RecordingList[20];       // List of figures getting recorded
 	CFigure* FigList[MaxFigCount];	//List of all figures (Array of pointers)
 
 	CFigure* SelectedFig; //Pointer to the selected figure
@@ -53,6 +56,10 @@ public:
 	void SaveFigcount(ofstream & outputFile);
 	void clearAll();
 	void SaveAll(ofstream& outputFile);
+
+	bool IsEmpty();
+	void StartRecording(bool RecordingAction);
+	void PlayRecording();
 };
 
 #endif

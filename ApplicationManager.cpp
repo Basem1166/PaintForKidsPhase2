@@ -13,7 +13,11 @@
 #include"Actions\RedoAction.h"
 #include"Actions\UndoAction.h"
 #include "Actions\LoadAction.h"
+
 #include"Actions\ToDraw.h"
+
+#include "Actions\SwitchToPlayAction.h"
+
 //Constructor
 ApplicationManager::ApplicationManager()
 {
@@ -118,6 +122,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 		case REDO:
 			pAct = new RedoAction(this);
+			break;
+		case TO_PLAY:
+			pAct = new SwitchToPlayAction(this);
 			break;
 		case EXIT:
 			///create ExitAction here

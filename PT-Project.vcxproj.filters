@@ -193,7 +193,14 @@
     <ClCompile Include="Actions\UndoAction.cpp">
       <Filter>Action Classes</Filter>
     </ClCompile>
+
     <ClCompile Include="Actions\ToDraw.cpp">
+
+
+    <ClCompile Include="Actions\SwitchToPlayAction.cpp">
+
+ 
+
       <Filter>Action Classes</Filter>
     </ClCompile>
   </ItemGroup>
@@ -328,7 +335,15 @@
     <ClInclude Include="Actions\UndoAction.h">
       <Filter>Action Classes</Filter>
     </ClInclude>
+
     <ClInclude Include="Actions\ToDraw.h">
+
+
+    <ClInclude Include="Actions\SwitchToPlayAction.h">
+
+    
+
+
       <Filter>Action Classes</Filter>
     </ClInclude>
   </ItemGroup>

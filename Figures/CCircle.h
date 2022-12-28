@@ -8,7 +8,7 @@ class CCircle : public CFigure
 private:
 	Point Point1;
 	Point Point2;
-	GfxInfo currentGfxInfo;
+	
 public:
 	CCircle();//for load function to allow read of type and then set parameters in each shape later
 	CCircle(Point, Point, GfxInfo FigureGfxInfo);

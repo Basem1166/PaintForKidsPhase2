@@ -44,8 +44,8 @@ void CCircle::Save(ofstream& outputFile) {
 	outputFile << "CIRC" <<" "<< GetID() << " " 
 		<< Point1.x << " " << Point1.y   << " "
 		<< Point2.x << " " << Point2.y   << " "
-		<< convertcolorToString(currentGfxInfo.DrawClr)<<" "
-		<< ((currentGfxInfo.isFilled) ? "NO_FILL" : convertcolorToString(currentGfxInfo.FillClr)) << endl;
+		<< convertcolorToString(FigGfxInfo.DrawClr)<<" "
+		<< ((FigGfxInfo.isFilled) ? convertcolorToString(FigGfxInfo.FillClr) : "NO_FILL") << endl;
 	
 }
 void CCircle::Load(ifstream& inputFile) {
@@ -62,12 +62,17 @@ void CCircle::Load(ifstream& inputFile) {
 	Point2.x = stoi(Point2x);
 	Point2.y = stoi(Point2y);
 	//set current drawclr and currentfillclr
-	currentGfxInfo.DrawClr = convertStringToColor(currentdrawclr);
+	if (FigGfxInfo.DrawClr!=MAGENTA)
+	{
+		Selected = false;
+	}
+	FigGfxInfo.DrawClr = convertStringToColor(currentdrawclr);
 	if (currentfillclr=="NO_FILL")
 	{
-		currentGfxInfo.isFilled = false;
+		FigGfxInfo.isFilled = false;
+		FigGfxInfo.FillClr = LIGHTGOLDENRODYELLOW;
 	}
 	else {
-		currentGfxInfo.FillClr = convertStringToColor(currentfillclr);
+		FigGfxInfo.FillClr = convertStringToColor(currentfillclr);
 	}
 }

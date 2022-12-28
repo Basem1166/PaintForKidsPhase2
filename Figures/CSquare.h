@@ -7,7 +7,6 @@ class CSquare : public CFigure
 {
 private:
 	Point Center;
-	GfxInfo currentGfxInfo;
 public:
 	CSquare();//for load function to allow read of type and then set parameters in each shape later
 	CSquare(Point, GfxInfo FigureGfxInfo);

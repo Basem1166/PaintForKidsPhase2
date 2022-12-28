@@ -8,7 +8,6 @@ class CRectangle : public CFigure
 private:
 	Point Corner1;	
 	Point Corner2;
-	GfxInfo currentGfxInfo;
 public:
 	CRectangle(); //for load function to allow read of type and then set parameters in each shape later
 	CRectangle(Point , Point, GfxInfo FigureGfxInfo );

@@ -6,7 +6,6 @@ class CHexagon : public CFigure
 {
 private:
 	Point Center;
-	GfxInfo currentGfxInfo;
 public:
 	CHexagon();//for load function to allow read of type and then set parameters in each shape later
 	CHexagon(Point, GfxInfo FigureGfxInfo);

@@ -14,6 +14,7 @@
 #include"Actions\UndoAction.h"
 #include "Actions\LoadAction.h"
 #include"Actions\ToDraw.h"
+#include "Actions\SwitchToPlayAction.h"
 //Constructor
 ApplicationManager::ApplicationManager()
 {
@@ -112,6 +113,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 		case TO_DRAW:
 			pAct = new ToDraw(this);
+			break;
+		case TO_PLAY:
+			pAct = new SwitchToPlayAction(this);
 			break;
 		case UNDO:
 			pAct = new UndoAction(this);

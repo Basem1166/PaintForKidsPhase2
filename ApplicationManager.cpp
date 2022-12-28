@@ -13,6 +13,7 @@
 #include"Actions\RedoAction.h"
 #include"Actions\UndoAction.h"
 #include "Actions\LoadAction.h"
+#include"Actions\ToDraw.h"
 //Constructor
 ApplicationManager::ApplicationManager()
 {
@@ -108,6 +109,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 		case LOAD_GRAPH:
 			pAct = new LoadAction(this);
+			break;
+		case TO_DRAW:
+			pAct = new ToDraw(this);
 			break;
 		case UNDO:
 			pAct = new UndoAction(this);

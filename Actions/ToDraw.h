@@ -4,15 +4,14 @@
 #include "..\GUI\input.h"
 #include "..\GUI\Output.h"
 
-class  TO_DRAW :public Action
+class  ToDraw :public Action
 {
-	Output* pOut ;
-	Input* pIn ;
+
 public:
 
-	TO_DRAW(ApplicationManager* pApp);
+	ToDraw(ApplicationManager* pApp);
 
-	~TO_DRAW(void);
+	~ToDraw(void);
 
 	void ReadActionParameters();
 	void Execute();

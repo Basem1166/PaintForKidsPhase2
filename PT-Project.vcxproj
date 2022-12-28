@@ -138,7 +138,11 @@
     <ClCompile Include="Actions\RedoAction.cpp" />
     <ClCompile Include="Actions\SaveAction.cpp" />
     <ClCompile Include="Actions\SelectOneAction.cpp" />
+
+    <ClCompile Include="Actions\SwitchToPlayAction.cpp" />
+
     <ClCompile Include="Actions\TO_DRAW.cpp" />
+
     <ClCompile Include="Actions\UndoAction.cpp" />
     <ClCompile Include="CMUgraphicsLib\auxil.cpp" />
     <ClCompile Include="CMUgraphicsLib\CMUgraphics.cpp" />
@@ -199,7 +203,11 @@
     <ClInclude Include="Actions\RedoAction.h" />
     <ClInclude Include="Actions\SaveAction.h" />
     <ClInclude Include="Actions\SelectOneAction.h" />
+
+    <ClInclude Include="Actions\SwitchToPlayAction.h" />
+
     <ClInclude Include="Actions\TO_DRAW.h" />
+
     <ClInclude Include="Actions\UndoAction.h" />
     <ClInclude Include="CMUgraphicsLib\auxil.h" />
     <ClInclude Include="CMUgraphicsLib\CMUgraphics.h" />

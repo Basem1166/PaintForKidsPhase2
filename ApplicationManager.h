@@ -16,7 +16,7 @@ class ApplicationManager
 private:
 	int FigCount;//Actual number of figures
 	int UndoRedoCount;
-	int ActionListCount;
+	int ActionListSize;
 	Action* ActionList[5];
 	CFigure* FigList[MaxFigCount];	//List of all figures (Array of pointers)
 
@@ -38,7 +38,6 @@ public:
 	CFigure* GetSelectedFigure();
 	void UndoPrevAction();
 	void RedoPrevAction();
-	void DeleteLastFigure();
 	// -- Figures Management Functions
 	void AddFigure(CFigure* pFig);          //Adds a new figure to the FigList
 	CFigure *GetFigure(int x, int y) const; //Search for a figure given a point inside the figure

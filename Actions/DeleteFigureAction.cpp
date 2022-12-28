@@ -8,7 +8,9 @@
 DeleteFigureAction::DeleteFigureAction(ApplicationManager* pApp) :Action(pApp)
 {}
 void DeleteFigureAction::ReadActionParameters()
-{}
+{
+	FigPtr = pManager->GetSelectedFigure();
+}
 
 //Execute the action
 void DeleteFigureAction::Execute()
@@ -17,19 +19,21 @@ void DeleteFigureAction::Execute()
 	Output* pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();
 
-	FigPtr = pManager->GetSelectedFigure();
+	ReadActionParameters();
 
 	//Delete  selected  figure
 
 	pManager->DeleteFigure(FigPtr);
-	pOut->PrintMessage("Deleted Figure");
+	pOut->PrintMessage("Figure Deleted");
 }
 void DeleteFigureAction::Undo()
 {
-	
+	pManager->AddFigure(FigPtr);
+	FigPtr->SetSelected(0);
 }
 
 void DeleteFigureAction::Redo()
 {
-
+	pManager->DeleteFigure(FigPtr);
+	FigPtr->SetSelected(0);
 }

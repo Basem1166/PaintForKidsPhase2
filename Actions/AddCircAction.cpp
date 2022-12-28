@@ -53,5 +53,5 @@ void AddCircAction::Undo()
 
 void AddCircAction::Redo()
 {
-
+	pManager->AddFigure(FigPtr);
 }

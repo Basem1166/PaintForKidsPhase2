@@ -21,7 +21,7 @@ ApplicationManager::ApplicationManager()
 	pIn = pOut->CreateInput();
 	FigCount = 0;
 	UndoRedoCount = 0;
-	ActionListCount = 0;
+	ActionListSize = 0;
 	SelectedFig = NULL;
 	//Create an array of figure pointers and set them to NULL		
 	for(int i=0; i<MaxFigCount; i++)
@@ -38,36 +38,21 @@ ActionType ApplicationManager::GetUserAction() const
 }
 void ApplicationManager::UndoPrevAction()
 {
-	if (UndoRedoCount < 5 && ActionListCount>0) {
+	if (UndoRedoCount < 5 && ActionListSize>0) {
 		UndoRedoCount++;
-		ActionList[--ActionListCount]->Undo();
+		ActionList[--ActionListSize]->Undo();
 		SelectedFig = NULL;
 	}
 }
 void ApplicationManager::RedoPrevAction()
 {
-	if (UndoRedoCount > 0 && ActionListCount < 5) {
+	if (UndoRedoCount > 0 && ActionListSize < 5) {
 		UndoRedoCount--;
-		ActionList[ActionListCount++]->Redo();
+		ActionList[ActionListSize++]->Redo();
 		SelectedFig = NULL;
 	}
 }
-void ApplicationManager::DeleteLastFigure()
-{
-	int LastID = -1;
-	int index = 0;
-	for (int i = 0; i < FigCount; i++)
-	{
-		if (FigList[i]->GetID() > LastID)
-		{
-			LastID = FigList[i]->GetID();
-			index = i;
-		}
-	}
-	delete FigList[index];
-	FigList[index] = FigList[--FigCount];
-	FigList[FigCount] = NULL;
-}
+
 ////////////////////////////////////////////////////////////////////////////////////
 //Creates an action and executes it
 void ApplicationManager::ExecuteAction(ActionType ActType) 
@@ -129,19 +114,19 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	{
 		if (ActType <= 12)
 		{
-			if (ActionListCount < 5)
+			if (ActionListSize < 5)
 			{
-				ActionList[ActionListCount++] = pAct;
+				ActionList[ActionListSize++] = pAct;
 			}
 			else
 			{
 				if (ActionList[0])
 					delete ActionList[0];
-				for (int i = 0; i < ActionListCount - 1; i++)
+				for (int i = 0; i < ActionListSize - 1; i++)
 				{
 					ActionList[i] = ActionList[i + 1];
 				}
-				ActionList[ActionListCount - 1] = NULL;
+				ActionList[ActionListSize - 1] = NULL;
 			}
 			UndoRedoCount = 0;
 			pAct->Execute();//Execute
@@ -149,6 +134,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		else
 		{
 			pAct->Execute();//Execute
+			delete pAct;
 			pAct = NULL;
 		}
 	}
@@ -174,11 +160,11 @@ void ApplicationManager::AddFigure(CFigure* pFig)
 }
 /////////////////////////////////////////////////////////////////////////////////////
 void ApplicationManager::DeleteFigure(CFigure* pFig) {
-	int c ;
+	int c=-1 ;
 
 	for (int i = 0; i < FigCount; i++) {
 		
-		if(FigList[i]->GetID() == pFig->GetID()) {
+		if(FigList[i] == pFig) {
 			c = i;
 			break;
 		}

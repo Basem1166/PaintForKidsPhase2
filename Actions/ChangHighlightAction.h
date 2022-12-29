@@ -10,7 +10,7 @@ private:
 	GfxInfo OldGfxInfo, NewGfxInfo;
 public:
 	ChangeHighlightAction(ApplicationManager* pApp);
-	virtual void Execute();
+	virtual void Execute(bool WillRecord);
 
 	virtual void ReadActionParameters();
 

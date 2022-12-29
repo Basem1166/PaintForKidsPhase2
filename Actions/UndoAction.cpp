@@ -9,9 +9,13 @@ UndoAction::UndoAction(ApplicationManager* pApp) :Action(pApp)
 {}
 void UndoAction::ReadActionParameters()
 {}
-void UndoAction::Execute()
+void UndoAction::Execute(bool WillRecord)
 {
 	pManager->UndoPrevAction();
+	if (pManager->getWillRecord())
+	{
+		pManager->AddRecordingFigure(this);
+	}
 }
 void UndoAction::Undo()
 {

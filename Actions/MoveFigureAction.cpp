@@ -27,8 +27,9 @@ void MoveFigureAction::ReadActionParameters()
 }
 
 //Execute the action
-void MoveFigureAction::Execute()
+void MoveFigureAction::Execute(bool WillRecord)
 {
+	if(!WillRecord)
 	//This action needs to read some parameters first
 	ReadActionParameters();
 	Output* pOut = pManager->GetOutput();
@@ -37,6 +38,10 @@ void MoveFigureAction::Execute()
 	POld = FigPtr->GetCenter();
 	FigPtr->Move(PNew.x, PNew.y); // Moves Figure to new Center;
 	pOut->PrintMessage("Figure Moved");
+	if (pManager->getWillRecord())
+	{
+		pManager->AddRecordingFigure(this);
+	}
 }
 
 void MoveFigureAction::Undo()

@@ -14,9 +14,12 @@ class ApplicationManager
 	enum { MaxFigCount = 200 };	//Max no of figures
 
 private:
+	int WillRecord;
 	int FigCount;//Actual number of figures
 	Action* UndoList[5];
 	Action* RedoList[5];
+	Action* RecordingList[20];
+	int RecordingListCount;
 	int UndoListCurrentSize;
 	int RedoListCurrentSize;
 	CFigure* FigList[MaxFigCount];	//List of all figures (Array of pointers)
@@ -55,6 +58,12 @@ public:
 	void SaveAll(ofstream& outputFile);
 	CFigure* drawnFigures(int) const;
 	int getFigCount();
+	//Recording Functions
+	bool IsEmpty();
+	void PlayRecording();
+	void AddRecordingFigure(Action* rAction);//adds figures to the recording list
+	bool getWillRecord();// setter and getter fir the will record boolean.
+	void setWillRecord(bool willrecord);
 };
 
 #endif

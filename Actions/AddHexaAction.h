@@ -17,7 +17,7 @@ public:
 	virtual void ReadActionParameters();
 
 	//Add hexagon to the ApplicationManager
-	virtual void Execute();
+	virtual void Execute(bool WillRecord);
 
 	void Undo();
 

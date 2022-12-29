@@ -35,8 +35,9 @@ void AddRectAction::ReadActionParameters()
 }
 
 //Execute the action
-void AddRectAction::Execute()
+void AddRectAction::Execute(bool WillRecord)
 {
+	if(!WillRecord)
 	//This action needs to read some parameters first
 	ReadActionParameters();
 
@@ -45,6 +46,10 @@ void AddRectAction::Execute()
 
 	//Add the rectangle to the list of figures
 	pManager->AddFigure(FigPtr);
+	if (pManager->getWillRecord())
+	{
+		pManager->AddRecordingFigure(this);
+	}
 }
 
 void AddRectAction::Undo()

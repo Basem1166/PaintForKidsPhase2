@@ -8,7 +8,7 @@ void ToDraw::ReadActionParameters() {
 	
 }
 
-void ToDraw::Execute() {
+void ToDraw::Execute(bool WillRecord) {
 	//Get a Pointer to the Input / Output Interfaces
 	Output* pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();

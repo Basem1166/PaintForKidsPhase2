@@ -60,7 +60,8 @@ bool ChangeFillAction::GetFillColour(ActionType ColorAct) {
 }
 
 //Execute the action
-void ChangeFillAction::Execute() {
+void ChangeFillAction::Execute(bool WillRecord) {
+	if(!WillRecord)
 	//This action needs to read some parameters first
 	ReadActionParameters();
 	Output* pOut = pManager->GetOutput();
@@ -75,6 +76,10 @@ void ChangeFillAction::Execute() {
 	}
 	else {
 		pOut->PrintMessage("Please Click on a Colour icon");
+	}
+	if (pManager->getWillRecord())
+	{
+		pManager->AddRecordingFigure(this);
 	}
 }
 

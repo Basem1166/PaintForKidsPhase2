@@ -9,9 +9,13 @@ RedoAction::RedoAction(ApplicationManager* pApp) :Action(pApp)
 {}
 void RedoAction::ReadActionParameters()
 {}
-void RedoAction::Execute()
+void RedoAction::Execute(bool WillRecord)
 {
 	pManager->RedoPrevAction();
+	if (pManager->getWillRecord())
+	{
+		pManager->AddRecordingFigure(this);
+	}
 }
 void RedoAction::Undo()
 {

@@ -15,7 +15,7 @@ public:
 	PickByColor(ApplicationManager*);
 	~PickByColor();
 	void ReadActionParameters();
-	void Execute();
+	void Execute(bool WillRecord);
 	void Undo() ;
 
 	void Redo() ;

@@ -19,7 +19,7 @@ public:
 
 	void ReadActionParameters(); //reads file name and current clr 
 
-	void Execute();
+	void Execute(bool WillRecord);
 
 	void Undo();
 

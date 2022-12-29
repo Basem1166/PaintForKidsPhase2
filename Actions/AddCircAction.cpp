@@ -35,8 +35,9 @@ void AddCircAction::ReadActionParameters()
 }
 
 //Execute the action
-void AddCircAction::Execute()
+void AddCircAction::Execute(bool WillRecord)
 {
+	if(!WillRecord)
 	//This action needs to read some parameters first
 	ReadActionParameters();
 
@@ -45,6 +46,10 @@ void AddCircAction::Execute()
 
 	//Add the circle to the list of figures
 	pManager->AddFigure(FigPtr);
+	if (pManager->getWillRecord())
+	{
+		pManager->AddRecordingFigure(this);
+	}
 }
 void AddCircAction::Undo()
 {

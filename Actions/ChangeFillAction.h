@@ -11,7 +11,7 @@ private:
 
 public:
 	ChangeFillAction(ApplicationManager* pApp);
-	virtual void Execute();
+	virtual void Execute(bool WillRecord);
 
 	virtual void ReadActionParameters();
 

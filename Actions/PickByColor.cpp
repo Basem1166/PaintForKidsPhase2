@@ -91,10 +91,11 @@ void PickByColor::ReadActionParameters()
 }
 
 
-void PickByColor::Execute()
+void PickByColor::Execute(bool WillRecord)
 {
 	Output* pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();
+	if(!WillRecord)
 	ReadActionParameters();
 
 	if (numOfcolors > 1)

@@ -12,7 +12,7 @@ private:
 public:
 	SelectOneAction(ApplicationManager* pApp);
 	virtual void ReadActionParameters();
-	virtual void Execute();
+	virtual void Execute(bool WillRecord);
 	void Undo();
 	void Redo();
 };

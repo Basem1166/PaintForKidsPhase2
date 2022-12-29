@@ -61,8 +61,8 @@ bool ChangeHighlightAction::GetHighlightColour(ActionType ColorAct)//changing th
 }
 
 //Execute the action
-void ChangeHighlightAction::Execute() {
-	
+void ChangeHighlightAction::Execute(bool WillRecord) {
+	if(!WillRecord)
 	//This action needs to read some parameters first
 	ReadActionParameters();
 	Output* pOut = pManager->GetOutput();
@@ -76,6 +76,10 @@ void ChangeHighlightAction::Execute() {
 	else
 	{
 		pOut->PrintMessage("Please Click on a Colour icon");
+	}
+	if (pManager->getWillRecord())
+	{
+		pManager->AddRecordingFigure(this);
 	}
 }
 

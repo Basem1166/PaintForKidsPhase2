@@ -13,18 +13,22 @@ void DeleteFigureAction::ReadActionParameters()
 }
 
 //Execute the action
-void DeleteFigureAction::Execute()
+void DeleteFigureAction::Execute(bool WillRecord)
 {
 	//Get a Pointer to the Input / Output Interfaces
 	Output* pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();
-
+	if(!WillRecord)
 	ReadActionParameters();
 
 	//Delete  selected  figure
 
 	pManager->DeleteFigure(FigPtr);
 	pOut->PrintMessage("Figure Deleted");
+	if (pManager->getWillRecord())
+	{
+		pManager->AddRecordingFigure(this);
+	}
 }
 void DeleteFigureAction::Undo()
 {

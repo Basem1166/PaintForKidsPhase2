@@ -12,7 +12,7 @@ public:
 	void ReadActionParameters();
 
 	//Delete selected figure from FigList ApplicationManager
-	virtual void Execute();
+	virtual void Execute(bool WillRecord);
 
 	void Undo();
 

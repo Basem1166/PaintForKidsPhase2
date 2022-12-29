@@ -20,7 +20,7 @@ public:
 
 	void ReadActionParameters(); 
 
-	void Execute();
+	void Execute(bool WillRecord);
 
 	color convertStringToColor(string color);
 

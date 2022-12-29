@@ -59,7 +59,7 @@ void ChangeFillAction::Execute() {
 	ReadActionParameters();
 	Output* pOut = pManager->GetOutput();
 	CFigure* SelectedFigure = pManager->GetSelectedFigure();
-	OldGfxInfo = SelectedFigure->GetGfxInfo();
+
 	if (GetFillColour(ColorAct)) {
 		UI.isFilled = true;
 		SelectedFigure->ChngFillClr(UI.FillColor); //changing the fill color

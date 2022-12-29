@@ -165,7 +165,6 @@ void PickByColor::Execute(bool WillRecord)
 					{
 						PrntScore(2);
 						clickedFig->HideShape();
-						pManager->DeleteFigure(Fig);
 						pManager->UpdateInterface();
 					}
 				}

@@ -75,53 +75,6 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	//According to Action Type, create the corresponding action object
 	switch (ActType)
 	{
-<<<<<<< HEAD
-	case DRAW_RECT:
-		pAct = new AddRectAction(this);
-		break;
-	case DRAW_SQR:
-		pAct = new AddSqrAction(this);
-		break;
-	case DRAW_TRI:
-		pAct = new AddTriAction(this);
-		break;
-	case DRAW_HEXA:
-		pAct = new AddHexaAction(this);
-		break;
-	case DRAW_CIRC:
-		pAct = new AddCircAction(this);
-		break;
-	case SelectOne:
-		pAct = new SelectOneAction(this);
-		break;
-	case _DELETE:
-		if (GetSelectedFigure() != NULL)
-			pAct = new DeleteFigureAction(this);
-		break;
-	case MOVE_SHAPE:
-		if (GetSelectedFigure() != NULL)
-			pAct = new MoveFigureAction(this);
-		break;
-	case SAVE_GRAPH:
-		pAct = new SaveAction(this);
-		break;
-	case LOAD_GRAPH:
-		pAct = new LoadAction(this);
-		break;
-	case UNDO:
-		pAct = new UndoAction(this);
-		break;
-	case REDO:
-		pAct = new RedoAction(this);
-		break;
-	case EXIT:
-		///create ExitAction here
-
-		break;
-
-	case STATUS:	//a click on the status bar ==> no action
-		return;
-=======
 		case DRAW_RECT:
 			pAct = new AddRectAction(this);
 			break;
@@ -189,7 +142,6 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		
 		case STATUS:	//a click on the status bar ==> no action
 			return;
->>>>>>> REMASTER
 	}
 
 	//Execute the created action
@@ -267,7 +219,7 @@ void ApplicationManager::DeleteFigure(CFigure* pFig) {
 
 	FigList[FigCount-1] = NULL;
 	--FigCount;
-	SelectedFig = NULL;
+	//SelectedFig = NULL;
 }
 ////////////////////////////////////////////////////////////////////////////////////
 CFigure *ApplicationManager::GetFigure(int x, int y) const

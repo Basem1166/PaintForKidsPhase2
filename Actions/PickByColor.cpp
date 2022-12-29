@@ -186,8 +186,8 @@ void PickByColor::Execute(bool WillRecord)
 
 	for (int i = 0; i < pManager->getFigCount();i++)
 	{
-		pManager->drawnFigures(i)->ShowShape();
-		//pManager->AddFigure(Fig);
+		
+		pManager->AddFigure(pManager->drawnFigures(i));
 	}
 		
 	pManager->UpdateInterface();

@@ -17,7 +17,7 @@ void ToDraw::Execute(bool WillRecord) {
 
 	pOut->ClearToolBar();
 	pOut->ClearDrawArea();
-	SaveAction::Excute(false);
+	
 
 
 	pOut->CreateDrawToolBar();

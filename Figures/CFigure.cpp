@@ -8,6 +8,10 @@ CFigure::CFigure(GfxInfo FigureGfxInfo)
 	ID = count++;
 }
 
+GfxInfo CFigure::GetGfxInfo() const
+{
+	return FigGfxInfo;
+}
 void CFigure::SetSelected(bool s)
 {	Selected = s; }
 

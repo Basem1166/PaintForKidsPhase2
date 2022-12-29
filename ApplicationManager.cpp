@@ -219,7 +219,8 @@ void ApplicationManager::DeleteFigure(CFigure* pFig) {
 
 	FigList[FigCount-1] = NULL;
 	--FigCount;
-	//SelectedFig = NULL;
+	if(pFig==SelectedFig)
+		SelectedFig = NULL;
 }
 ////////////////////////////////////////////////////////////////////////////////////
 CFigure *ApplicationManager::GetFigure(int x, int y) const

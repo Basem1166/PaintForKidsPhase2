@@ -137,6 +137,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			pAct = new StopRecordingAction(this);
 			break;
 		case PLAY_RECORDING :
+			if (RecordingListCount!=0)
 			pAct = new PlayRecordingAction(this);
 
 		case EXIT:
@@ -292,15 +293,17 @@ bool ApplicationManager::IsEmpty()
 
 void ApplicationManager::PlayRecording()
 {
-	pOut->ClearDrawArea();
+	
+	clearAll();
 	for (int i = 0; i < RecordingListCount; i++)
 	{
 		
 		RecordingList[i]->Execute(1);
 		Sleep(1000);
-
+		UpdateInterface();
 		
 	}
+	pOut->PrintMessage("Recording Played");
 }
 void ApplicationManager::AddRecordingFigure(Action* rAction)
 {

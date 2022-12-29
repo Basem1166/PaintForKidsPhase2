@@ -1,36 +1,23 @@
 #pragma once
 #include "..\Figures\CFigure.h"
-#include "..\Figures\CRectangle.h"
-#include "..\Figures\CSquare.h"
-#include "..\Figures\CTriangle.h"
-#include "..\Figures\CHexagon.h"
-#include "..\Figures\CCircle.h"
 #include "Action.h"
-#include "..\ApplicationManager.h"
-#include "..\GUI\input.h"
-#include "..\GUI\Output.h"
 
-
-class PickByColor :public Action
+class PickByColor :
+	public Action
 {
-	CFigure *fig;
+	CFigure* Fig;
+	int  numOfcolors, rand_fig_no, picked_color_no, wrgSel, rigSel;
+	int clrs[6];
 	Point point;
-	int CorrectPicks;
-	int WrongPicks;
-	color PlayingColor;
-	string Fig;
+	color AssignColor(CFigure*);
+	void PrntScore(int);
 public:
-
-	PickByColor(ApplicationManager* pApp); //thats allow application manager to execute loadaction
-
+	PickByColor(ApplicationManager*);
+	~PickByColor();
 	void ReadActionParameters();
-
 	void Execute();
+	void Undo() ;
 
-	color RandClr(int& Count) const;
+	void Redo() ;
 
-	void Undo();
-
-	void Redo();
-	~PickByColor(void);
 };

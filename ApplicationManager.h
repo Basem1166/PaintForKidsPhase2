@@ -53,6 +53,8 @@ public:
 	void SaveFigcount(ofstream & outputFile);
 	void clearAll();
 	void SaveAll(ofstream& outputFile);
+	CFigure* drawnFigures(int) const;
+	int getFigCount();
 };
 
 #endif

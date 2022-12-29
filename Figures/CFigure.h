@@ -14,7 +14,7 @@ protected:
 	bool Selected;	//true if the figure is selected.
 	GfxInfo FigGfxInfo;	//Figure graphis info
 	Point Center; //Center of the figure
-
+	bool IsHidden;
 	/// Add more parameters if needed.
 
 public:
@@ -49,6 +49,8 @@ public:
 	string convertcolorToString(color color);
 	//converting string type to color to be able to read it from text files
 	color convertStringToColor(string color);
+	void HideShape();					//Hides figures in playmode.
+	void ShowShape();
 };
 
 #endif

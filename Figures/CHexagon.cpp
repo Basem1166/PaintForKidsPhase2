@@ -45,8 +45,8 @@ void CHexagon::PrintInfo(Output* pOut){
 void CHexagon::Save(ofstream& outputFile) {
 	outputFile << "HEXAG" << " " << GetID() << " "
 		<< Center.x << " " << Center.y << " "
-		<< convertcolorToString(currentGfxInfo.DrawClr) << " "
-		<< ((currentGfxInfo.isFilled) ? "NO_FILL" : convertcolorToString(currentGfxInfo.FillClr)) << endl;
+		<< convertcolorToString(FigGfxInfo.DrawClr) << " "
+		<< ((FigGfxInfo.isFilled) ? convertcolorToString(FigGfxInfo.FillClr) :"NO_FILL") << endl;
 
 }
 void CHexagon::Load(ifstream& inputFile) {
@@ -61,12 +61,17 @@ void CHexagon::Load(ifstream& inputFile) {
 	Center.y = stoi(Centery);
 
 	//set current drawclr and currentfillclr
-	currentGfxInfo.DrawClr = convertStringToColor(currentdrawclr);
+	if (FigGfxInfo.DrawClr != MAGENTA)
+	{
+		Selected = false;
+	}
+	FigGfxInfo.DrawClr = convertStringToColor(currentdrawclr);
 	if (currentfillclr == "NO_FILL")
 	{
-		currentGfxInfo.isFilled = false;
+		FigGfxInfo.isFilled = false;
+		FigGfxInfo.FillClr = LIGHTGOLDENRODYELLOW;
 	}
 	else {
-		currentGfxInfo.FillClr = convertStringToColor(currentfillclr);
+		FigGfxInfo.FillClr = convertStringToColor(currentfillclr);
 	}
 }

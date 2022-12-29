@@ -114,7 +114,7 @@ void Output::CreateDrawToolBar() const
 	MenuItemImages[ITM_EXIT] = "images\\MenuItems\\Menu_Exit.jpg";
 
 	//TODO: Prepare images for each menu item and add it to the list
-
+	
 	//Draw menu item one image at a time
 	for (int i = 0; i < DRAW_ITM_COUNT; i++)
 		pWind->DrawImage(MenuItemImages[i], i * UI.MenuItemWidth, 0, UI.MenuItemWidth, UI.ToolBarHeight);
@@ -127,7 +127,10 @@ void Output::CreateDrawToolBar() const
 
 }
 //////////////////////////////////////////////////////////////////////////////////////////
-
+void Output::ClearToolBar() const {
+	for (int i = PLAY_ITM_COUNT - 1; i < DRAW_ITM_COUNT; i++)
+		pWind->DrawImage("images\\PlayItems\\square-512.jpg", i * UI.MenuItemWidth, 0, UI.MenuItemWidth, UI.ToolBarHeight);
+}
 void Output::CreatePlayToolBar() const
 {
 	UI.InterfaceMode = MODE_PLAY;

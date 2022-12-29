@@ -22,7 +22,7 @@ void AddHexaAction::ReadActionParameters()
 
 
 
-	HexaGfxInfo.isFilled = false;	//default is not filled
+	HexaGfxInfo.isFilled = UI.isFilled;	//default is not filled
 	//get drawing, filling colors and pen width from the interface
 	HexaGfxInfo.DrawClr = pOut->getCrntDrawColor();
 	HexaGfxInfo.FillClr = pOut->getCrntFillColor();

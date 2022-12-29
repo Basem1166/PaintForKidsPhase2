@@ -13,6 +13,10 @@
 #include"Actions\RedoAction.h"
 #include"Actions\UndoAction.h"
 #include "Actions\LoadAction.h"
+#include"Actions\ToDraw.h"
+#include "Actions\SwitchToPlayAction.h"
+#include "Actions\ChangeFillAction.h"
+#include "Actions\ChangHighlightAction.h"
 //Constructor
 ApplicationManager::ApplicationManager()
 {
@@ -71,6 +75,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	//According to Action Type, create the corresponding action object
 	switch (ActType)
 	{
+<<<<<<< HEAD
 	case DRAW_RECT:
 		pAct = new AddRectAction(this);
 		break;
@@ -116,6 +121,75 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 
 	case STATUS:	//a click on the status bar ==> no action
 		return;
+=======
+		case DRAW_RECT:
+			pAct = new AddRectAction(this);
+			break;
+		case DRAW_SQR:
+			pAct = new AddSqrAction(this);
+			break;
+		case DRAW_TRI:
+			pAct = new AddTriAction(this);
+			break;
+		case DRAW_HEXA:
+			pAct = new AddHexaAction(this);
+			break;
+		case DRAW_CIRC:
+			pAct = new AddCircAction(this);
+			break;
+		case SelectOne:
+			pAct = new SelectOneAction(this);
+			break;
+		case _DELETE:
+			if (SelectedFig != NULL)
+				pAct = new DeleteFigureAction(this);
+			else
+				pOut->PrintMessage("Error! Please Select a figure first");
+			break;
+		case MOVE_SHAPE:
+			if (SelectedFig != NULL)
+				pAct = new MoveFigureAction(this);
+			else
+				pOut->PrintMessage("Error! Please Select a figure first");
+			break;
+		case SAVE_GRAPH:
+				pAct = new SaveAction(this);
+			break;
+		case LOAD_GRAPH:
+			pAct = new LoadAction(this);
+			break;
+		case TO_DRAW:
+			pAct = new ToDraw(this);
+			break;
+		case UNDO:
+			pAct = new UndoAction(this);
+			break;
+		case REDO:
+			pAct = new RedoAction(this);
+			break;
+		case TO_PLAY:
+			pAct = new SwitchToPlayAction(this);
+			break;
+		case FILL:
+			if(SelectedFig!=NULL)
+			pAct = new ChangeFillAction(this);
+			else
+				pOut->PrintMessage("Error! Please Select a figure first");
+			break;
+		case ChangeDraw:
+			if(SelectedFig!=NULL)
+			pAct = new ChangeHighlightAction(this);
+			else
+				pOut->PrintMessage("Error! Please Select a figure first");
+			break;
+		case EXIT:
+			///create ExitAction here
+			
+			break;
+		
+		case STATUS:	//a click on the status bar ==> no action
+			return;
+>>>>>>> REMASTER
 	}
 
 	//Execute the created action

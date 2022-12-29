@@ -8,6 +8,10 @@ CFigure::CFigure(GfxInfo FigureGfxInfo)
 	ID = count++;
 }
 
+GfxInfo CFigure::GetGfxInfo() const
+{
+	return FigGfxInfo;
+}
 void CFigure::SetSelected(bool s)
 {	Selected = s; }
 
@@ -20,7 +24,7 @@ void CFigure::ChngDrawClr(color Dclr)
 void CFigure::ChngFillClr(color Fclr)
 {	
 	FigGfxInfo.isFilled = true;
-	FigGfxInfo.FillClr = Fclr; 
+	FigGfxInfo.FillClr = Fclr;
 }
 int CFigure::count = 1;
 

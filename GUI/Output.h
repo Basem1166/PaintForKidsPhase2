@@ -13,7 +13,7 @@ public:
 	void CreateDrawToolBar() const;	//creates Draw mode toolbar & menu
 	void CreatePlayToolBar() const;	//creates Play mode toolbar & menu
 	void CreateStatusBar() const;	//create the status bar
-
+	void ClearToolBar() const;//clear toolbar
 	Input* CreateInput() const; //creates a pointer to the Input object	
 	void ClearStatusBar() const;	//Clears the status bar
 	void ClearDrawArea() const;	//Clears the drawing area
@@ -28,7 +28,8 @@ public:
 	///Make similar functions for drawing all other figure types.
 
 	void PrintMessage(string msg) const;	//Print a message on Status bar
-
+	void setCrntDrawColor(color);
+	void setCrntFillColor(color);
 	color getCrntDrawColor() const;	//get current drwawing color
 	color getCrntFillColor() const;	//get current filling color
 	int getCrntPenWidth() const;		//get current pen width

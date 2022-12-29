@@ -58,8 +58,10 @@ public:
 	void SaveAll(ofstream& outputFile);
 
 	bool IsEmpty();
-	void StartRecording(bool RecordingAction);
 	void PlayRecording();
+	void AddRecordingFigure(Action* rAction);//adds figures to the recording list
+	bool getWillRecord();// setter and getter fir the will record boolean.
+	void setWillRecord(bool willrecord);
 };
 
 #endif

@@ -12,7 +12,7 @@ PlayRecordingAction::PlayRecordingAction(ApplicationManager* pApp):Action(pApp)
 {
 }
 
-void PlayRecordingAction::Execute()
+void PlayRecordingAction::Execute(bool isBeingPlayed)
 {
 	Output* pOut = pManager->GetOutput();
 	pOut->PrintMessage("Playing the Recording");

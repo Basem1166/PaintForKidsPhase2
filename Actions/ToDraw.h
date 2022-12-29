@@ -14,7 +14,7 @@ public:
 	~ToDraw(void);
 
 	void ReadActionParameters();
-	void Execute();
+	void Execute(bool isBeingPlayed);
 
 	void Undo();
 

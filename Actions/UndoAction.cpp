@@ -9,9 +9,14 @@ UndoAction::UndoAction(ApplicationManager* pApp) :Action(pApp)
 {}
 void UndoAction::ReadActionParameters()
 {}
-void UndoAction::Execute()
+void UndoAction::Execute(bool isBeingPlayed)
 {
 	pManager->UndoPrevAction();
+	//Add the figure to the recording list if recording;
+	if (pManager->getWillRecord())
+	{
+		pManager->AddRecordingFigure(this);
+	}
 }
 void UndoAction::Undo()
 {

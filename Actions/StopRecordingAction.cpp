@@ -6,9 +6,9 @@ StopRecordingAction::StopRecordingAction(ApplicationManager* pApp):Action(pApp)
 {
 }
 
-void StopRecordingAction::Execute()
+void StopRecordingAction::Execute(bool isBeingPlayed)
 {
-	pManager->StartRecording(0);
+	pManager->setWillRecord(0);
 	Output* pOut = pManager->GetOutput();
 	pOut->PrintMessage("Stopped Recording");
 

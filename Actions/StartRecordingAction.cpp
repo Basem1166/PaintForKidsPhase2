@@ -9,13 +9,13 @@ StartRecordingAction::StartRecordingAction(ApplicationManager* pApp):Action(pApp
 {
 }
 
-void StartRecordingAction::Execute()
+void StartRecordingAction::Execute(bool isBeingPlayed)
 {
 	Output* pOut = pManager->GetOutput();
 	if (pManager->IsEmpty())
 	{
 
-		pManager->StartRecording(1);
+		pManager->setWillRecord(1);
 		pOut->PrintMessage("Started Recording");
 	}
 	else

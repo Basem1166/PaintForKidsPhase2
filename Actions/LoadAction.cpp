@@ -15,7 +15,7 @@ void LoadAction::ReadActionParameters() {
 	pOut->ClearStatusBar();
 }
 
-void LoadAction::Execute() {
+void LoadAction::Execute(bool isBeingPlayed) {
 	ReadActionParameters();
 	//resetting everything and clear drawing area to be ready to get new graph
 	pManager->clearAll();

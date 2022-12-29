@@ -12,7 +12,7 @@ SwitchToPlayAction::SwitchToPlayAction(ApplicationManager* pApp) :Action(pApp)
 
 
 
-void SwitchToPlayAction::Execute()
+void SwitchToPlayAction::Execute(bool isBeingPlayed)
 {
 	Output* pOut = pManager->GetOutput();
 	pOut->CreatePlayToolBar();

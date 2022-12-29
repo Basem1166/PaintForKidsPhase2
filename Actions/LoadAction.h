@@ -20,7 +20,7 @@ public:
 
 	void ReadActionParameters(); 
 
-	void Execute();
+	void Execute(bool isBeingPlayed);
 
 	color convertStringToColor(string color);
 

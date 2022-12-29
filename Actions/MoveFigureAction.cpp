@@ -27,8 +27,9 @@ void MoveFigureAction::ReadActionParameters()
 }
 
 //Execute the action
-void MoveFigureAction::Execute()
+void MoveFigureAction::Execute(bool isBeingPlayed)
 {
+	if(!isBeingPlayed)
 	//This action needs to read some parameters first
 	ReadActionParameters();
 	Output* pOut = pManager->GetOutput();
@@ -36,6 +37,11 @@ void MoveFigureAction::Execute()
 	CFigure* SelectedFig = pManager->GetSelectedFigure();
 	SelectedFig->Move(P1.x, P1.y); // Moves Figure to new Center;
 	pOut->PrintMessage("Figure Moved");
+	//Add the figure to the recording list if recording;
+	if (pManager->getWillRecord())
+	{
+		pManager->AddRecordingFigure(this);
+	}
 }
 
 void MoveFigureAction::Undo()

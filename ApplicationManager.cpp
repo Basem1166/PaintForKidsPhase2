@@ -18,6 +18,7 @@
 #include "Actions\StartRecordingAction.h"
 #include "Actions\StopRecordingAction.h"
 #include "Actions\PlayRecordingAction.h"
+#include <windows.h>
 
 //Constructor
 ApplicationManager::ApplicationManager()
@@ -151,10 +152,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 
 	if (pAct != NULL)
 	{
-		if(WillRecord==1&& RecordingListCount<20){
 		
-			RecordingList[RecordingListCount++] = pAct;
-		}
 		if (ActType==14)
 		{
 
@@ -176,11 +174,11 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 				ActionList[ActionListCount - 1] = NULL;
 			}
 			UndoRedoCount = 0;
-			pAct->Execute();//Execute
+			pAct->Execute(0);//Execute
 		}
 		else
 		{
-			pAct->Execute();//Execute
+			pAct->Execute(0);//Execute
 			delete pAct;
 			pAct = NULL;
 		}
@@ -291,18 +289,32 @@ bool ApplicationManager::IsEmpty()
 		return false;
 	};
 }
-void ApplicationManager::StartRecording(bool RecordingAction)
-{
-	 WillRecord = RecordingAction;
-}
+
 void ApplicationManager::PlayRecording()
 {
 	pOut->ClearDrawArea();
-	for (int i = 0; i < RecordingListCount-1; i++)
+	for (int i = 0; i < RecordingListCount; i++)
 	{
-		RecordingList[i++]->Execute();
+		
+		RecordingList[i]->Execute(1);
+		Sleep(1000);
+
 		
 	}
+}
+void ApplicationManager::AddRecordingFigure(Action* rAction)
+{
+	if (FigCount < 20) {
+		RecordingList[RecordingListCount++] = rAction;
+	}
+}
+bool ApplicationManager::getWillRecord()
+{
+	return WillRecord;
+}
+void ApplicationManager::setWillRecord(bool willrecord)
+{
+	WillRecord = willrecord;
 }
 void ApplicationManager::clearAll() {
 	pOut->ClearDrawArea();

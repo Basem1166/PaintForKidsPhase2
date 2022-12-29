@@ -41,8 +41,9 @@ void AddTriAction::ReadActionParameters()
 }
 
 //Execute the action
-void AddTriAction::Execute()
+void AddTriAction::Execute(bool isBeingPlayed)
 {
+	if(!isBeingPlayed)
 	//This action needs to read some parameters first
 	ReadActionParameters();
 
@@ -51,6 +52,11 @@ void AddTriAction::Execute()
 
 	//Add the triangle to the list of figures
 	pManager->AddFigure(T);
+	//Add the figure to the recording list if recording;
+	if (pManager->getWillRecord())
+	{
+		pManager->AddRecordingFigure(this);
+	}
 }
 
 void AddTriAction::Undo()

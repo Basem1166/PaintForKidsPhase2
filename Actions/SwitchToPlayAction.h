@@ -11,7 +11,7 @@ public:
 
 	SwitchToPlayAction(ApplicationManager* pApp);
 
-	virtual void Execute();
+	virtual void Execute(bool isBeingPlayed);
 	virtual void ReadActionParameters();
 	virtual void Undo();
 

@@ -7,7 +7,7 @@ class ChangeHighlightAction : public Action
 {
 private:
 	ActionType ColorAct; //Changed color
-	
+	GfxInfo OldGfxInfo, NewGfxInfo;
 public:
 	ChangeHighlightAction(ApplicationManager* pApp);
 	virtual void Execute();

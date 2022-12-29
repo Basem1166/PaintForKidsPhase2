@@ -21,31 +21,37 @@ bool ChangeFillAction::GetFillColour(ActionType ColorAct) {
 	if (ColorAct == C_BLACK)
 	{
 		UI.FillColor = BLACK;
+		NewGfxInfo.FillClr = BLACK;
 		return 1;
 	}
 	else if (ColorAct == C_YELLOW)
 	{
 		UI.FillColor = YELLOW;
+		NewGfxInfo.FillClr = YELLOW;
 		return 1;
 	}
 	else if (ColorAct == C_ORANGE)
 	{
 		UI.FillColor = ORANGE;
+		NewGfxInfo.FillClr = ORANGE;
 		return 1;
 	}
 	else if (ColorAct == C_RED)
 	{
 		UI.FillColor = RED;
+		NewGfxInfo.FillClr = RED;
 		return 1;
 	}
 	else if (ColorAct == C_GREEN)
 	{
 		UI.FillColor = GREEN;
+		NewGfxInfo.FillClr = GREEN;
 		return 1;
 	}
 	else if (ColorAct == C_BLUE)
 	{
 		UI.FillColor = BLUE;
+		NewGfxInfo.FillClr = BLUE;
 		return 1;
 	}
 	else {
@@ -58,11 +64,14 @@ void ChangeFillAction::Execute() {
 	//This action needs to read some parameters first
 	ReadActionParameters();
 	Output* pOut = pManager->GetOutput();
-	CFigure* SelectedFigure = pManager->GetSelectedFigure();
+	FigPtr = pManager->GetSelectedFigure();
+	OldGfxInfo = FigPtr->GetGfxInfo();
+	NewGfxInfo = OldGfxInfo;
 
 	if (GetFillColour(ColorAct)) {
 		UI.isFilled = true;
-		SelectedFigure->ChngFillClr(UI.FillColor); //changing the fill color
+		NewGfxInfo.isFilled = true;
+		FigPtr->ChngFillClr(UI.FillColor); //changing the fill color
 	}
 	else {
 		pOut->PrintMessage("Please Click on a Colour icon");
@@ -71,10 +80,10 @@ void ChangeFillAction::Execute() {
 
 void ChangeFillAction::Undo()
 {
-
+	FigPtr->ChngGfxInfo(OldGfxInfo);
 }
 
 void ChangeFillAction::Redo()
 {
-
+	FigPtr->ChngGfxInfo(NewGfxInfo);
 }

@@ -29,7 +29,7 @@ public:
 	Point GetCenter();
 	GfxInfo GetGfxInfo()const;
 	virtual void Draw(Output* pOut) const  = 0 ;		//Draw the figure
-	
+	void ChngGfxInfo(GfxInfo);
 	void ChngDrawClr(color Dclr);	//changes the figure's drawing color
 	void ChngFillClr(color Fclr);	//changes the figure's filling color
 	virtual bool IsInside(int,int) = 0; //checks if the points clicked are inside a figure

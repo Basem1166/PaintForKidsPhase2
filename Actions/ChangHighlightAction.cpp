@@ -22,31 +22,37 @@ bool ChangeHighlightAction::GetHighlightColour(ActionType ColorAct)//changing th
 	if (ColorAct == C_BLACK)
 	{
 		UI.DrawColor = BLACK;
+		NewGfxInfo.DrawClr = BLACK;
 		return 1;
 	}
 	else if (ColorAct == C_YELLOW)
 	{
 		UI.DrawColor = YELLOW;
+		NewGfxInfo.DrawClr = YELLOW;
 		return 1;
 	}
 	else if (ColorAct == C_ORANGE)
 	{
 		UI.DrawColor = ORANGE;
+		NewGfxInfo.DrawClr = ORANGE;
 		return 1;
 	}
 	else if (ColorAct == C_RED)
 	{
 		UI.DrawColor = RED;
+		NewGfxInfo.DrawClr = RED;
 		return 1;
 	}
 	else if (ColorAct == C_GREEN)
 	{
 		UI.DrawColor = GREEN;
+		NewGfxInfo.DrawClr = GREEN;
 		return 1;
 	}
 	else if (ColorAct == C_BLUE)
 	{
 		UI.DrawColor = BLUE;
+		NewGfxInfo.DrawClr = BLUE;
 		return 1;
 	}
 	else {
@@ -60,16 +66,25 @@ void ChangeHighlightAction::Execute() {
 	//This action needs to read some parameters first
 	ReadActionParameters();
 	Output* pOut = pManager->GetOutput();
-	CFigure* SelectedFigure = pManager->GetSelectedFigure();
+	FigPtr = pManager->GetSelectedFigure();
+	OldGfxInfo = FigPtr->GetGfxInfo();
+	NewGfxInfo = OldGfxInfo;
+
 	if (GetHighlightColour(ColorAct)) {
-		SelectedFigure->ChngDrawClr(UI.DrawColor);//changing draw color for selected figure
-
-
+		FigPtr->ChngDrawClr(UI.DrawColor);//changing draw color for selected figure
 	}
-	else {
+	else
+	{
 		pOut->PrintMessage("Please Click on a Colour icon");
 	}
 }
 
-void ChangeHighlightAction::Undo() {}
-void ChangeHighlightAction::Redo() {}
+void ChangeHighlightAction::Undo()
+{
+	FigPtr->ChngGfxInfo(OldGfxInfo);
+}
+
+void ChangeHighlightAction::Redo()
+{
+	FigPtr->ChngGfxInfo(NewGfxInfo);
+}

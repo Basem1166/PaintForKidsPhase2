@@ -7,7 +7,7 @@ class ChangeFillAction : public Action
 {
 private:
 	ActionType ColorAct; //CLICKED COLOR
-
+	GfxInfo OldGfxInfo, NewGfxInfo;
 
 public:
 	ChangeFillAction(ApplicationManager* pApp);

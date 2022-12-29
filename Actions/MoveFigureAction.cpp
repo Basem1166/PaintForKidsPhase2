@@ -18,7 +18,7 @@ void MoveFigureAction::ReadActionParameters()
 	pOut->PrintMessage("Moving Selected Figure: Click on new center");
 
 	//Read new center and store in point P1
-	pIn->GetPointClicked(P1.x, P1.y);
+	pIn->GetPointClicked(PNew.x, PNew.y);
 
 
 
@@ -33,16 +33,17 @@ void MoveFigureAction::Execute()
 	ReadActionParameters();
 	Output* pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();
-	CFigure* SelectedFig = pManager->GetSelectedFigure();
-	SelectedFig->Move(P1.x, P1.y); // Moves Figure to new Center;
+	FigPtr = pManager->GetSelectedFigure();
+	POld = FigPtr->GetCenter();
+	FigPtr->Move(PNew.x, PNew.y); // Moves Figure to new Center;
 	pOut->PrintMessage("Figure Moved");
 }
 
 void MoveFigureAction::Undo()
 {
-
+	FigPtr->Move(POld.x, POld.y);
 }
 void MoveFigureAction::Redo()
 {
-
+	FigPtr->Move(PNew.x, PNew.y);
 }

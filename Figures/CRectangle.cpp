@@ -6,7 +6,8 @@ CRectangle::CRectangle(Point P1, Point P2, GfxInfo FigureGfxInfo):CFigure(Figure
 {
 	Corner1 = P1;
 	Corner2 = P2;
-	
+	Center.x = (P1.x + P2.x) / 2;
+	Center.y = (P1.y + P2.y) / 2;
 }
 	
 
@@ -24,10 +25,10 @@ bool CRectangle::IsInside(int x, int y){ //Checking if the point is inside the r
 	}
 }
 void CRectangle :: Move(int x, int y) {
-	int xcenter = (Corner1.x + Corner2.x) / 2;//getting x coordinates of center of rectangle
-	int ycenter = (Corner1.y + Corner2.y) / 2;//getting y coordinates of center of rectangle
-	int xtranslate = xcenter-x;
-	int ytranslate= ycenter-y;
+	int xtranslate = Center.x - x;
+	int ytranslate = Center.y - y;
+	Center.x = x;
+	Center.y = y;
 	Corner1.x -= xtranslate; //translating points
 	Corner1.y -= ytranslate;
 	Corner2.x -= xtranslate;

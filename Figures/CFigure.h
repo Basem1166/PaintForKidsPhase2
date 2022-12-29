@@ -13,6 +13,7 @@ protected:
 	int ID;		//Each figure has an ID
 	bool Selected;	//true if the figure is selected.
 	GfxInfo FigGfxInfo;	//Figure graphis info
+	Point Center; //Center of the figure
 
 	/// Add more parameters if needed.
 
@@ -25,6 +26,7 @@ public:
 	
 	int GetID();
 	void SetID(int);
+	Point GetCenter();
 	GfxInfo GetGfxInfo()const;
 	virtual void Draw(Output* pOut) const  = 0 ;		//Draw the figure
 	

@@ -8,6 +8,7 @@ class ChangeFillAction : public Action
 private:
 	ActionType ColorAct; //CLICKED COLOR
 
+
 public:
 	ChangeFillAction(ApplicationManager* pApp);
 	virtual void Execute();

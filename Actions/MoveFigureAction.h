@@ -7,7 +7,7 @@
 class MoveFigureAction : public Action
 {
 private:
-	Point P1;
+	Point PNew, POld;
 	GfxInfo RectGfxInfo;
 public:
 	MoveFigureAction(ApplicationManager* pApp);

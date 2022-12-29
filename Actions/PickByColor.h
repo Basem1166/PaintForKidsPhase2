@@ -17,7 +17,6 @@ public:
 	void ReadActionParameters();
 	void Execute();
 	void Undo() ;
-
 	void Redo() ;
 
 };

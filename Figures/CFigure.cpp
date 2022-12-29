@@ -104,3 +104,12 @@ color CFigure::convertStringToColor(string color) {
 		return  BLUE;
 	}
 }
+//Hides Figures
+void CFigure::HideShape()
+{
+	IsHidden = true;
+}
+void CFigure::ShowShape()
+{
+	IsHidden = false;
+}

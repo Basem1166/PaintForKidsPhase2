@@ -17,6 +17,8 @@
 #include "Actions\SwitchToPlayAction.h"
 #include "Actions\ChangeFillAction.h"
 #include "Actions\ChangHighlightAction.h"
+#include "Actions\PickByColor.h"
+
 //Constructor
 ApplicationManager::ApplicationManager()
 {
@@ -110,6 +112,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 		case LOAD_GRAPH:
 			pAct = new LoadAction(this);
+			break;
+		case By_color:
+			pAct = new PickByColor(this);
 			break;
 		case TO_DRAW:
 			pAct = new ToDraw(this);
@@ -237,6 +242,13 @@ CFigure *ApplicationManager::GetFigure(int x, int y) const
 		}
 	}
 	return NULL;
+}
+CFigure* ApplicationManager::drawnFigures(int i) const
+{
+	return FigList[i];
+}
+int ApplicationManager:: getFigCount() {
+	return FigCount;
 }
 //==================================================================================//
 //							Interface Management Functions							//

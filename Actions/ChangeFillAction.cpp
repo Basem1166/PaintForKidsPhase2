@@ -14,6 +14,7 @@ void ChangeFillAction::ReadActionParameters()
 	Input* pIn = pManager->GetInput();
 	pOut->PrintMessage("Please Choose Fill Colour");
 	ColorAct=pIn->GetUserAction();
+	pOut->ClearStatusBar();
 
 }
 bool ChangeFillAction::GetFillColour(ActionType ColorAct) {
@@ -60,11 +61,9 @@ void ChangeFillAction::Execute() {
 	CFigure* SelectedFigure = pManager->GetSelectedFigure();
 	if (GetFillColour(ColorAct)) {
 		SelectedFigure->ChngFillClr(UI.FillColor); //changing the fill color
-		
-
 	}
 	else {
-		pOut->PrintMessage("Clicked on an invalid point");
+		pOut->PrintMessage("Please Click on a Colour icon");
 	}
 }
 

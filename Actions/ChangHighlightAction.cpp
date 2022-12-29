@@ -14,6 +14,7 @@ void ChangeHighlightAction::ReadActionParameters()
 	Input* pIn = pManager->GetInput();
 	pOut->PrintMessage("Please Choose Highlight Colour");
 	ColorAct = pIn->GetUserAction();
+	pOut->ClearStatusBar();
 
 }
 bool ChangeHighlightAction::GetHighlightColour(ActionType ColorAct)//changing the draw color
@@ -66,7 +67,7 @@ void ChangeHighlightAction::Execute() {
 
 	}
 	else {
-		pOut->PrintMessage("Clicked on an invalid point");
+		pOut->PrintMessage("Please Click on a Colour icon");
 	}
 }
 

@@ -147,7 +147,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	//Execute the created action
 	if (pAct != NULL)
 	{
-		if (ActType <= 12)
+		if (ActType < 9)
 		{
 			if (UndoListCurrentSize < 5)
 			{

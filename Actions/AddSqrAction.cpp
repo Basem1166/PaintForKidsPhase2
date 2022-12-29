@@ -20,7 +20,7 @@ void AddSqrAction::ReadActionParameters()
 	//Read center and store in point P1
 	pIn->GetPointClicked(P1.x, P1.y);
 
-	SqrGfxInfo.isFilled = false;	//default is not filled
+	SqrGfxInfo.isFilled = UI.isFilled;	//default is not filled
 	//get drawing, filling colors and pen width from the interface
 	SqrGfxInfo.DrawClr = pOut->getCrntDrawColor();
 	SqrGfxInfo.FillClr = pOut->getCrntFillColor();

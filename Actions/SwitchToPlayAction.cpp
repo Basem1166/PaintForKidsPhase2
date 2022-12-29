@@ -14,9 +14,11 @@ SwitchToPlayAction::SwitchToPlayAction(ApplicationManager* pApp) :Action(pApp)
 
 void SwitchToPlayAction::Execute(bool WillRecord)
 {
+
 	ofstream outputFile;
 	Output* pOut = pManager->GetOutput();
 	pOut->CreatePlayToolBar();
+
 }
 
 void SwitchToPlayAction::ReadActionParameters()

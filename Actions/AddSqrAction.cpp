@@ -36,18 +36,20 @@ void AddSqrAction::Execute()
 	ReadActionParameters();
 
 	//Create a square with the parameters read from the user
-	CSquare* S = new CSquare(P1, SqrGfxInfo);
+	FigPtr = new CSquare(P1, SqrGfxInfo);
 
 	//Add the Square to the list of figures
-	pManager->AddFigure(S);
+	pManager->AddFigure(FigPtr);
 }
 
 void AddSqrAction::Undo()
 {
-
+	pManager->DeleteFigure(FigPtr);
+	FigPtr->SetSelected(false);
 }
 
 void AddSqrAction::Redo()
 {
-
+	pManager->AddFigure(FigPtr);
+	FigPtr->SetSelected(false);
 }

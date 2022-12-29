@@ -49,9 +49,11 @@ void AddCircAction::Execute()
 void AddCircAction::Undo()
 {
 	pManager->DeleteFigure(FigPtr);
+	FigPtr->SetSelected(false);
 }
 
 void AddCircAction::Redo()
 {
 	pManager->AddFigure(FigPtr);
+	FigPtr->SetSelected(false);
 }

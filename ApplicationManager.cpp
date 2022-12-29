@@ -20,12 +20,17 @@ ApplicationManager::ApplicationManager()
 	pOut = new Output;
 	pIn = pOut->CreateInput();
 	FigCount = 0;
-	UndoRedoCount = 0;
-	ActionListSize = 0;
+	UndoListCurrentSize = 0;
+	RedoListCurrentSize = 0;
 	SelectedFig = NULL;
 	//Create an array of figure pointers and set them to NULL		
 	for(int i=0; i<MaxFigCount; i++)
-		FigList[i] = NULL;	
+		FigList[i] = NULL;
+	for(int i=0;i<5;i++)
+	{
+		UndoList[i] = NULL;
+		RedoList[i] = NULL;
+	}
 }
 
 //==================================================================================//
@@ -38,97 +43,109 @@ ActionType ApplicationManager::GetUserAction() const
 }
 void ApplicationManager::UndoPrevAction()
 {
-	if (UndoRedoCount < 5 && ActionListSize>0) {
-		UndoRedoCount++;
-		ActionList[--ActionListSize]->Undo();
-		SelectedFig = NULL;
+	if (UndoListCurrentSize > 0)
+	{
+		UndoListCurrentSize--;
+		RedoList[RedoListCurrentSize++] = UndoList[UndoListCurrentSize];
+		UndoList[UndoListCurrentSize]->Undo();
+		UndoList[UndoListCurrentSize] = NULL;
 	}
 }
 void ApplicationManager::RedoPrevAction()
 {
-	if (UndoRedoCount > 0 && ActionListSize < 5) {
-		UndoRedoCount--;
-		ActionList[ActionListSize++]->Redo();
-		SelectedFig = NULL;
+	if(RedoListCurrentSize>0)
+	{
+		RedoListCurrentSize--;
+		UndoList[UndoListCurrentSize++] = RedoList[RedoListCurrentSize];
+		RedoList[RedoListCurrentSize]->Redo();
+		RedoList[RedoListCurrentSize] = NULL;
 	}
 }
 
 ////////////////////////////////////////////////////////////////////////////////////
 //Creates an action and executes it
-void ApplicationManager::ExecuteAction(ActionType ActType) 
+void ApplicationManager::ExecuteAction(ActionType ActType)
 {
 	Action* pAct = NULL;
-	
+
 	//According to Action Type, create the corresponding action object
 	switch (ActType)
 	{
-		case DRAW_RECT:
-			pAct = new AddRectAction(this);
-			break;
-		case DRAW_SQR:
-			pAct = new AddSqrAction(this);
-			break;
-		case DRAW_TRI:
-			pAct = new AddTriAction(this);
-			break;
-		case DRAW_HEXA:
-			pAct = new AddHexaAction(this);
-			break;
-		case DRAW_CIRC:
-			pAct = new AddCircAction(this);
-			break;
-		case SelectOne:
-			pAct = new SelectOneAction(this);
-			break;
-		case _DELETE:
-			if(GetSelectedFigure()!=NULL)
+	case DRAW_RECT:
+		pAct = new AddRectAction(this);
+		break;
+	case DRAW_SQR:
+		pAct = new AddSqrAction(this);
+		break;
+	case DRAW_TRI:
+		pAct = new AddTriAction(this);
+		break;
+	case DRAW_HEXA:
+		pAct = new AddHexaAction(this);
+		break;
+	case DRAW_CIRC:
+		pAct = new AddCircAction(this);
+		break;
+	case SelectOne:
+		pAct = new SelectOneAction(this);
+		break;
+	case _DELETE:
+		if (GetSelectedFigure() != NULL)
 			pAct = new DeleteFigureAction(this);
-			break;
-		case MOVE_SHAPE:
-			if (GetSelectedFigure() != NULL)
-				pAct = new MoveFigureAction(this);
-			break;
-		case SAVE_GRAPH:
-				pAct = new SaveAction(this);
-			break;
-		case LOAD_GRAPH:
-			pAct = new LoadAction(this);
-			break;
-		case UNDO:
-			pAct = new UndoAction(this);
-			break;
-		case REDO:
-			pAct = new RedoAction(this);
-			break;
-		case EXIT:
-			///create ExitAction here
-			
-			break;
-		
-		case STATUS:	//a click on the status bar ==> no action
-			return;
+		break;
+	case MOVE_SHAPE:
+		if (GetSelectedFigure() != NULL)
+			pAct = new MoveFigureAction(this);
+		break;
+	case SAVE_GRAPH:
+		pAct = new SaveAction(this);
+		break;
+	case LOAD_GRAPH:
+		pAct = new LoadAction(this);
+		break;
+	case UNDO:
+		pAct = new UndoAction(this);
+		break;
+	case REDO:
+		pAct = new RedoAction(this);
+		break;
+	case EXIT:
+		///create ExitAction here
+
+		break;
+
+	case STATUS:	//a click on the status bar ==> no action
+		return;
 	}
-	
+
 	//Execute the created action
 	if (pAct != NULL)
 	{
 		if (ActType <= 12)
 		{
-			if (ActionListSize < 5)
+			if (UndoListCurrentSize < 5)
 			{
-				ActionList[ActionListSize++] = pAct;
+				UndoList[UndoListCurrentSize++] = pAct;
 			}
 			else
 			{
-				if (ActionList[0])
-					delete ActionList[0];
-				for (int i = 0; i < ActionListSize - 1; i++)
+				if (UndoList[0] != NULL)
+					delete UndoList[0];
+				for (int i = 0; i < 4; i++)
 				{
-					ActionList[i] = ActionList[i + 1];
+					UndoList[i] = UndoList[i + 1];
 				}
-				ActionList[ActionListSize - 1] = NULL;
+				UndoList[4] = pAct;
 			}
-			UndoRedoCount = 0;
+			RedoListCurrentSize = 0;
+			for(int i=0; i<5; i++)
+			{
+				if(RedoList[i] != NULL)
+				{
+					delete RedoList[i];
+					RedoList[i] = NULL;
+				}
+			}
 			pAct->Execute();//Execute
 		}
 		else
@@ -170,11 +187,12 @@ void ApplicationManager::DeleteFigure(CFigure* pFig) {
 		}
 	}
 	
-	for (int i = c; i < FigCount - 2; i++) {
+	for (int i = c; i < FigCount - 1; i++) {
 		FigList[i] = FigList[i + 1];
 	}
 
-	FigList[--FigCount] = NULL;
+	FigList[FigCount-1] = NULL;
+	--FigCount;
 	SelectedFig = NULL;
 }
 ////////////////////////////////////////////////////////////////////////////////////

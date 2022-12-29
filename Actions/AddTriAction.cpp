@@ -47,18 +47,20 @@ void AddTriAction::Execute()
 	ReadActionParameters();
 
 	//Create a rectangle with the parameters read from the user
-	CTriangle* T = new CTriangle(P1, P2, P3, TriGfxInfo);
+	FigPtr = new CTriangle(P1, P2, P3, TriGfxInfo);
 
 	//Add the triangle to the list of figures
-	pManager->AddFigure(T);
+	pManager->AddFigure(FigPtr);
 }
 
 void AddTriAction::Undo()
 {
-
+	pManager->DeleteFigure(FigPtr);
+	FigPtr->SetSelected(false);
 }
 
 void AddTriAction::Redo()
 {
-
+	pManager->AddFigure(FigPtr);
+	FigPtr->SetSelected(false);
 }

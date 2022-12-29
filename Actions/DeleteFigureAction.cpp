@@ -29,11 +29,11 @@ void DeleteFigureAction::Execute()
 void DeleteFigureAction::Undo()
 {
 	pManager->AddFigure(FigPtr);
-	FigPtr->SetSelected(0);
+	FigPtr->SetSelected(false);
 }
 
 void DeleteFigureAction::Redo()
 {
 	pManager->DeleteFigure(FigPtr);
-	FigPtr->SetSelected(0);
+	FigPtr->SetSelected(false);
 }

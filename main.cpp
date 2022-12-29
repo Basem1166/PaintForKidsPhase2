@@ -20,9 +20,7 @@ int main()
 		AppManager.UpdateInterface();	
 
 	} while(ActType != EXIT);
-	
-	//testing 11111111 anime 
-	//asdsadass
+
 	return 0;
 }
 

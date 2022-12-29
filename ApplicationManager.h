@@ -15,9 +15,10 @@ class ApplicationManager
 
 private:
 	int FigCount;//Actual number of figures
-	int UndoRedoCount;
-	int ActionListSize;
-	Action* ActionList[5];
+	Action* UndoList[5];
+	Action* RedoList[5];
+	int UndoListCurrentSize;
+	int RedoListCurrentSize;
 	CFigure* FigList[MaxFigCount];	//List of all figures (Array of pointers)
 
 	CFigure* SelectedFig; //Pointer to the selected figure

@@ -45,9 +45,11 @@ void AddHexaAction::Execute()
 void AddHexaAction::Undo()
 {
 	pManager->DeleteFigure(FigPtr);
+	FigPtr->SetSelected(false);
 }
 
 void AddHexaAction::Redo()
 {
-	pManager->AddFigure(Hexagon);
+	pManager->AddFigure(FigPtr);
+	FigPtr->SetSelected(false);
 }

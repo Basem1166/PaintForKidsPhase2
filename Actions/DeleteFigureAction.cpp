@@ -13,7 +13,7 @@ void DeleteFigureAction::ReadActionParameters()
 }
 
 //Execute the action
-void DeleteFigureAction::Execute()
+void DeleteFigureAction::Execute(bool isBeingPlayed)
 {
 	//Get a Pointer to the Input / Output Interfaces
 	Output* pOut = pManager->GetOutput();
@@ -23,8 +23,17 @@ void DeleteFigureAction::Execute()
 
 	//Delete  selected  figure
 
+
 	pManager->DeleteFigure(FigPtr);
 	pOut->PrintMessage("Figure Deleted");
+
+
+	//Add the figure to the recording list if recording;
+	if (pManager->getWillRecord())
+	{
+		pManager->AddRecordingFigure(this);
+	}
+
 }
 void DeleteFigureAction::Undo()
 {

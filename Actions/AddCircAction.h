@@ -16,7 +16,8 @@ public:
 	virtual void ReadActionParameters();
 
 	//Add circle to the ApplicationManager
-	virtual void Execute();
+	virtual void Execute(bool isBeingPlayed);
+	
 
 	void Undo();
 

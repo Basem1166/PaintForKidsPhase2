@@ -8,10 +8,12 @@ class RedoAction :public Action
 public:
 	RedoAction(ApplicationManager* pApp);
 	virtual void ReadActionParameters();
-	virtual void Execute();
+	virtual void Execute(bool isBeingPlayed);
 
 	void Undo();
 
 	void Redo();
+
+	
 };
 #endif

@@ -49,7 +49,7 @@ void SaveAction::ReadActionParameters() {
 	pOut->ClearStatusBar();
 }
 
-void SaveAction::Execute() {
+void SaveAction::Execute(bool isBeingPlayed) {
 
 	ReadActionParameters();
 	ofstream outputFile;

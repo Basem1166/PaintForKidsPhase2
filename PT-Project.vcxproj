@@ -137,10 +137,16 @@
     <ClCompile Include="Actions\DeleteFigureAction.cpp" />
     <ClCompile Include="Actions\LoadAction.cpp" />
     <ClCompile Include="Actions\MoveFigureAction.cpp" />
+
     <ClCompile Include="Actions\PickByColor.cpp" />
+
+    <ClCompile Include="Actions\PlayRecordingAction.cpp" />
+
     <ClCompile Include="Actions\RedoAction.cpp" />
     <ClCompile Include="Actions\SaveAction.cpp" />
     <ClCompile Include="Actions\SelectOneAction.cpp" />
+    <ClCompile Include="Actions\StartRecordingAction.cpp" />
+    <ClCompile Include="Actions\StopRecordingAction.cpp" />
     <ClCompile Include="Actions\SwitchToPlayAction.cpp" />
     <ClCompile Include="Actions\ToDraw.cpp" />
     <ClCompile Include="Actions\UndoAction.cpp" />
@@ -200,12 +206,15 @@
     <ClInclude Include="Actions\ChangeFillAction.h" />
     <ClInclude Include="Actions\ChangHighlightAction.h" />
     <ClInclude Include="Actions\DeleteFigureAction.h" />
+    <ClInclude Include="Actions\PlayRecordingAction.h" />
+    <ClInclude Include="Actions\StartRecordingAction.h" />
     <ClInclude Include="Actions\LoadAction.h" />
     <ClInclude Include="Actions\MoveFigureAction.h" />
     <ClInclude Include="Actions\PickByColor.h" />
     <ClInclude Include="Actions\RedoAction.h" />
     <ClInclude Include="Actions\SaveAction.h" />
     <ClInclude Include="Actions\SelectOneAction.h" />
+    <ClInclude Include="Actions\StopRecordingAction.h" />
     <ClInclude Include="Actions\SwitchToPlayAction.h" />
     <ClInclude Include="Actions\ToDraw.h" />
     <ClInclude Include="Actions\UndoAction.h" />

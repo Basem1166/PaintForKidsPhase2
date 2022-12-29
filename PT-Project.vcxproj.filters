@@ -199,6 +199,7 @@
     <ClCompile Include="Actions\SwitchToPlayAction.cpp">
       <Filter>Action Classes</Filter>
     </ClCompile>
+
     <ClCompile Include="Actions\ChangHighlightAction.cpp">
       <Filter>Action Classes</Filter>
     </ClCompile>
@@ -206,6 +207,15 @@
       <Filter>Action Classes</Filter>
     </ClCompile>
     <ClCompile Include="Actions\PickByColor.cpp">
+
+    <ClCompile Include="Actions\StartRecordingAction.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\StopRecordingAction.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\PlayRecordingAction.cpp">
+
       <Filter>Action Classes</Filter>
     </ClCompile>
   </ItemGroup>
@@ -346,6 +356,7 @@
     <ClInclude Include="Actions\SwitchToPlayAction.h">
       <Filter>Action Classes</Filter>
     </ClInclude>
+
     <ClInclude Include="Actions\ChangHighlightAction.h">
       <Filter>Action Classes</Filter>
     </ClInclude>
@@ -353,6 +364,15 @@
       <Filter>Action Classes</Filter>
     </ClInclude>
     <ClInclude Include="Actions\PickByColor.h">
+
+    <ClInclude Include="Actions\StartRecordingAction.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\StopRecordingAction.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\PlayRecordingAction.h">
+
       <Filter>Action Classes</Filter>
     </ClInclude>
   </ItemGroup>

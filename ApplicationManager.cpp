@@ -15,8 +15,16 @@
 #include "Actions\LoadAction.h"
 #include"Actions\ToDraw.h"
 #include "Actions\SwitchToPlayAction.h"
+
 #include "Actions\ChangeFillAction.h"
 #include "Actions\ChangHighlightAction.h"
+
+#include "Actions\StartRecordingAction.h"
+#include "Actions\StopRecordingAction.h"
+#include "Actions\PlayRecordingAction.h"
+#include <windows.h>
+
+
 //Constructor
 ApplicationManager::ApplicationManager()
 {
@@ -24,8 +32,15 @@ ApplicationManager::ApplicationManager()
 	pOut = new Output;
 	pIn = pOut->CreateInput();
 	FigCount = 0;
+
 	UndoListCurrentSize = 0;
 	RedoListCurrentSize = 0;
+
+	
+	
+	RecordingListCount = 0;
+	WillRecord = 0;
+
 	SelectedFig = NULL;
 	//Create an array of figure pointers and set them to NULL		
 	for(int i=0; i<MaxFigCount; i++)
@@ -123,6 +138,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case TO_PLAY:
 			pAct = new SwitchToPlayAction(this);
 			break;
+
 		case FILL:
 			if(SelectedFig!=NULL)
 			pAct = new ChangeFillAction(this);
@@ -135,6 +151,17 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			else
 				pOut->PrintMessage("Error! Please Select a figure first");
 			break;
+
+		case START_RECORDING :
+			pAct = new StartRecordingAction(this);
+			break;
+		case STOP_RECORDING :
+			pAct = new StopRecordingAction(this);
+			break;
+		case PLAY_RECORDING :
+			pAct = new PlayRecordingAction(this);
+
+
 		case EXIT:
 			///create ExitAction here
 			
@@ -145,8 +172,14 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	}
 
 	//Execute the created action
+
 	if (pAct != NULL)
 	{
+		
+		if (ActType==14)
+		{
+
+		}
 		if (ActType <= 12)
 		{
 			if (UndoListCurrentSize < 5)
@@ -172,11 +205,14 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 					RedoList[i] = NULL;
 				}
 			}
-			pAct->Execute();//Execute
+
+			UndoRedoCount = 0;
+			pAct->Execute(0);//Execute
+
 		}
 		else
 		{
-			pAct->Execute();//Execute
+			pAct->Execute(0);//Execute
 			delete pAct;
 			pAct = NULL;
 		}
@@ -279,6 +315,44 @@ void ApplicationManager::SaveAll(ofstream& outputFile) {
 	for (int i = 0;i < FigCount;i++) {
 		FigList[i]->Save(outputFile);
 	}
+}
+bool ApplicationManager::IsEmpty()
+{
+	if (FigCount==0)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	};
+}
+
+void ApplicationManager::PlayRecording()
+{
+	pOut->ClearDrawArea();
+	for (int i = 0; i < RecordingListCount; i++)
+	{
+		
+		RecordingList[i]->Execute(1);
+		Sleep(1000);
+
+		
+	}
+}
+void ApplicationManager::AddRecordingFigure(Action* rAction)
+{
+	if (FigCount < 20) {
+		RecordingList[RecordingListCount++] = rAction;
+	}
+}
+bool ApplicationManager::getWillRecord()
+{
+	return WillRecord;
+}
+void ApplicationManager::setWillRecord(bool willrecord)
+{
+	WillRecord = willrecord;
 }
 void ApplicationManager::clearAll() {
 	pOut->ClearDrawArea();

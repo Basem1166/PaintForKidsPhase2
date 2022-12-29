@@ -15,10 +15,15 @@ class ApplicationManager
 
 private:
 	int FigCount;//Actual number of figures
+
 	Action* UndoList[5];
 	Action* RedoList[5];
 	int UndoListCurrentSize;
 	int RedoListCurrentSize;
+	int RecordingListCount;
+	bool WillRecord;
+	Action* RecordingList[20];       // List of figures getting recorded
+
 	CFigure* FigList[MaxFigCount];	//List of all figures (Array of pointers)
 
 	CFigure* SelectedFig; //Pointer to the selected figure
@@ -53,6 +58,12 @@ public:
 	void SaveFigcount(ofstream & outputFile);
 	void clearAll();
 	void SaveAll(ofstream& outputFile);
+
+	bool IsEmpty();
+	void PlayRecording();
+	void AddRecordingFigure(Action* rAction);//adds figures to the recording list
+	bool getWillRecord();// setter and getter fir the will record boolean.
+	void setWillRecord(bool willrecord);
 };
 
 #endif

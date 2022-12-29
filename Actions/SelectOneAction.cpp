@@ -19,7 +19,8 @@ void SelectOneAction::ReadActionParameters() {
 	pIn->GetPointClicked(P.x, P.y);
 	pOut->ClearStatusBar();
 }
-void SelectOneAction::Execute() {
+void SelectOneAction::Execute(bool isBeingPlayed) {
+	if(!isBeingPlayed)
 	ReadActionParameters();
 	Output* pOut = pManager->GetOutput();
 	CFigure* FigNew = pManager->GetFigure(P.x, P.y); //Checks if the points clicked are inside a figure
@@ -43,6 +44,11 @@ void SelectOneAction::Execute() {
 		FigNew->SetSelected(1);
 		pManager->SetSelectedFigure(FigNew);
 		FigNew->PrintInfo(pOut);
+	}
+	//Add the figure to the recording list if recording;
+	if (pManager->getWillRecord())
+	{
+		pManager->AddRecordingFigure(this);
 	}
 }
 

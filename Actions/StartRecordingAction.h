@@ -1,15 +1,15 @@
-#ifndef TO_PLAY_H
-#define TO_PLAY_H
+#ifndef START_RECORD
+#define START_RECORD
 
 #include "Action.h"
 
-class SwitchToPlayAction :public Action {
+class StartRecordingAction :public Action {
 
 private:
-
+	
 public:
 
-	SwitchToPlayAction(ApplicationManager* pApp);
+	StartRecordingAction(ApplicationManager* pApp);
 
 	virtual void Execute(bool isBeingPlayed);
 	virtual void ReadActionParameters();

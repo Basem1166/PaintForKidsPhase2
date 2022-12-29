@@ -31,16 +31,26 @@ void AddHexaAction::ReadActionParameters()
 
 }
 //Execute
-void AddHexaAction::Execute()
+void AddHexaAction::Execute(bool isBeingPlayed)
 {
-	//This action needs to read some parameters first
-	ReadActionParameters();
-
+	if (!isBeingPlayed)
+	{
+		//This action needs to read some parameters first
+		ReadActionParameters();
+	}
 	//Create a hexagon with the parameters read from the user
+
 	FigPtr = new CHexagon(P1, HexaGfxInfo);
 
 	//Add the circle to the list of figures
 	pManager->AddFigure(FigPtr);
+
+	
+	//Add the figure to the recording list if recording;
+	if (pManager->getWillRecord())
+	{
+		pManager->AddRecordingFigure(this);
+	}
 }
 void AddHexaAction::Undo()
 {

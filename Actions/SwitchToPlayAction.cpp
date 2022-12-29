@@ -12,7 +12,7 @@ SwitchToPlayAction::SwitchToPlayAction(ApplicationManager* pApp) :Action(pApp)
 
 
 
-void SwitchToPlayAction::Execute()
+void SwitchToPlayAction::Execute(bool isBeingPlayed)
 {
 	ofstream outputFile;
 	Output* pOut = pManager->GetOutput();

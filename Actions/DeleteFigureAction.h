@@ -12,11 +12,13 @@ public:
 	void ReadActionParameters();
 
 	//Delete selected figure from FigList ApplicationManager
-	virtual void Execute();
+	virtual void Execute(bool isBeingPlayed);
 
 	void Undo();
 
 	void Redo();
+
+	
 };
 
 #endif

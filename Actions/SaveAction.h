@@ -12,7 +12,9 @@ class SaveAction :public Action
 public:
 
 	SaveAction(ApplicationManager* pApp);
+
 	string convertcolorToString(color color);
+
 	~SaveAction(void);
 
 	void ReadActionParameters(); //reads file name and current clr 

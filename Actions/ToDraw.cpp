@@ -19,6 +19,7 @@ void ToDraw::Execute() {
 	pOut->ClearDrawArea();
 
 	pOut->CreateDrawToolBar();
+	//any cleanup have been implmented in distructor of appmanager
 	//TODO:i should here load the graph saved in toplaymode RHG
 	
 	pOut->ClearStatusBar();

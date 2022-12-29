@@ -59,7 +59,6 @@ void PickByColor::PrntScore(int S)
 
 
 
-
 void PickByColor::ReadActionParameters()
 {
 
@@ -154,10 +153,11 @@ void PickByColor::Execute(bool WillRecord)
 				if (clickedFig != NULL)
 				{
 
-					if ((Fig->GetGfxInfo().isFilled && clickedFig->GetGfxInfo().isFilled )&&( Fig->GetGfxInfo().FillClr== clickedFig->GetGfxInfo().DrawClr))
+					if ((Fig->GetGfxInfo().isFilled && clickedFig->GetGfxInfo().isFilled )&&( Fig->GetGfxInfo().FillClr == clickedFig->GetGfxInfo().FillClr))
 					{
 						PrntScore(1);
 						clickedFig->HideShape();
+						pManager->DeleteFigure(Fig);
 						pManager->UpdateInterface();
 						picked_color_no--;
 					}
@@ -165,6 +165,7 @@ void PickByColor::Execute(bool WillRecord)
 					{
 						PrntScore(2);
 						clickedFig->HideShape();
+						pManager->DeleteFigure(Fig);
 						pManager->UpdateInterface();
 					}
 				}
@@ -179,12 +180,17 @@ void PickByColor::Execute(bool WillRecord)
 		}
 		if (picked_color_no == 0)
 			PrntScore(3);
+
 	}
 	else
 		pOut->PrintMessage("You must have at least two or more colors to play pick by color!");
 
 	for (int i = 0; i < pManager->getFigCount();i++)
+	{
 		pManager->drawnFigures(i)->ShowShape();
+		//pManager->AddFigure(Fig);
+	}
+		
 	pManager->UpdateInterface();
 }
 

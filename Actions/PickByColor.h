@@ -17,7 +17,6 @@ public:
 	void ReadActionParameters();
 	void Execute(bool WillRecord);
 	void Undo() ;
-
 	void Redo() ;
 
 };

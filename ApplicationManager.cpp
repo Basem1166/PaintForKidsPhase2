@@ -15,6 +15,8 @@
 #include "Actions\LoadAction.h"
 #include"Actions\ToDraw.h"
 #include "Actions\SwitchToPlayAction.h"
+#include "Actions\ChangeFillAction.h"
+#include "Actions\ChangHighlightAction.h"
 //Constructor
 ApplicationManager::ApplicationManager()
 {
@@ -98,12 +100,16 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			pAct = new SelectOneAction(this);
 			break;
 		case _DELETE:
-			if(GetSelectedFigure()!=NULL)
-			pAct = new DeleteFigureAction(this);
+			if (SelectedFig != NULL)
+				pAct = new DeleteFigureAction(this);
+			else
+				pOut->PrintMessage("Error! Please Select a figure first");
 			break;
 		case MOVE_SHAPE:
-			if (GetSelectedFigure() != NULL)
+			if (SelectedFig != NULL)
 				pAct = new MoveFigureAction(this);
+			else
+				pOut->PrintMessage("Error! Please Select a figure first");
 			break;
 		case SAVE_GRAPH:
 				pAct = new SaveAction(this);
@@ -122,6 +128,18 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 		case TO_PLAY:
 			pAct = new SwitchToPlayAction(this);
+			break;
+		case FILL:
+			if(SelectedFig!=NULL)
+			pAct = new ChangeFillAction(this);
+			else
+				pOut->PrintMessage("Error! Please Select a figure first");
+			break;
+		case ChangeDraw:
+			if(SelectedFig!=NULL)
+			pAct = new ChangeHighlightAction(this);
+			else
+				pOut->PrintMessage("Error! Please Select a figure first");
 			break;
 		case EXIT:
 			///create ExitAction here

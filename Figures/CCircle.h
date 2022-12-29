@@ -6,7 +6,6 @@
 class CCircle : public CFigure
 {
 private:
-	Point Point1;
 	Point Point2;
 	
 public:

@@ -12,6 +12,10 @@ GfxInfo CFigure::GetGfxInfo() const
 {
 	return FigGfxInfo;
 }
+Point CFigure::GetCenter()
+{
+	return Center;
+}
 void CFigure::SetSelected(bool s)
 {	Selected = s; }
 

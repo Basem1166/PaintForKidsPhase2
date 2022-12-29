@@ -6,7 +6,8 @@ CTriangle::CTriangle(Point P1, Point P2, Point P3, GfxInfo FigureGfxInfo) :CFigu
 	Corner1 = P1;
 	Corner2 = P2;
 	Corner3 = P3;
-	
+	Center.x = (P1.x + P2.x + P3.x) / 3;
+	Center.y = (P1.y + P2.y + P3.y) / 3;
 }
 
 
@@ -23,18 +24,16 @@ bool CTriangle::IsInside(int x, int y) {
 	return (A == A1 + A2 + A3);
 }
 void CTriangle::Move(int x, int y) {
-	int xcenter = (Corner1.x + Corner2.x + Corner3.x) / 3; //getting intersection of medians of triangle
-
-	int ycenter = (Corner1.y + Corner2.y + Corner3.y) / 3;
-	int xtranslate = xcenter - x;//calculating the needed translation in both axis
-	int ytranslate = ycenter - y;
+	int xtranslate = Center.x - x;//calculating the needed translation in both axis
+	int ytranslate = Center.y - y;
+	Center.x = x;
+	Center.y = y;
 	Corner1.x -= xtranslate;//getting y,x coordinates of center of rectangle
 	Corner1.y -= ytranslate;
 	Corner2.x -= xtranslate;
 	Corner2.y -= ytranslate;
 	Corner3.x -= xtranslate;
 	Corner3.y -= ytranslate;
-
 }
 void CTriangle :: PrintInfo(Output* pOut){
 	string MESSAGE = "Figure Type: Triangle, ID: " + to_string(ID) + ", Corners Points:(" + to_string(Corner1.x) + "," + to_string(Corner1.y) + ")-(" + to_string(Corner2.x) + "," + to_string(Corner2.y) + ")-(" + to_string(Corner3.x) + "," + to_string(Corner3.y) + ")";

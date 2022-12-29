@@ -6,20 +6,19 @@ CCircle::CCircle() {}
 
 CCircle::CCircle(Point P1, Point P2, GfxInfo FigureGfxInfo) :CFigure(FigureGfxInfo)
 {
-	Point1 = P1;
+	Center = P1;
 	Point2 = P2;
-
 }
 
 
 void CCircle::Draw(Output* pOut) const
 {
 	//Call Output::DrawCirc to draw a circle on the screen	
-	pOut->DrawCir(Point1, Point2, FigGfxInfo, Selected);
+	pOut->DrawCir(Center, Point2, FigGfxInfo, Selected);
 }
 bool CCircle::IsInside(int x, int y){ //Checking if the point is inside the rectangle
-	float radius = sqrt(pow((Point1.x - Point2.x), 2) + pow((Point1.y - Point2.y), 2));//calculating radius
-	if (sqrt(pow((Point1.x - x), 2) + pow((Point1.y - y), 2)) <= radius) {
+	float radius = sqrt(pow((Center.x - Point2.x), 2) + pow((Center.y - Point2.y), 2));//calculating radius
+	if (sqrt(pow((Center.x - x), 2) + pow((Center.y - y), 2)) <= radius) {
 		return 1;
 	}
 	else {
@@ -27,22 +26,22 @@ bool CCircle::IsInside(int x, int y){ //Checking if the point is inside the rect
 	}
 }
 void CCircle::Move(int x, int y) {
-	int xtranslate = Point1.x-x;
-	int ytranslate = Point1.y-y;
-	Point1.x = x;
-	Point1.y = y;
+	int xtranslate = Center.x-x;
+	int ytranslate = Center.y-y;
+	Center.x = x;
+	Center.y = y;
 	Point2.x -= xtranslate;
 	Point2.y -= ytranslate;
 
 }
 void CCircle::PrintInfo(Output* pOut) {
-	string MESSAGE = "Figure Type: Circle, ID: " + to_string(ID) + ", Center Point:(" + to_string(Point1.x) + "," + to_string(Point1.y) + ")-Radius="+to_string(sqrt(pow((Point1.x - Point2.x), 2) + pow((Point1.y - Point2.y), 2)));
+	string MESSAGE = "Figure Type: Circle, ID: " + to_string(ID) + ", Center Point:(" + to_string(Center.x) + "," + to_string(Center.y) + ")-Radius="+to_string(sqrt(pow((Center.x - Point2.x), 2) + pow((Center.y - Point2.y), 2)));
 	pOut->PrintMessage(MESSAGE);
 }
 
 void CCircle::Save(ofstream& outputFile) {
 	outputFile << "CIRC" <<" "<< GetID() << " " 
-		<< Point1.x << " " << Point1.y   << " "
+		<< Center.x << " " << Center.y   << " "
 		<< Point2.x << " " << Point2.y   << " "
 		<< convertcolorToString(FigGfxInfo.DrawClr)<<" "
 		<< ((FigGfxInfo.isFilled) ? convertcolorToString(FigGfxInfo.FillClr) : "NO_FILL") << endl;
@@ -56,8 +55,8 @@ void CCircle::Load(ifstream& inputFile) {
 	SetID(stoi(id));
 
 	//set point 1
-	Point1.x = stoi(Point1x);
-	Point1.y = stoi(Point1y);
+	Center.x = stoi(Point1x);
+	Center.y = stoi(Point1y);
 	//set point 2
 	Point2.x = stoi(Point2x);
 	Point2.y = stoi(Point2y);

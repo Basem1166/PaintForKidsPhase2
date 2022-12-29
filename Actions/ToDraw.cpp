@@ -17,8 +17,8 @@ void ToDraw::Execute(bool WillRecord) {
 
 	pOut->ClearToolBar();
 	pOut->ClearDrawArea();
+	SaveAction::Excute(false);
 
-	UI.InterfaceMode = MODE_DRAW;
 
 	pOut->CreateDrawToolBar();
 	pOut->CreateDrawToolBar();

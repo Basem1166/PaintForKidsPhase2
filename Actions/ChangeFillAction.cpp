@@ -60,7 +60,7 @@ bool ChangeFillAction::GetFillColour(ActionType ColorAct) {
 }
 
 //Execute the action
-void ChangeFillAction::Execute(bool WillRecord) {
+void ChangeFillAction::Execute(bool WillRecord, string filename, bool where ) {
 	if(!WillRecord)
 	//This action needs to read some parameters first
 	ReadActionParameters();

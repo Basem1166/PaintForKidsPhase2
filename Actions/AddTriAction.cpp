@@ -41,7 +41,7 @@ void AddTriAction::ReadActionParameters()
 }
 
 //Execute the action
-void AddTriAction::Execute(bool WillRecord)
+void AddTriAction::Execute(bool WillRecord, string filename, bool where )
 {
 	if(!WillRecord)
 	//This action needs to read some parameters first

@@ -35,7 +35,7 @@ void AddCircAction::ReadActionParameters()
 }
 
 //Execute the action
-void AddCircAction::Execute(bool WillRecord)
+void AddCircAction::Execute(bool WillRecord, string filename, bool where )
 {
 	if(!WillRecord)
 	//This action needs to read some parameters first

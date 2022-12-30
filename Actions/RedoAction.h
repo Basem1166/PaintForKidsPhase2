@@ -8,7 +8,7 @@ class RedoAction :public Action
 public:
 	RedoAction(ApplicationManager* pApp);
 	virtual void ReadActionParameters();
-	virtual void Execute(bool WillRecord);
+	virtual void Execute(bool WillRecord, string filename, bool where = true);
 
 	void Undo();
 

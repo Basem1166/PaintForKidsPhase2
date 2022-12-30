@@ -6,7 +6,7 @@ StopRecordingAction::StopRecordingAction(ApplicationManager* pApp) :Action(pApp)
 {
 }
 
-void StopRecordingAction::Execute(bool isBeingPlayed)
+void StopRecordingAction::Execute(bool isBeingPlayed, string filename, bool where )
 {
 	Output* pOut = pManager->GetOutput();
 	if (pManager->getWillRecord())

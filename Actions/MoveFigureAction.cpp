@@ -27,7 +27,7 @@ void MoveFigureAction::ReadActionParameters()
 }
 
 //Execute the action
-void MoveFigureAction::Execute(bool WillRecord)
+void MoveFigureAction::Execute(bool WillRecord, string filename, bool where )
 {
 	if(!WillRecord)
 	//This action needs to read some parameters first

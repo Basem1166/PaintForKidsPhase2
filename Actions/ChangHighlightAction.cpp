@@ -61,7 +61,7 @@ bool ChangeHighlightAction::GetHighlightColour(ActionType ColorAct)//changing th
 }
 
 //Execute the action
-void ChangeHighlightAction::Execute(bool WillRecord) {
+void ChangeHighlightAction::Execute(bool WillRecord, string filename, bool where ) {
 	if(!WillRecord)
 	//This action needs to read some parameters first
 	ReadActionParameters();

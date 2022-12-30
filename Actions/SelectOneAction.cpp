@@ -19,7 +19,7 @@ void SelectOneAction::ReadActionParameters() {
 	pIn->GetPointClicked(P.x, P.y);
 	pOut->ClearStatusBar();
 }
-void SelectOneAction::Execute(bool WillRecord) {
+void SelectOneAction::Execute(bool WillRecord, string filename, bool where ) {
 	if(!WillRecord)
 	ReadActionParameters();
 	Output* pOut = pManager->GetOutput();

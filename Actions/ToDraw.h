@@ -3,7 +3,7 @@
 #include "..\ApplicationManager.h"
 #include "..\GUI\input.h"
 #include "..\GUI\Output.h"
-
+#include "LoadAction.h"
 class  ToDraw :public Action
 {
 
@@ -14,7 +14,7 @@ public:
 	~ToDraw(void);
 
 	void ReadActionParameters();
-	void Execute(bool WillRecord);
+	void Execute(bool WillRecord, string filename, bool where = true);
 
 	void Undo();
 

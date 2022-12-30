@@ -1,3 +1,4 @@
+
 #include "ApplicationManager.h"
 #include "Actions\AddRectAction.h"
 #include "Actions\AddSqrAction.h"
@@ -192,11 +193,11 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 					RedoList[i] = NULL;
 				}
 			}
-			pAct->Execute(0);//Execute
+			pAct->Execute(0,"dummy",1);//Execute
 		}
 		else
 		{
-			pAct->Execute(0);//Execute
+			pAct->Execute(0, "dummy", 1);//Execute
 			//delete pAct;
 			pAct = NULL;
 		}
@@ -327,7 +328,7 @@ void ApplicationManager::PlayRecording()
 	for (int i = 0; i < RecordingListCount; i++)
 	{
 
-		RecordingList[i]->Execute(1);
+		RecordingList[i]->Execute(1, "dummy", 1);
 		Sleep(1000);
 		UpdateInterface();
 

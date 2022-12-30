@@ -1,3 +1,4 @@
+#pragma once
 #include "..\Figures\CFigure.h"
 #include "..\Figures\CRectangle.h"
 #include "..\Figures\CSquare.h"
@@ -15,12 +16,12 @@ class LoadAction :public Action
 	string filename;
 	GfxInfo currentGfxInfo; 
 public:
-
+	
 	LoadAction(ApplicationManager* pApp); //thats allow application manager to execute loadaction
 
 	void ReadActionParameters(); 
 
-	void Execute(bool WillRecord);
+	void Execute(bool WillRecord, string filename, bool where = true);
 
 	color convertStringToColor(string color);
 

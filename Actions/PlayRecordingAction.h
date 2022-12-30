@@ -11,7 +11,7 @@ public:
 
 	PlayRecordingAction(ApplicationManager* pApp);
 
-	virtual void Execute(bool isBeingPlayed);
+	virtual void Execute(bool isBeingPlayed, string filename, bool where = true);
 	virtual void ReadActionParameters();
 	virtual void Undo();
 

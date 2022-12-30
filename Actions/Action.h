@@ -2,7 +2,7 @@
 #define ACTION_H
 
 #include "..\DefS.h"
-#include "../Figures/CFigure.h"
+#include "..\Figures\CFigure.h"
 
 class ApplicationManager; //forward class declaration
 
@@ -22,7 +22,7 @@ public:
 	virtual void ReadActionParameters() =0;
 	
 	//Execute action (code depends on action type)
-	virtual void Execute(bool WillRecord) =0;
+	virtual void Execute(bool WillRecord, string filename, bool where = true) =0;
 
 	virtual void Undo() = 0;
 

@@ -157,8 +157,10 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case PLAY_RECORDING:
 			if (RecordingListCount != 0)
 				pAct = new PlayRecordingAction(this);
+			break;
 		case By_Type:
 			pAct = new PickByShapeAction(this);
+			break;
 		case EXIT:
 			///create ExitAction here
 			

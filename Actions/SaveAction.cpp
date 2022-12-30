@@ -40,7 +40,7 @@ void SaveAction::ReadActionParameters() {
 
 	//Read name of file to save graph info into from user
 	pOut->PrintMessage("Enter Name of File: ");
-	this->filename = pIn->GetSrting(pOut);
+	this->filename5 = pIn->GetSrting(pOut);
 
 	//get drawing, filling colors 
 	currentGfxInfo.DrawClr = pOut->getCrntDrawColor();
@@ -53,7 +53,7 @@ void SaveAction::Execute(bool WillRecord, string filename, bool where ) {
 
 	ReadActionParameters();
 	ofstream outputFile;
-	outputFile.open(filename, ios::out); //if we 've used ofstream(write into files) we dont need to open file  
+	outputFile.open(filename5, ios::out); //if we 've used ofstream(write into files) we dont need to open file  
 
 	//write current color & current fill color into txt file
 

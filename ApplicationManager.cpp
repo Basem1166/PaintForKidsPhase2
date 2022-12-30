@@ -278,6 +278,24 @@ void ApplicationManager::UpdateInterface() const
 	
 		
 }
+CFigure* ApplicationManager::GetRandFig()
+{
+	int RandIndex = rand() % FigCount + 0;
+	return FigList[RandIndex];
+}
+int ApplicationManager::GetNumberofSelectedFigure(CFigure* PlayFig)
+{
+	int counter = 0;
+	for (int i = 0; i < FigCount; i++)
+	{
+		if (PlayFig->GetFigureType()==FigList[i]->GetFigureType())
+		{
+			counter++;
+		}
+
+	}
+	return counter;
+}
 void ApplicationManager::Reset() {
 	for (int i = 0; i < FigCount; i++)
 	{

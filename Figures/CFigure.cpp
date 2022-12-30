@@ -104,3 +104,9 @@ color CFigure::convertStringToColor(string color) {
 		return  BLUE;
 	}
 }
+bool CFigure::IsHidden() const {
+	return Hidden;
+}
+void CFigure::SetHidden(bool hidden) {
+	Hidden = hidden;
+}

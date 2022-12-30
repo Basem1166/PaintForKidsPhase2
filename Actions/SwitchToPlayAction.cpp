@@ -18,11 +18,13 @@ void SwitchToPlayAction::Execute(bool WillRecord, string filename, bool where )
 
 	Output* pOut = pManager->GetOutput();
 	pOut->CreatePlayToolBar();
-	ofstream outputFile;
+	pManager->UpdateInterface();
+	/*ofstream outputFile;
 	string details = "Details";
 	outputFile.open(details, ios::out);
 	pManager->SaveFigcount(outputFile);
-	pManager->SaveAll(outputFile);
+	pManager->SaveAll(outputFile);*/
+
 
 }
 

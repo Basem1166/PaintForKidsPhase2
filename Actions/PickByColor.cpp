@@ -17,13 +17,6 @@ PickByColor::PickByColor(ApplicationManager* pApp) :Action(pApp)
 		
 }
 
-
-
-
-
-
-
-
 void PickByColor::ReadActionParameters()
 {
 
@@ -59,9 +52,12 @@ void PickByColor::ReadActionParameters()
 
 void PickByColor::Execute(bool WillRecord, string filename, bool where )
 {
-	
-	LoadAction* L = new LoadAction(pManager);
-	L->Execute(false, "Details", 0);
+	pManager->Reset();
+	//for (int i = 0; i < pManager->getFigCount();i++)
+	//	pManager->drawnFigures(i)->SetHidden(false);
+	//pManager->UpdateInterface();
+	//LoadAction* L = new LoadAction(pManager);
+	//L->Execute(false, "Details", 0);
 	pManager->UpdateInterface();
 
 	Output* pOut = pManager->GetOutput();
@@ -129,7 +125,8 @@ void PickByColor::Execute(bool WillRecord, string filename, bool where )
 					if ( Fig->GetGfxInfo().FillClr == ClickedFigure->GetGfxInfo().FillClr)
 					{
 						PrntScore(1);
-						pManager->DeleteFigure(ClickedFigure);
+						ClickedFigure->SetHidden(0);
+						//pManager->DeleteFigure(ClickedFigure);
 						pManager->UpdateInterface();
 						NumOfColorsToPicked--;
 					}
@@ -154,8 +151,8 @@ void PickByColor::Execute(bool WillRecord, string filename, bool where )
 	}
 	else
 		pOut->PrintMessage("Sorry you should have 2 or more filled colors to play pick by color");
-
-
+	
+	
 	
 	//delete L;
 }

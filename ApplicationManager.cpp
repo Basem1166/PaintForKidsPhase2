@@ -246,10 +246,7 @@ CFigure *ApplicationManager::GetFigure(int x, int y) const
 	}
 	return NULL;
 }
-CFigure* ApplicationManager::drawnFigures(int i) const
-{
-	return FigList[i];
-}
+
 int ApplicationManager:: getFigCount() {
 	return FigCount;
 }
@@ -269,8 +266,23 @@ void ApplicationManager::ToggleMute()
 void ApplicationManager::UpdateInterface() const
 {	
 	pOut->ClearDrawArea();
-	for(int i=0; i<FigCount; i++)
-		FigList[i]->Draw(pOut);		//Call Draw function (virtual member fn)
+	for (int i = 0; i < FigCount; i++) {
+
+		if ((FigList[i]->IsHidden()) )
+		{
+			FigList[i]->Draw(pOut);		//Call Draw function (virtual member fn)
+		}
+		
+	}
+	
+	
+		
+}
+void ApplicationManager::Reset() {
+	for (int i = 0; i < FigCount; i++)
+	{
+		FigList[i]->SetHidden(1);
+	}
 }
 ////////////////////////////////////////////////////////////////////////////////////
 //Return a pointer to the input
@@ -329,6 +341,10 @@ void ApplicationManager::PlayRecording()
 
 	}
 	pOut->PrintMessage("Recording Played");
+}
+CFigure* ApplicationManager::drawnFigures(int i) const
+{
+	return FigList[i];
 }
 void ApplicationManager::AddRecordingFigure(Action* rAction)
 {

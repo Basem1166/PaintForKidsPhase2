@@ -14,7 +14,7 @@ protected:
 	bool Selected;	//true if the figure is selected.
 	GfxInfo FigGfxInfo;	//Figure graphis info
 	Point Center; //Center of the figure
-	bool IsHidden;
+	bool Hidden;
 	/// Add more parameters if needed.
 
 public:
@@ -23,7 +23,8 @@ public:
 
 	void SetSelected(bool s);	//select/unselect the figure
 	bool IsSelected() const;	//check whether fig is selected
-	
+	bool IsHidden() const;
+	void SetHidden(bool) ;
 	int GetID();
 	void SetID(int);
 	Point GetCenter();

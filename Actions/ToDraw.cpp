@@ -14,12 +14,14 @@ void ToDraw::Execute(bool WillRecord, string filename, bool where ) {
 	Input* pIn = pManager->GetInput();
 
 	pOut->PrintMessage("Action: Switch to Draw Mode, creating simualtion tool bar");
-	LoadAction* L = new LoadAction(pManager);
-	L->Execute(false, "Details", 0);
+
+	//LoadAction* L = new LoadAction(pManager);
+	//L->Execute(false, "Details", 0);
+
 	pOut->ClearToolBar();
 	pOut->ClearDrawArea();
-	
-
+	pManager->Reset();
+	pManager->UpdateInterface();
 
 	pOut->CreateDrawToolBar();
 	pOut->CreateDrawToolBar();

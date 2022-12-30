@@ -14,12 +14,11 @@ class PickByColor :
 	int CorrestPicks;
 	int ArrOfColors[6];
 	
-	
 public:
 
 	PickByColor(ApplicationManager*);
 
-	
+
 	void PrntScore(int);
 
 	void ReadActionParameters();

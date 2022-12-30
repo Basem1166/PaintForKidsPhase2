@@ -67,6 +67,8 @@ public:
 	void AddActionToUndoList(Action*);
 	bool getWillRecord();// setter and getter fir the will record boolean.
 	void setWillRecord(bool willrecord);
+
+	void Reset();
 };
 
 #endif

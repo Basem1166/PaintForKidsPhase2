@@ -388,6 +388,14 @@ void ApplicationManager::AddRecordingFigure(Action* rAction)
 	if (RecordingListCount < 20) {
 		RecordingList[RecordingListCount++] = rAction;
 	}
+	else
+	{
+		pOut->PrintMessage("Recording Capacity Reached");
+		Sleep(1000);
+		Action* pAct = new StopRecordingAction(this);
+		pAct->Execute(0,"dummy",1);
+		delete pAct;
+	}
 }
 bool ApplicationManager::getWillRecord()
 {

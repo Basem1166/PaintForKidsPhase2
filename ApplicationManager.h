@@ -70,6 +70,8 @@ public:
 	//Play functions
 	CFigure* GetRandFig();
 	int GetNumberofSelectedFigure(CFigure* PlayFig);
+	int ApplicationManager::GetNumberofSelectedFigure(CFigure* PlayFig, GfxInfo GfxInfo);
+	
 	void Reset();
 };
 

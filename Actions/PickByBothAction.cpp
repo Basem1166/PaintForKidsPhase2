@@ -1,23 +1,23 @@
-#include "PickByShapeAction.h"
+#include "PickByBothAction.h"
 #include "..\ApplicationManager.h"
 #include "..\GUI\input.h"
 #include "..\GUI\Output.h"
 #include"LoadAction.h"
 #include"SelectOneAction.h"
 
-PickByShapeAction::PickByShapeAction(ApplicationManager* pApp) :Action(pApp)
+PickByBothAction::PickByBothAction(ApplicationManager* pApp) :Action(pApp)
 {
 	NumberOfFiguresOnScreen = pManager->getFigCount();
 	CorrectCounter = 0;
 	WrongCounter = 0;
 }
 
-PickByShapeAction::~PickByShapeAction()
+PickByBothAction::~PickByBothAction()
 {
 
 }
 
-void PickByShapeAction::UpdateScore(bool Correct)
+void PickByBothAction::UpdateScore(bool Correct)
 {
 	Output* pOut = pManager->GetOutput();
 
@@ -35,34 +35,46 @@ void PickByShapeAction::UpdateScore(bool Correct)
 
 }
 
-void PickByShapeAction::ReadActionParameters()
+void PickByBothAction::ReadActionParameters()
 {
 	Input* pIn = pManager->GetInput();
 	pIn->GetPointClicked(P.x, P.y);
 
 }
 
-void PickByShapeAction::Execute(bool WillRecord, string filename, bool where)
+void PickByBothAction::Execute(bool WillRecord, string filename, bool where)
 {
 	pManager->Reset();
 	pManager->UpdateInterface();
 	Output* pOut = pManager->GetOutput();
 	if (NumberOfFiguresOnScreen < 2) {
-		pOut->PrintMessage("You must have at least two or more colors to play pick by shape!");
+		pOut->PrintMessage("You must have at least two or more colors to play pick by both Shape and Color!");
 		return;
 	}
-	
+
 	CFigure* PlayFig = pManager->GetRandFig();// Random Figure
 	string PlayFigureName = PlayFig->GetFigureType();
+	GfxInfo FigureGfxInfo = PlayFig->GetGfxInfo();
+	if (FigureGfxInfo.isFilled)
+	{
+		PlayFigureColor = FigureGfxInfo.FillClr;
+		StringColor = PlayFig->convertcolorToString(PlayFigureColor);
+
+	}
+	else
+	{
+		StringColor = "NON-FILLED";
+	}
+	
 	//Check the number of this figure on the screen
-	int NumberofPlayFigures = pManager->GetNumberofSelectedFigure(PlayFig);
-	pOut->PrintMessage("Please Select All the " + PlayFigureName + "s");
+	int NumberofPlayFigures = pManager->GetNumberofSelectedFigure(PlayFig,PlayFig->GetGfxInfo());
+	pOut->PrintMessage("Please Select All the " + StringColor +" " + PlayFigureName + "s");
 
 
 
 	while (NumberofPlayFigures > 0)
 	{
-		
+
 		ReadActionParameters();
 		CFigure* FigNew = pManager->GetFigure(P.x, P.y); //Checks if the points clicked are inside a figure
 
@@ -72,9 +84,9 @@ void PickByShapeAction::Execute(bool WillRecord, string filename, bool where)
 			pOut->PrintMessage("You Clicked An Empty Area");
 			continue;
 		}
-		
 
-		if (PlayFigureName==FigNew->GetFigureType())
+
+		if (PlayFigureName == FigNew->GetFigureType()&& PlayFig->GetGfxInfo().FillClr == FigNew->GetGfxInfo().FillClr)
 		{
 
 			UpdateScore(1);
@@ -83,7 +95,8 @@ void PickByShapeAction::Execute(bool WillRecord, string filename, bool where)
 			NumberofPlayFigures--;
 			continue;
 		}
-		pOut->PrintMessage("Wrong! Try Again!");
+		pOut->PrintMessage("Wrong!Try Again!");
+
 		UpdateScore(0);
 	}
 
@@ -92,10 +105,10 @@ void PickByShapeAction::Execute(bool WillRecord, string filename, bool where)
 
 }
 
-void PickByShapeAction::Undo()
+void PickByBothAction::Undo()
 {
 }
 
-void PickByShapeAction::Redo()
+void PickByBothAction::Redo()
 {
 }

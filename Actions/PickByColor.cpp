@@ -76,35 +76,35 @@ void PickByColor::Execute(bool WillRecord, string filename, bool where )
 			if (Fig->GetGfxInfo().FillClr == BLACK)
 			{
 				NumOfColorsToPicked = ArrOfColors[0];
-				pOut->PrintMessage("Pick up figures colored black!");
+				pOut->PrintMessage("pick all black figures !");
 			}
 			else if (Fig->GetGfxInfo().FillClr == YELLOW)
 			{
 				NumOfColorsToPicked = ArrOfColors[1];
-				pOut->PrintMessage("Pick up figures colored yellow!");
+				pOut->PrintMessage("pick all yellow figures !");
 			}
 			else if (Fig->GetGfxInfo().FillClr == ORANGE)
 			{
 				NumOfColorsToPicked = ArrOfColors[2];
-				pOut->PrintMessage("Pick up figures colored orange!");
+				pOut->PrintMessage("pick all orange figures !");
 
 			}
 			else if (Fig->GetGfxInfo().FillClr == RED)
 			{
 				NumOfColorsToPicked = ArrOfColors[3];
-				pOut->PrintMessage("Pick up figures colored red!");
+				pOut->PrintMessage("pick all red figures!");
 
 			}
 			else if (Fig->GetGfxInfo().FillClr == GREEN)
 			{
 				NumOfColorsToPicked = ArrOfColors[4];
-				pOut->PrintMessage("Pick up figures colored green!");
+				pOut->PrintMessage("pick all green figures!");
 
 			}
 			else if (Fig->GetGfxInfo().FillClr == BLUE)
 			{
 				NumOfColorsToPicked = ArrOfColors[5];
-				pOut->PrintMessage("Pick up figures colored blue!");
+				pOut->PrintMessage("pick all blue figures!");
 
 			}
 		}

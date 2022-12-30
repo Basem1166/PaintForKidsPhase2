@@ -189,6 +189,8 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case STATUS:	//a click on the status bar ==> no action
 		case DRAWING_AREA:  //a click in the drawing area ==> no action
 			return;
+		default:
+			return;
 	}
 
 	//Execute the created action

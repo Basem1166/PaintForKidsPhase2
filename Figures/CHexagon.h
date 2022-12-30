@@ -13,6 +13,7 @@ public:
 	void Save(ofstream& outputFile);
 	virtual void Move(int, int);
 	void Load(ifstream& inputFile);
+	virtual string GetFigureType();
 };
 
 #endif

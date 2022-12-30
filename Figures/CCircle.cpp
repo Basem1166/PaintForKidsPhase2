@@ -34,6 +34,10 @@ void CCircle::Move(int x, int y) {
 	Point2.y -= ytranslate;
 
 }
+string CCircle::GetFigureType()
+{
+	return "Circle";
+}
 void CCircle::PrintInfo(Output* pOut) {
 	string MESSAGE = "Figure Type: Circle, ID: " + to_string(ID) + ", Center Point:(" + to_string(Center.x) + "," + to_string(Center.y) + ")-Radius="+to_string(sqrt(pow((Center.x - Point2.x), 2) + pow((Center.y - Point2.y), 2)));
 	pOut->PrintMessage(MESSAGE);

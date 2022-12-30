@@ -75,3 +75,8 @@ void CHexagon::Load(ifstream& inputFile) {
 		FigGfxInfo.FillClr = convertStringToColor(currentfillclr);
 	}
 }
+
+string CHexagon::GetFigureType()
+{
+	return "Hexagon";
+}

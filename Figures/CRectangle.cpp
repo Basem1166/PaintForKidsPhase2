@@ -77,3 +77,8 @@ void CRectangle::Load(ifstream& inputFile) {
 		FigGfxInfo.FillClr = convertStringToColor(currentfillclr);
 	}
 }
+
+string CRectangle::GetFigureType()
+{
+	return "Rectangle";
+}

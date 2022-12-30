@@ -4,7 +4,7 @@
 #include"SaveAction.h"
 #include "..\GUI\input.h"
 #include "..\GUI\Output.h"
-
+#include"LoadAction.h"
 
 PickByColor::PickByColor(ApplicationManager* pApp) :Action(pApp)
 {
@@ -191,6 +191,9 @@ void PickByColor::Execute(bool WillRecord, string filename, bool where )
 	}
 	
 	pManager->UpdateInterface();
+	LoadAction* L = new LoadAction(pManager);
+	L->Execute(false, "Details", 0);
+	//delete L;
 }
 
 PickByColor::~PickByColor()

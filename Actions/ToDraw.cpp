@@ -27,10 +27,12 @@ void ToDraw::Execute(bool WillRecord, string filename, bool where ) {
 	//TODO:i should here load the graph saved in toplaymode RHG
 	
 	pOut->ClearStatusBar();
-
+	//delete L;
 }
 
-ToDraw::~ToDraw(void) {}
+ToDraw::~ToDraw(void) {
+	
+}
 
 void ToDraw::Undo() {}
 

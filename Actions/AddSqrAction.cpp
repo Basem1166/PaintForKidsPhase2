@@ -30,7 +30,7 @@ void AddSqrAction::ReadActionParameters()
 }
 
 //Execute the action
-void AddSqrAction::Execute(bool WillRecord)
+void AddSqrAction::Execute(bool WillRecord, string filename, bool where )
 {
 	if(!WillRecord)
 	//This action needs to read some parameters first

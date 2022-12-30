@@ -15,22 +15,32 @@ void LoadAction::ReadActionParameters() {
 	pOut->ClearStatusBar();
 }
 
-void LoadAction::Execute(bool WillRecord) {
-	ReadActionParameters();
+void LoadAction::Execute(bool WillRecord, string filename2, bool where ) {
+	
 	//resetting everything and clear drawing area to be ready to get new graph
 	pManager->clearAll();
 	ifstream inputFile;
-	inputFile.open(filename, ios::in);  
+	if (where)
+	{
+		ReadActionParameters();
+		inputFile.open(filename, ios::in);
+		//input current color & current fill color from txt file
+		string Current_Draw_Color;
+		string Current_Fill_Color;
 
-	//input current color & current fill color from txt file
-	string Current_Draw_Color;
-	string Current_Fill_Color;
-	
-	inputFile >> Current_Draw_Color >> Current_Fill_Color; //inputing data of current draw and fill color first line in txt file
+		inputFile >> Current_Draw_Color >> Current_Fill_Color; //inputing data of current draw and fill color first line in txt file
 
-	//setting program two current colors
-	currentGfxInfo.DrawClr = convertStringToColor(Current_Draw_Color);
-	currentGfxInfo.FillClr = convertStringToColor(Current_Fill_Color);
+		//setting program two current colors
+		currentGfxInfo.DrawClr = convertStringToColor(Current_Draw_Color);
+		currentGfxInfo.FillClr = convertStringToColor(Current_Fill_Color);
+
+		
+	}
+	else
+	{
+		inputFile.open(filename2, ios::in);
+	}
+	 
 
 	//reading ficount from txt file
 	int figcount;

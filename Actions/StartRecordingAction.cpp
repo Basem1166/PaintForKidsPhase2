@@ -9,7 +9,7 @@ StartRecordingAction::StartRecordingAction(ApplicationManager* pApp) :Action(pAp
 {
 }
 
-void StartRecordingAction::Execute(bool isBeingPlayed)
+void StartRecordingAction::Execute(bool isBeingPlayed, string filename, bool where )
 {
 	Output* pOut = pManager->GetOutput();
 	if (pManager->IsEmpty())

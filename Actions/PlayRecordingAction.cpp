@@ -12,7 +12,7 @@ PlayRecordingAction::PlayRecordingAction(ApplicationManager* pApp) :Action(pApp)
 {
 }
 
-void PlayRecordingAction::Execute(bool isBeingPlayed)
+void PlayRecordingAction::Execute(bool isBeingPlayed, string filename, bool where )
 {
 
 	Output* pOut = pManager->GetOutput();

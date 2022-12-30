@@ -31,7 +31,7 @@ void AddHexaAction::ReadActionParameters()
 
 }
 //Execute
-void AddHexaAction::Execute(bool WillRecord)
+void AddHexaAction::Execute(bool WillRecord, string filename, bool where )
 {
 	if(!WillRecord)
 	//This action needs to read some parameters first

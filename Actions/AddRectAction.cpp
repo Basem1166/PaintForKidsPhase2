@@ -35,7 +35,7 @@ void AddRectAction::ReadActionParameters()
 }
 
 //Execute the action
-void AddRectAction::Execute(bool WillRecord)
+void AddRectAction::Execute(bool WillRecord, string filename, bool where )
 {
 	if(!WillRecord)
 	//This action needs to read some parameters first

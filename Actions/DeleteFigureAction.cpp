@@ -13,7 +13,7 @@ void DeleteFigureAction::ReadActionParameters()
 }
 
 //Execute the action
-void DeleteFigureAction::Execute(bool WillRecord)
+void DeleteFigureAction::Execute(bool WillRecord, string filename, bool where )
 {
 	//Get a Pointer to the Input / Output Interfaces
 	Output* pOut = pManager->GetOutput();

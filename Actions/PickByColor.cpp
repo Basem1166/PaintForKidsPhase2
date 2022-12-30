@@ -90,7 +90,7 @@ void PickByColor::ReadActionParameters()
 }
 
 
-void PickByColor::Execute(bool WillRecord)
+void PickByColor::Execute(bool WillRecord, string filename, bool where )
 {
 	Output* pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();
@@ -189,7 +189,7 @@ void PickByColor::Execute(bool WillRecord)
 		pManager->drawnFigures(i)->ShowShape();
 		//pManager->AddFigure(Fig);
 	}
-		
+	
 	pManager->UpdateInterface();
 }
 

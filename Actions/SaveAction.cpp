@@ -49,7 +49,7 @@ void SaveAction::ReadActionParameters() {
 	pOut->ClearStatusBar();
 }
 
-void SaveAction::Execute(bool WillRecord) {
+void SaveAction::Execute(bool WillRecord, string filename, bool where ) {
 
 	ReadActionParameters();
 	ofstream outputFile;

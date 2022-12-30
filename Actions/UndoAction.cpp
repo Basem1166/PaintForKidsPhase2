@@ -9,7 +9,7 @@ UndoAction::UndoAction(ApplicationManager* pApp) :Action(pApp)
 {}
 void UndoAction::ReadActionParameters()
 {}
-void UndoAction::Execute(bool WillRecord)
+void UndoAction::Execute(bool WillRecord, string filename, bool where )
 {
 	pManager->UndoPrevAction();
 	if (pManager->getWillRecord())

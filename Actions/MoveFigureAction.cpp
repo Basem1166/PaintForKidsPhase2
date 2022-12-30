@@ -15,14 +15,6 @@ void MoveFigureAction::ReadActionParameters()
 	Output* pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();
 	FigPtr = pManager->GetSelectedFigure();
-
-	pOut->PrintMessage("Moving Selected Figure: Click on new center");
-
-	//Read new center and store in point P1
-	pIn->GetPointClicked(PNew.x, PNew.y);
-
-
-
 	pOut->ClearStatusBar();
 
 }
@@ -41,6 +33,10 @@ void MoveFigureAction::Execute(bool WillRecord, string filename, bool where )
 		pOut->PrintMessage("Error! Please Select a figure first");
 		return;
 	}
+	pOut->PrintMessage("Moving Selected Figure: Click on new center");
+
+	//Read new center and store in point P1
+	pIn->GetPointClicked(PNew.x, PNew.y);
 	POld = FigPtr->GetCenter();
 	FigPtr->Move(PNew.x, PNew.y); // Moves Figure to new Center;
 	pOut->PrintMessage("Figure Moved");

@@ -59,6 +59,11 @@ void PickByColor::ReadActionParameters()
 
 void PickByColor::Execute(bool WillRecord, string filename, bool where )
 {
+	
+	LoadAction* L = new LoadAction(pManager);
+	L->Execute(false, "Details", 0);
+	pManager->UpdateInterface();
+
 	Output* pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();
 	if(!WillRecord)
@@ -151,9 +156,7 @@ void PickByColor::Execute(bool WillRecord, string filename, bool where )
 		pOut->PrintMessage("Sorry you should have 2 or more filled colors to play pick by color");
 
 
-	pManager->UpdateInterface();
-	LoadAction* L = new LoadAction(pManager);
-	L->Execute(false, "Details", 0);
+	
 	//delete L;
 }
 

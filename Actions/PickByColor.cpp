@@ -153,11 +153,11 @@ void PickByColor::Execute(bool WillRecord, string filename, bool where )
 				if (clickedFig != NULL)
 				{
 
-					if ((Fig->GetGfxInfo().isFilled && clickedFig->GetGfxInfo().isFilled )&&( Fig->GetGfxInfo().FillClr == clickedFig->GetGfxInfo().FillClr))
+					if ( Fig->GetGfxInfo().FillClr == clickedFig->GetGfxInfo().FillClr)
 					{
 						PrntScore(1);
 						clickedFig->HideShape();
-						pManager->DeleteFigure(Fig);
+						pManager->DeleteFigure(clickedFig);
 						pManager->UpdateInterface();
 						picked_color_no--;
 					}

@@ -24,6 +24,7 @@
 #include"Actions\PlayRecordingAction.h"
 #include"Actions\PickByShapeAction.h"
 #include"Actions\ToggleMuteAction.h"
+#include"Actions\PickByBothAction.h"
 #include<Windows.h>
 
 //Constructor
@@ -177,6 +178,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case Mute:
 			pAct = new ToggleMuteAction(this);
 			break;
+		case Type_color:
+			pAct = new PickByBothAction(this);
+			break;
 		case EXIT:
 			///create ExitAction here
 			
@@ -289,6 +293,19 @@ int ApplicationManager::GetNumberofSelectedFigure(CFigure* PlayFig)
 	for (int i = 0; i < FigCount; i++)
 	{
 		if (PlayFig->GetFigureType()==FigList[i]->GetFigureType())
+		{
+			counter++;
+		}
+
+	}
+	return counter;
+}
+int ApplicationManager::GetNumberofSelectedFigure(CFigure* PlayFig, GfxInfo GfxInfo)
+{
+	int counter = 0;
+	for (int i = 0; i < FigCount; i++)
+	{
+		if (PlayFig->GetFigureType() == FigList[i]->GetFigureType() && GfxInfo.FillClr == FigList[i]->GetGfxInfo().FillClr)
 		{
 			counter++;
 		}

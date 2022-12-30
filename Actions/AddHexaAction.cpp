@@ -51,6 +51,7 @@ void AddHexaAction::Execute(bool WillRecord, string filename, bool where )
 	{
 		pManager->AddRecordingFigure(this);
 	}
+	pManager->AddActionToUndoList(this);
 }
 void AddHexaAction::Undo()
 {

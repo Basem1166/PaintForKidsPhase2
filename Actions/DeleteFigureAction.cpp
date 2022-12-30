@@ -18,17 +18,22 @@ void DeleteFigureAction::Execute(bool WillRecord, string filename, bool where )
 	//Get a Pointer to the Input / Output Interfaces
 	Output* pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();
-	if(!WillRecord)
-	ReadActionParameters();
-
-	//Delete  selected  figure
-
-	pManager->DeleteFigure(FigPtr);
+	if (!WillRecord)
+	{
+		ReadActionParameters();
+	}
+	if (FigPtr == NULL)
+	{
+		pOut->PrintMessage("Error! Please Select a figure first");
+		return;
+	}
+	pManager->DeleteFigure(FigPtr); //Delete  selected  figure
 	pOut->PrintMessage("Figure Deleted");
 	if (pManager->getWillRecord())
 	{
 		pManager->AddRecordingFigure(this);
 	}
+	pManager->AddActionToUndoList(this);
 }
 void DeleteFigureAction::Undo()
 {

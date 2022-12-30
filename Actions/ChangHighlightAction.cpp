@@ -12,8 +12,7 @@ void ChangeHighlightAction::ReadActionParameters()
 {
 	Output* pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();
-	pOut->PrintMessage("Please Choose Highlight Colour");
-	ColorAct = pIn->GetUserAction();
+	FigPtr = pManager->GetSelectedFigure();
 	pOut->ClearStatusBar();
 
 }
@@ -61,17 +60,29 @@ bool ChangeHighlightAction::GetHighlightColour(ActionType ColorAct)//changing th
 }
 
 //Execute the action
-void ChangeHighlightAction::Execute(bool WillRecord, string filename, bool where ) {
-	if(!WillRecord)
-	//This action needs to read some parameters first
-	ReadActionParameters();
+void ChangeHighlightAction::Execute(bool WillRecord, string filename, bool where )
+{
 	Output* pOut = pManager->GetOutput();
+	Input* pIn = pManager->GetInput();
+	if (!WillRecord)
+	{
+		ReadActionParameters();
+	}
+	if (FigPtr == NULL)
+	{
+		pOut->PrintMessage("Error! Please Select a figure first");
+		return;
+	}
+	pOut->PrintMessage("Please Choose Highlight Colour");
+	ColorAct = pIn->GetUserAction();
+	//This action needs to read some parameters first
 	FigPtr = pManager->GetSelectedFigure();
 	OldGfxInfo = FigPtr->GetGfxInfo();
 	NewGfxInfo = OldGfxInfo;
 
 	if (GetHighlightColour(ColorAct)) {
 		FigPtr->ChngDrawClr(UI.DrawColor);//changing draw color for selected figure
+		pManager->AddActionToUndoList(this);
 	}
 	else
 	{

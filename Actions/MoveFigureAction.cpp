@@ -14,6 +14,7 @@ void MoveFigureAction::ReadActionParameters()
 	//Get a Pointer to the Input / Output Interfaces
 	Output* pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();
+	FigPtr = pManager->GetSelectedFigure();
 
 	pOut->PrintMessage("Moving Selected Figure: Click on new center");
 
@@ -29,12 +30,17 @@ void MoveFigureAction::ReadActionParameters()
 //Execute the action
 void MoveFigureAction::Execute(bool WillRecord, string filename, bool where )
 {
-	if(!WillRecord)
-	//This action needs to read some parameters first
-	ReadActionParameters();
 	Output* pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();
-	FigPtr = pManager->GetSelectedFigure();
+	if (!WillRecord)
+	{
+		ReadActionParameters();
+	}
+	if (FigPtr == NULL)
+	{
+		pOut->PrintMessage("Error! Please Select a figure first");
+		return;
+	}
 	POld = FigPtr->GetCenter();
 	FigPtr->Move(PNew.x, PNew.y); // Moves Figure to new Center;
 	pOut->PrintMessage("Figure Moved");
@@ -42,6 +48,7 @@ void MoveFigureAction::Execute(bool WillRecord, string filename, bool where )
 	{
 		pManager->AddRecordingFigure(this);
 	}
+	pManager->AddActionToUndoList(this);
 }
 
 void MoveFigureAction::Undo()

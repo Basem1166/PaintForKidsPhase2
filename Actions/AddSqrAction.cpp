@@ -49,6 +49,7 @@ void AddSqrAction::Execute(bool WillRecord, string filename, bool where )
 	{
 		pManager->AddRecordingFigure(this);
 	}
+	pManager->AddActionToUndoList(this);
 }
 
 void AddSqrAction::Undo()

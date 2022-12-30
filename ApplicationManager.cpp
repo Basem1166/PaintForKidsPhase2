@@ -57,6 +57,29 @@ ActionType ApplicationManager::GetUserAction() const
 	//Ask the input to get the action from the user.
 	return pIn->GetUserAction();		
 }
+void ApplicationManager::AddActionToUndoList(Action* pAct)
+{
+	if (UndoListCurrentSize < 5)
+	{
+		UndoList[UndoListCurrentSize++] = pAct;
+	}
+	else
+	{
+		for (int i = 0; i < 4; i++)
+		{
+			UndoList[i] = UndoList[i + 1];
+		}
+		UndoList[4] = pAct;
+	}
+	RedoListCurrentSize = 0;
+	for (int i = 0; i < 5; i++)
+	{
+		if (RedoList[i] != NULL)
+		{
+			RedoList[i] = NULL;
+		}
+	}
+}
 void ApplicationManager::UndoPrevAction()
 {
 	if (UndoListCurrentSize > 0)
@@ -106,16 +129,10 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			pAct = new SelectOneAction(this);
 			break;
 		case _DELETE:
-			if (SelectedFig != NULL)
 				pAct = new DeleteFigureAction(this);
-			else
-				pOut->PrintMessage("Error! Please Select a figure first");
 			break;
 		case MOVE_SHAPE:
-			if (SelectedFig != NULL)
 				pAct = new MoveFigureAction(this);
-			else
-				pOut->PrintMessage("Error! Please Select a figure first");
 			break;
 		case SAVE_GRAPH:
 				pAct = new SaveAction(this);
@@ -139,16 +156,10 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			pAct = new SwitchToPlayAction(this);
 			break;
 		case FILL:
-			if(SelectedFig!=NULL)
 			pAct = new ChangeFillAction(this);
-			else
-				pOut->PrintMessage("Error! Please Select a figure first");
 			break;
 		case ChangeDraw:
-			if(SelectedFig!=NULL)
 			pAct = new ChangeHighlightAction(this);
-			else
-				pOut->PrintMessage("Error! Please Select a figure first");
 			break;
 		case START_RECORDING:
 			pAct = new StartRecordingAction(this);
@@ -172,46 +183,12 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 		
 		case STATUS:	//a click on the status bar ==> no action
+		case DRAWING_AREA:  //a click in the drawing area ==> no action
 			return;
 	}
 
 	//Execute the created action
-	if (pAct != NULL)
-	{
-		if (ActType < 9)
-		{
-			if (UndoListCurrentSize < 5)
-			{
-				UndoList[UndoListCurrentSize++] = pAct;
-			}
-			else
-			{
-				if (UndoList[0] != NULL)
-					//delete UndoList[0];
-				for (int i = 0; i < 4; i++)
-				{
-					UndoList[i] = UndoList[i + 1];
-				}
-				UndoList[4] = pAct;
-			}
-			RedoListCurrentSize = 0;
-			for(int i=0; i<5; i++)
-			{
-				if(RedoList[i] != NULL)
-				{
-					//delete RedoList[i];
-					RedoList[i] = NULL;
-				}
-			}
-			pAct->Execute(0,"dummy",1);//Execute
-		}
-		else
-		{
-			pAct->Execute(0, "dummy", 1);//Execute
-			//delete pAct;
-			pAct = NULL;
-		}
-	}
+	pAct->Execute(0, "dummy", 1);
 }
 void ApplicationManager::SetSelectedFigure(CFigure* fig)
 {

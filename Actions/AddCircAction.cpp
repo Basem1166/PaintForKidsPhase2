@@ -56,6 +56,7 @@ void AddCircAction::Execute(bool WillRecord, string filename, bool where )
 	{
 		pManager->AddRecordingFigure(this);
 	}
+	pManager->AddActionToUndoList(this);
 }
 void AddCircAction::Undo()
 {

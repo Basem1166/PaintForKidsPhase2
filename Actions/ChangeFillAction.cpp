@@ -12,8 +12,7 @@ void ChangeFillAction::ReadActionParameters()
 {
 	Output* pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();
-	pOut->PrintMessage("Please Choose Fill Colour");
-	ColorAct=pIn->GetUserAction();
+	FigPtr = pManager->GetSelectedFigure();
 	pOut->ClearStatusBar();
 
 }
@@ -60,12 +59,21 @@ bool ChangeFillAction::GetFillColour(ActionType ColorAct) {
 }
 
 //Execute the action
-void ChangeFillAction::Execute(bool WillRecord, string filename, bool where ) {
-	if(!WillRecord)
-	//This action needs to read some parameters first
-	ReadActionParameters();
+void ChangeFillAction::Execute(bool WillRecord, string filename, bool where )
+{
 	Output* pOut = pManager->GetOutput();
-	FigPtr = pManager->GetSelectedFigure();
+	Input* pIn = pManager->GetInput();
+	if (!WillRecord)
+	{
+		ReadActionParameters();
+	}
+	if (FigPtr == NULL)
+	{
+		pOut->PrintMessage("Error! Please Select a figure first");
+		return;
+	}
+	pOut->PrintMessage("Please Choose Fill Colour");
+	ColorAct = pIn->GetUserAction();
 	OldGfxInfo = FigPtr->GetGfxInfo();
 	NewGfxInfo = OldGfxInfo;
 
@@ -73,6 +81,7 @@ void ChangeFillAction::Execute(bool WillRecord, string filename, bool where ) {
 		UI.isFilled = true;
 		NewGfxInfo.isFilled = true;
 		FigPtr->ChngFillClr(UI.FillColor); //changing the fill color
+		pManager->AddActionToUndoList(this);
 	}
 	else {
 		pOut->PrintMessage("Please Click on a Colour icon");

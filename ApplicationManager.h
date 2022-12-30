@@ -64,6 +64,7 @@ public:
 	bool IsEmpty();
 	void PlayRecording();
 	void AddRecordingFigure(Action* rAction);//adds figures to the recording list
+	void AddActionToUndoList(Action*);
 	bool getWillRecord();// setter and getter fir the will record boolean.
 	void setWillRecord(bool willrecord);
 };

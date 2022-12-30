@@ -62,7 +62,7 @@ void PickByColor::Execute(bool WillRecord, string filename, bool where )
 
 	Output* pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();
-	if(!WillRecord)
+	
 	ReadActionParameters();
 
 	if (numOfcolors > 1)

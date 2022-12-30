@@ -17,6 +17,7 @@ public:
 	virtual void PrintInfo(Output*);
 	void Save(ofstream& outputFile);
 	void Load(ifstream& inputFile);
+	virtual string GetFigureType();
 };
 
 #endif

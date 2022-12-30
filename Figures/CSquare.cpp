@@ -65,3 +65,8 @@ void CSquare::Load(ifstream& inputFile) {
 		FigGfxInfo.FillClr = convertStringToColor(currentfillclr);
 	}
 }
+
+string CSquare::GetFigureType()
+{
+	return "Square";
+}

@@ -50,6 +50,7 @@ public:
 	string convertcolorToString(color color);
 	//converting string type to color to be able to read it from text files
 	color convertStringToColor(string color);
+	virtual string GetFigureType()=0;
 	
 };
 

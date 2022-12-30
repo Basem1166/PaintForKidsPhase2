@@ -81,3 +81,8 @@ void CTriangle::Load(ifstream& inputFile) {
 		FigGfxInfo.FillClr = convertStringToColor(currentfillclr);
 	}
 }
+
+string CTriangle::GetFigureType()
+{
+	return "Triangle";
+}

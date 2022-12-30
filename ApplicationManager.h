@@ -22,6 +22,7 @@ private:
 	int RecordingListCount;
 	int UndoListCurrentSize;
 	int RedoListCurrentSize;
+	bool MuteState;
 	CFigure* FigList[MaxFigCount];	//List of all figures (Array of pointers)
 
 	CFigure* SelectedFig; //Pointer to the selected figure
@@ -46,7 +47,8 @@ public:
 	void AddFigure(CFigure* pFig);          //Adds a new figure to the FigList
 	CFigure *GetFigure(int x, int y) const; //Search for a figure given a point inside the figure
 	void DeleteFigure(CFigure*); //Delete the figure from FigList
-		
+	bool IsMute();
+	void ToggleMute();
 	// -- Interface Management Functions
 	Input *GetInput() const; //Return pointer to the input
 	Output *GetOutput() const; //Return pointer to the output

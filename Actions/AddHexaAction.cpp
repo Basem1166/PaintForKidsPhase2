@@ -5,6 +5,7 @@
 
 #include "..\GUI\input.h"
 #include "..\GUI\Output.h"
+#include<Windows.h>
 
 AddHexaAction::AddHexaAction(ApplicationManager* pApp) :Action(pApp)
 {}
@@ -42,6 +43,10 @@ void AddHexaAction::Execute(bool WillRecord, string filename, bool where )
 
 	//Add the circle to the list of figures
 	pManager->AddFigure(FigPtr);
+	if (pManager->IsMute() == 0)
+	{
+		PlaySound("Hexagon.wav", NULL, SND_FILENAME);
+	}
 	if (pManager->getWillRecord())
 	{
 		pManager->AddRecordingFigure(this);

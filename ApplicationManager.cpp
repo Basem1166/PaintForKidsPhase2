@@ -23,6 +23,7 @@
 #include"Actions\StopRecordingAction.h"
 #include"Actions\PlayRecordingAction.h"
 #include"Actions\PickByShapeAction.h"
+#include"Actions\ToggleMuteAction.h"
 #include<Windows.h>
 
 //Constructor
@@ -36,6 +37,7 @@ ApplicationManager::ApplicationManager()
 	RedoListCurrentSize = 0;
 	RecordingListCount = 0;
 	WillRecord = 0;
+	MuteState = false;
 	SelectedFig = NULL;
 	//Create an array of figure pointers and set them to NULL		
 	for(int i=0; i<MaxFigCount; i++)
@@ -161,6 +163,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case By_Type:
 			pAct = new PickByShapeAction(this);
 			break;
+		case Mute:
+			pAct = new ToggleMuteAction(this);
+			break;
 		case EXIT:
 			///create ExitAction here
 			
@@ -270,6 +275,14 @@ CFigure* ApplicationManager::drawnFigures(int i) const
 }
 int ApplicationManager:: getFigCount() {
 	return FigCount;
+}
+bool ApplicationManager::IsMute()
+{
+	return MuteState;
+}
+void ApplicationManager::ToggleMute()
+{
+	MuteState = !MuteState;
 }
 //==================================================================================//
 //							Interface Management Functions							//

@@ -5,6 +5,7 @@
 
 #include "..\GUI\input.h"
 #include "..\GUI\Output.h"
+#include<Windows.h>
 
 AddTriAction::AddTriAction(ApplicationManager* pApp) :Action(pApp)
 {}
@@ -52,6 +53,10 @@ void AddTriAction::Execute(bool WillRecord, string filename, bool where )
 
 	//Add the triangle to the list of figures
 	pManager->AddFigure(FigPtr);
+	if (pManager->IsMute() == 0)
+	{
+		PlaySound("Triangle.wav", NULL, SND_FILENAME);
+	}
 	if (pManager->getWillRecord())
 	{
 		pManager->AddRecordingFigure(this);

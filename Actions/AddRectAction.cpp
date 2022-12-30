@@ -5,6 +5,7 @@
 
 #include "..\GUI\input.h"
 #include "..\GUI\Output.h"
+#include<Windows.h>
 
 AddRectAction::AddRectAction(ApplicationManager * pApp):Action(pApp)
 {}
@@ -46,6 +47,10 @@ void AddRectAction::Execute(bool WillRecord, string filename, bool where )
 
 	//Add the rectangle to the list of figures
 	pManager->AddFigure(FigPtr);
+	if (pManager->IsMute() == 0)
+	{
+		PlaySound("Rectangle.wav", NULL, SND_FILENAME);
+	}
 	if (pManager->getWillRecord())
 	{
 		pManager->AddRecordingFigure(this);

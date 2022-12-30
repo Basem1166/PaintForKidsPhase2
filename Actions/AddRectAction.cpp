@@ -49,7 +49,7 @@ void AddRectAction::Execute(bool WillRecord, string filename, bool where )
 	pManager->AddFigure(FigPtr);
 	if (pManager->IsMute() == 0)
 	{
-		PlaySound("Rectangle.wav", NULL, SND_FILENAME);
+		PlaySound("audio/Rectangle.wav", NULL, SND_FILENAME);
 	}
 	if (pManager->getWillRecord())
 	{

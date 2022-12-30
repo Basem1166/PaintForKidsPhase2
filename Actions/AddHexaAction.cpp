@@ -45,7 +45,7 @@ void AddHexaAction::Execute(bool WillRecord, string filename, bool where )
 	pManager->AddFigure(FigPtr);
 	if (pManager->IsMute() == 0)
 	{
-		PlaySound("Hexagon.wav", NULL, SND_FILENAME);
+		PlaySound("audio/Hexagon.wav", NULL, SND_FILENAME);
 	}
 	if (pManager->getWillRecord())
 	{

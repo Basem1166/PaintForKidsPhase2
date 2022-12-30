@@ -50,7 +50,7 @@ void AddCircAction::Execute(bool WillRecord, string filename, bool where )
 
 	if (pManager->IsMute() == 0)
 	{
-		PlaySound("Circle.wav", NULL, SND_FILENAME);
+		PlaySound("audio/Circle.wav", NULL, SND_FILENAME);
 	}
 	if (pManager->getWillRecord())
 	{

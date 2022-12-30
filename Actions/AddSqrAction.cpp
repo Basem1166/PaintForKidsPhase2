@@ -43,7 +43,7 @@ void AddSqrAction::Execute(bool WillRecord, string filename, bool where )
 	pManager->AddFigure(FigPtr);
 	if (pManager->IsMute() == 0)
 	{
-		PlaySound("Square.wav", NULL, SND_FILENAME);
+		PlaySound("audio/Square.wav", NULL, SND_FILENAME);
 	}
 	if (pManager->getWillRecord())
 	{

@@ -6,17 +6,30 @@ class PickByColor :
 	public Action
 {
 	CFigure* Fig;
-	int  numOfcolors, rand_fig_no, picked_color_no, wrgSel, rigSel;
-	int clrs[6];
 	Point point;
-	color AssignColor(CFigure*);
-	void PrntScore(int);
+	int  numOfcolors;
+	int RandomFigNum;
+	int NumOfColorsToPicked;
+	int WrongPicks;
+	int CorrestPicks;
+	int ArrOfColors[6];
+	
+	
 public:
+
 	PickByColor(ApplicationManager*);
-	~PickByColor();
+
+	
+	void PrntScore(int);
+
 	void ReadActionParameters();
+
 	void Execute(bool WillRecord, string filename, bool where = true);
+
 	void Undo() ;
+
 	void Redo() ;
+
+	~PickByColor();
 
 };

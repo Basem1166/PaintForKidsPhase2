@@ -8,54 +8,19 @@
 
 PickByColor::PickByColor(ApplicationManager* pApp) :Action(pApp)
 {
-	numOfcolors = 0;
-	wrgSel = 0;
-	rigSel = 0;
-	for (int i = 0;i < 6;i++)
-		clrs[i] = 0;
+	numOfcolors = 0; WrongPicks = 0;CorrestPicks = 0;
+
+	for (int i = 0;i < 6;i++) {
+
+		ArrOfColors[i] = 0;
+	}
+		
 }
 
 
-color PickByColor::AssignColor(CFigure* Fig)
-{
-	if (Fig->GetGfxInfo().isFilled)
-	{
-		if (Fig->GetGfxInfo().FillClr == BLACK)
-			return BLACK;
-		else if (Fig->GetGfxInfo().FillClr == YELLOW)
-			return YELLOW;
-		else if (Fig->GetGfxInfo().FillClr == ORANGE)
-			return ORANGE;
-		else if (Fig->GetGfxInfo().FillClr == RED)
-			return RED;
-		else if (Fig->GetGfxInfo().FillClr == GREEN)
-			return GREEN;
-		else if (Fig->GetGfxInfo().FillClr == BLUE)
-			return BLUE;
-	}
-}
-
-void PickByColor::PrntScore(int S)
-{
-	Output* pOut = pManager->GetOutput();
-
-	string message;
-	if (S == 1)
-	{
-		rigSel++;
-		message = "Right!, Your score is: " + to_string(rigSel) + " Right, and " + to_string(wrgSel) + " Wrong.";
-	}
-	else 	if (S == 2)
-	{
-		wrgSel++;
-		message = "Wrong!, Your score is: " + to_string(rigSel) + " Right, and " + to_string(wrgSel) + " Wrong.";
-	}
-	else
-		message = "YOU WIN!, Your score is: " + to_string(rigSel) + " Right, and " + to_string(wrgSel) + " Wrong.";
-	pOut->PrintMessage(message);
 
 
-}
+
 
 
 
@@ -63,28 +28,30 @@ void PickByColor::ReadActionParameters()
 {
 
 	for (int i = 0; i < pManager->getFigCount();i++) {
+
 		Fig = pManager->drawnFigures(i);
+
 		if (Fig->GetGfxInfo().isFilled) //counts color occurance.
 		{
 			if (Fig->GetGfxInfo().FillClr == BLACK)
-				clrs[0]++;
+				ArrOfColors[0]++;
 			else if (Fig->GetGfxInfo().FillClr == YELLOW)
-				clrs[1]++;
+				ArrOfColors[1]++;
 			else if (Fig->GetGfxInfo().FillClr == ORANGE)
-				clrs[2]++;
+				ArrOfColors[2]++;
 			else if (Fig->GetGfxInfo().FillClr == RED)
-				clrs[3]++;
+				ArrOfColors[3]++;
 			else if (Fig->GetGfxInfo().FillClr == GREEN)
-				clrs[4]++;
+				ArrOfColors[4]++;
 			else if (Fig->GetGfxInfo().FillClr == BLUE)
-				clrs[5]++;
+				ArrOfColors[5]++;
 
 		}
 
 	}
 
 	for (int i = 0;i < 6;i++)
-		if (clrs[i] != 0)numOfcolors++;
+		if (ArrOfColors[i] != 0)numOfcolors++;
 
 
 }
@@ -99,107 +66,124 @@ void PickByColor::Execute(bool WillRecord, string filename, bool where )
 
 	if (numOfcolors > 1)
 	{
-		//Figure clicked to be hidden
-		CFigure* clickedFig;
-		//Randomize
-		rand_fig_no = rand() % pManager->getFigCount();
-		//Counting the the color instances.
-		Fig = pManager->drawnFigures(rand_fig_no);
+
+		CFigure* ClickedFigure;
+		RandomFigNum = rand() % pManager->getFigCount();
+		Fig = pManager->drawnFigures(RandomFigNum);
+
 		if (Fig->GetGfxInfo().isFilled)
 		{
 			if (Fig->GetGfxInfo().FillClr == BLACK)
 			{
-				picked_color_no = clrs[0];
+				NumOfColorsToPicked = ArrOfColors[0];
 				pOut->PrintMessage("Pick up figures colored black!");
 			}
 			else if (Fig->GetGfxInfo().FillClr == YELLOW)
 			{
-				picked_color_no = clrs[1];
+				NumOfColorsToPicked = ArrOfColors[1];
 				pOut->PrintMessage("Pick up figures colored yellow!");
 			}
 			else if (Fig->GetGfxInfo().FillClr == ORANGE)
 			{
-				picked_color_no = clrs[2];
+				NumOfColorsToPicked = ArrOfColors[2];
 				pOut->PrintMessage("Pick up figures colored orange!");
 
 			}
 			else if (Fig->GetGfxInfo().FillClr == RED)
 			{
-				picked_color_no = clrs[3];
+				NumOfColorsToPicked = ArrOfColors[3];
 				pOut->PrintMessage("Pick up figures colored red!");
 
 			}
 			else if (Fig->GetGfxInfo().FillClr == GREEN)
 			{
-				picked_color_no = clrs[4];
+				NumOfColorsToPicked = ArrOfColors[4];
 				pOut->PrintMessage("Pick up figures colored green!");
 
 			}
 			else if (Fig->GetGfxInfo().FillClr == BLUE)
 			{
-				picked_color_no = clrs[5];
+				NumOfColorsToPicked = ArrOfColors[5];
 				pOut->PrintMessage("Pick up figures colored blue!");
 
 			}
 		}
 
-		while (picked_color_no > 0)
+		while (NumOfColorsToPicked > 0)
 		{
 
 			pIn->GetPointClicked(point.x, point.y);
+
 			if (point.y > UI.ToolBarHeight || point.x > (UI.MenuItemWidth * PLAY_ITM_COUNT))
 			{
-				clickedFig = pManager->GetFigure(point.x, point.y);
-				if (clickedFig != NULL)
+				ClickedFigure = pManager->GetFigure(point.x, point.y);
+
+				if (ClickedFigure != NULL)
 				{
 
-					if ( Fig->GetGfxInfo().FillClr == clickedFig->GetGfxInfo().FillClr)
+					if ( Fig->GetGfxInfo().FillClr == ClickedFigure->GetGfxInfo().FillClr)
 					{
 						PrntScore(1);
-						clickedFig->HideShape();
-						pManager->DeleteFigure(clickedFig);
+						pManager->DeleteFigure(ClickedFigure);
 						pManager->UpdateInterface();
-						picked_color_no--;
+						NumOfColorsToPicked--;
 					}
 					else
 					{
 						PrntScore(2);
-						clickedFig->HideShape();
 						pManager->UpdateInterface();
 					}
 				}
 			}
 			else
 			{
-				pOut->PrintMessage("Toolbar clicked, game aborted.");
-				picked_color_no = -1;
+				pOut->PrintMessage("Game ended ! BYE");
+				NumOfColorsToPicked = -1;
 			}
-
-
 		}
-		if (picked_color_no == 0)
+		if (NumOfColorsToPicked == 0) {
 			PrntScore(3);
 
+		}
+			
 	}
 	else
-		pOut->PrintMessage("You must have at least two or more colors to play pick by color!");
+		pOut->PrintMessage("Sorry you should have 2 or more filled colors to play pick by color");
 
-	for (int i = 0; i < pManager->getFigCount();i++)
-	{
-		pManager->drawnFigures(i)->ShowShape();
-		//pManager->AddFigure(Fig);
-	}
-	
+
 	pManager->UpdateInterface();
 	LoadAction* L = new LoadAction(pManager);
 	L->Execute(false, "Details", 0);
 	//delete L;
 }
 
-PickByColor::~PickByColor()
+void PickByColor::PrntScore(int x)
 {
+	Output* pOut = pManager->GetOutput();
+
+	string message;
+	if (x == 1)
+	{
+		CorrestPicks++;
+		message = "CORRECT!,Score = " + to_string(CorrestPicks) + " Right, and " + to_string(WrongPicks) + " Wrong.";
+	}
+	else if (x == 2)
+	{
+		WrongPicks++;
+		message = "WRONG TRY Again!,Score = " + to_string(CorrestPicks) + " Right, and " + to_string(WrongPicks) + " Wrong.";
+	}
+	else
+		message = "Congratulations YOU WIN!, Final Score = " + to_string(CorrestPicks) + " Right, and " + to_string(WrongPicks) + " Wrong.";
+
+	pOut->PrintMessage(message);
+
 }
+
 
 void PickByColor::Undo() {}
 
 void PickByColor::Redo() {}
+
+PickByColor::~PickByColor()
+{
+}

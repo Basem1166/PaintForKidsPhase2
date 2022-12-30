@@ -22,6 +22,7 @@
 #include"Actions\StartRecordingAction.h"
 #include"Actions\StopRecordingAction.h"
 #include"Actions\PlayRecordingAction.h"
+#include"Actions\PickByShapeAction.h"
 #include<Windows.h>
 
 //Constructor
@@ -156,6 +157,8 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case PLAY_RECORDING:
 			if (RecordingListCount != 0)
 				pAct = new PlayRecordingAction(this);
+		case By_Type:
+			pAct = new PickByShapeAction(this);
 		case EXIT:
 			///create ExitAction here
 			

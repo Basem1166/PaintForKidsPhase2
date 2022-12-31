@@ -72,14 +72,17 @@ void SaveAction::Execute(bool WillRecord, string filename, bool where ) {
 	outputFile.close();
 }
 
-SaveAction::~SaveAction(void) {}
-
 void SaveAction::Undo()
 {
 
 }
 
 void SaveAction::Redo()
+{
+
+}
+
+SaveAction::~SaveAction()
 {
 
 }

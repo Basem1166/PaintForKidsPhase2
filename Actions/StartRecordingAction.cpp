@@ -36,3 +36,8 @@ void StartRecordingAction::Undo()
 void StartRecordingAction::Redo()
 {
 }
+
+StartRecordingAction::~StartRecordingAction()
+{
+
+}

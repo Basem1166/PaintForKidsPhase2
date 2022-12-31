@@ -110,3 +110,7 @@ bool CFigure::IsHidden() const {
 void CFigure::SetHidden(bool hidden) {
 	Hidden = hidden;
 }
+void CFigure::resetID()
+{
+	count = 1;
+}

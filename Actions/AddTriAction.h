@@ -21,6 +21,8 @@ public:
 	void Undo();
 
 	void Redo();
+
+	~AddTriAction();
 };
 
 #endif

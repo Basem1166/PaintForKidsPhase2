@@ -15,6 +15,7 @@ public:
 	virtual void Execute(bool WillRecord, string filename, bool where = true);
 	void Undo();
 	void Redo();
+	~SelectOneAction();
 };
 
 #endif

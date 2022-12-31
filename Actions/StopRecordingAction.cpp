@@ -33,3 +33,8 @@ void StopRecordingAction::Undo()
 void StopRecordingAction::Redo()
 {
 }
+
+StopRecordingAction::~StopRecordingAction()
+{
+
+}

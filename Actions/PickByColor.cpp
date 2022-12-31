@@ -186,4 +186,5 @@ void PickByColor::Redo() {}
 
 PickByColor::~PickByColor()
 {
+
 }

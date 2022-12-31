@@ -13,13 +13,12 @@ class PickByShapeAction :
 
 public:
 	PickByShapeAction(ApplicationManager*);
-	~PickByShapeAction();
 	void UpdateScore(bool Correct);
 	void ReadActionParameters();
 	void Execute(bool WillRecord, string filename, bool where);
 	void Undo();
 	void Redo();
-
+	~PickByShapeAction();
 };
 
 

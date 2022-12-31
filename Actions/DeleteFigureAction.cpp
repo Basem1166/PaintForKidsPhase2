@@ -46,3 +46,8 @@ void DeleteFigureAction::Redo()
 	pManager->DeleteFigure(FigPtr);
 	FigPtr->SetSelected(false);
 }
+
+DeleteFigureAction::~DeleteFigureAction()
+{
+
+}

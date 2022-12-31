@@ -64,3 +64,11 @@ void AddHexaAction::Redo()
 	pManager->AddFigure(FigPtr);
 	FigPtr->SetSelected(false);
 }
+
+AddHexaAction::~AddHexaAction()
+{
+	if (FigPtr != NULL && pManager->IsFoundInFigList(FigPtr) == false)
+	{
+		delete FigPtr;
+	}
+}

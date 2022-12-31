@@ -26,3 +26,8 @@ void UndoAction::Redo()
 {
 
 }
+
+UndoAction::~UndoAction()
+{
+
+}

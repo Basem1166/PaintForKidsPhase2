@@ -19,5 +19,7 @@ public:
 	void Undo();
 
 	void Redo();
+
+	~ChangeHighlightAction();
 };
 #endif

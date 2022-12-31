@@ -31,3 +31,8 @@ void PlayRecordingAction::Undo()
 void PlayRecordingAction::Redo()
 {
 }
+
+PlayRecordingAction::~PlayRecordingAction()
+{
+
+}

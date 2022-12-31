@@ -15,6 +15,8 @@ public:
 	void Undo();
 
 	void Redo();
+
+	~ToggleMuteAction();
 };
 
 #endif

@@ -20,5 +20,7 @@ public:
 	void Undo();
 
 	void Redo();
+
+	~ChangeFillAction();
 };
 #endif

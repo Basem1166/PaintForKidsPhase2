@@ -28,6 +28,7 @@ public:
 
 	virtual void Redo() = 0;
 
+	virtual ~Action(){}
 };
 
 #endif

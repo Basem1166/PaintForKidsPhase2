@@ -20,7 +20,7 @@ protected:
 public:
 	CFigure(); //to allow zero argument constructor in children
 	CFigure(GfxInfo FigureGfxInfo);
-
+	static void resetID();
 	void SetSelected(bool s);	//select/unselect the figure
 	bool IsSelected() const;	//check whether fig is selected
 	bool IsHidden() const;

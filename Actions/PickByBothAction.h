@@ -15,12 +15,12 @@ class PickByBothAction :
 
 public:
 	PickByBothAction(ApplicationManager*);
-	~PickByBothAction();
 	void UpdateScore(bool Correct);
 	void ReadActionParameters();
 	void Execute(bool WillRecord, string filename, bool where);
 	void Undo();
 	void Redo();
+	~PickByBothAction();
 
 };
 

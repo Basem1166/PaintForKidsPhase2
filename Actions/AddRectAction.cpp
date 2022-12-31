@@ -69,3 +69,11 @@ void AddRectAction::Redo()
 	pManager->AddFigure(FigPtr);
 	FigPtr->SetSelected(false);
 }
+
+AddRectAction::~AddRectAction()
+{
+	if (FigPtr != NULL && pManager->IsFoundInFigList(FigPtr) == false)
+	{
+		delete FigPtr;
+	}
+}

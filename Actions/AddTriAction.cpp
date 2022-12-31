@@ -75,3 +75,11 @@ void AddTriAction::Redo()
 	pManager->AddFigure(FigPtr);
 	FigPtr->SetSelected(false);
 }
+
+AddTriAction::~AddTriAction()
+{
+	if (FigPtr != NULL && pManager->IsFoundInFigList(FigPtr) == false)
+	{
+		delete FigPtr;
+	}
+}

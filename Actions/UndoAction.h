@@ -9,9 +9,8 @@ public:
 	UndoAction(ApplicationManager* pApp);
 	virtual void ReadActionParameters();
 	virtual void Execute(bool WillRecord, string filename, bool where = true);
-
 	void Undo();
-
 	void Redo();
+	~UndoAction();
 };
 #endif

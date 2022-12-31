@@ -69,3 +69,11 @@ void AddCircAction::Redo()
 	pManager->AddFigure(FigPtr);
 	FigPtr->SetSelected(false);
 }
+
+AddCircAction::~AddCircAction()
+{
+	if (FigPtr != NULL && pManager->IsFoundInFigList(FigPtr) == false)
+	{
+		delete FigPtr;
+	}
+}

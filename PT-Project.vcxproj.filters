@@ -226,6 +226,10 @@
     <ClCompile Include="Actions\PickByBothAction.cpp">
       <Filter>Action Classes</Filter>
     </ClCompile>
+    <ClCompile Include="Actions\ClearAllAction.cpp" />
+    <ClCompile Include="Actions\ExitAction.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h">
@@ -389,6 +393,10 @@
       <Filter>Action Classes</Filter>
     </ClInclude>
     <ClInclude Include="Actions\PickByBothAction.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\ClearAllAction.h" />
+    <ClInclude Include="Actions\ExitAction.h">
       <Filter>Action Classes</Filter>
     </ClInclude>
   </ItemGroup>

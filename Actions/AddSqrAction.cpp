@@ -63,3 +63,11 @@ void AddSqrAction::Redo()
 	pManager->AddFigure(FigPtr);
 	FigPtr->SetSelected(false);
 }
+
+AddSqrAction::~AddSqrAction()
+{
+	if (FigPtr != NULL && pManager->IsFoundInFigList(FigPtr) == false)
+	{
+		delete FigPtr;
+	}
+}

@@ -26,3 +26,8 @@ void RedoAction::Redo()
 {
 
 }
+
+RedoAction::~RedoAction()
+{
+
+}

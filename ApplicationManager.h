@@ -27,6 +27,8 @@ private:
 	bool MuteState;
 	CFigure* FigList[MaxFigCount];	//List of all figures (Array of pointers)
 
+	//CFigure* ArrOfColors[6];
+
 	CFigure* SelectedFig; //Pointer to the selected figure
 
 	//Pointers to Input and Output classes
@@ -62,8 +64,12 @@ public:
 	void clearAll();
 	void ResetData();
 	void SaveAll(ofstream& outputFile);
+
+	//-- Pick By color Function RHG
+	void ArrOfclr();
 	CFigure* drawnFigures(int) const;
 	int getFigCount();
+
 	//Recording Functions
 	bool IsEmpty();
 	void PlayRecording();

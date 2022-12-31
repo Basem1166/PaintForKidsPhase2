@@ -114,3 +114,35 @@ void CFigure::resetID()
 {
 	count = 1;
 }
+
+void CFigure::incrementArrOfClrs() {
+	if (FigGfxInfo.FillClr == BLACK)
+	{
+		ArrOfColors[0]++;
+		pManager->
+	}
+	else if (FigGfxInfo.FillClr == YELLOW)
+	{
+		ArrOfColors[1]++;
+	}
+	else if (FigGfxInfo.FillClr == ORANGE)
+	{
+		ArrOfColors[2]++;
+	}
+	else if (FigGfxInfo.FillClr == RED)
+	{
+		ArrOfColors[3]++;
+	}
+	else if (FigGfxInfo.FillClr == GREEN)
+	{
+		ArrOfColors[4]++;
+	}
+	else if (FigGfxInfo.FillClr == BLUE)
+	{
+		ArrOfColors[5]++;
+	}
+}
+int* CFigure::getArrOfColors() {
+	return ArrOfColors;
+}
+

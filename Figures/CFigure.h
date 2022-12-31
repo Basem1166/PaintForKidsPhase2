@@ -16,8 +16,12 @@ protected:
 	Point Center; //Center of the figure
 	bool Hidden;
 	/// Add more parameters if needed.
+	static int ArrOfColors[6];
 
 public:
+	
+	 int* getArrOfColors();
+
 	CFigure(); //to allow zero argument constructor in children
 	CFigure(GfxInfo FigureGfxInfo);
 	static void resetID();
@@ -37,7 +41,7 @@ public:
 	virtual void Move(int, int) = 0; //Moving center of figures to the new point
 	///The following functions should be supported by the figure class
 	///It should be overridden by each inherited figure
-
+	void incrementArrOfClrs();
 	///Decide the parameters that you should pass to each function	
 
 

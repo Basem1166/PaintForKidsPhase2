@@ -27,6 +27,7 @@ void PlayRecordingAction::Execute(bool isBeingPlayed, string filename, bool wher
 	
 	pOut->PrintMessage("Playing the Recording");
 	CFigure::resetID();
+	pManager->clearAll();
 	pManager->PlayRecording();
 	pOut->PrintMessage("Recording Played");
 }

@@ -401,7 +401,7 @@ bool ApplicationManager::IsEmpty()
 void ApplicationManager::PlayRecording()
 {
 
-	clearAll();
+	
 	for (int i = 0; i < RecordingListCount; i++)
 	{
 

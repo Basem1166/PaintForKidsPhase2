@@ -12,7 +12,8 @@ class PickByColor :
 	int NumOfColorsToPicked;
 	int WrongPicks;
 	int CorrestPicks;
-	int ArrOfColors[6];
+	//int ArrOfColors[6];
+	int* ArrayOfColors;
 	
 public:
 

@@ -495,3 +495,15 @@ void ApplicationManager::ResetData()
 	UI.isFilled = false;
 	UI.DrawColor = BLUE;
 }
+//pick by color 
+void ApplicationManager::ArrOfclr() {
+	for (int i = 0; i < FigCount; i++) {
+		FigList[i]->incrementArrOfClrs();
+	}
+}
+
+void ApplicationManager::ResetArrOfclr() {
+	for (int i = 0; i < FigCount; i++) {
+		FigList[i]->ResetArrOfClrs();
+	}
+}

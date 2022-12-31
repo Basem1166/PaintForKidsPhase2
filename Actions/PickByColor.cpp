@@ -10,42 +10,17 @@ PickByColor::PickByColor(ApplicationManager* pApp) :Action(pApp)
 {
 	numOfcolors = 0; WrongPicks = 0;CorrestPicks = 0;
 
-	for (int i = 0;i < 6;i++) {
-
-		ArrOfColors[i] = 0;
-	}
-		
 }
 
 void PickByColor::ReadActionParameters()
 {
+	pManager->ArrOfclr();
 
-	for (int i = 0; i < pManager->getFigCount();i++) {
-
-		Fig = pManager->drawnFigures(i);
-
-		if (Fig->GetGfxInfo().isFilled) //counts color occurance.
-		{
-			if (Fig->GetGfxInfo().FillClr == BLACK)
-				ArrOfColors[0]++;
-			else if (Fig->GetGfxInfo().FillClr == YELLOW)
-				ArrOfColors[1]++;
-			else if (Fig->GetGfxInfo().FillClr == ORANGE)
-				ArrOfColors[2]++;
-			else if (Fig->GetGfxInfo().FillClr == RED)
-				ArrOfColors[3]++;
-			else if (Fig->GetGfxInfo().FillClr == GREEN)
-				ArrOfColors[4]++;
-			else if (Fig->GetGfxInfo().FillClr == BLUE)
-				ArrOfColors[5]++;
-
-		}
-
-	}
+	 ArrayOfColors = Fig->getArrOfColors();
 
 	for (int i = 0;i < 6;i++)
-		if (ArrOfColors[i] != 0)numOfcolors++;
-
+		if (ArrayOfColors[i] != 0)numOfcolors++;
+	
 
 }
 
@@ -69,42 +44,43 @@ void PickByColor::Execute(bool WillRecord, string filename, bool where )
 	{
 
 		CFigure* ClickedFigure;
-		RandomFigNum = rand() % pManager->getFigCount();
-		Fig = pManager->drawnFigures(RandomFigNum);
+
+		//RandomFigNum = rand() % pManager->getFigCount();
+		Fig = pManager->GetRandFig();
 
 		if (Fig->GetGfxInfo().isFilled)
 		{
 			if (Fig->GetGfxInfo().FillClr == BLACK)
 			{
-				NumOfColorsToPicked = ArrOfColors[0];
+				NumOfColorsToPicked = ArrayOfColors[0];
 				pOut->PrintMessage("pick all black figures !");
 			}
 			else if (Fig->GetGfxInfo().FillClr == YELLOW)
 			{
-				NumOfColorsToPicked = ArrOfColors[1];
+				NumOfColorsToPicked = ArrayOfColors[1];
 				pOut->PrintMessage("pick all yellow figures !");
 			}
 			else if (Fig->GetGfxInfo().FillClr == ORANGE)
 			{
-				NumOfColorsToPicked = ArrOfColors[2];
+				NumOfColorsToPicked = ArrayOfColors[2];
 				pOut->PrintMessage("pick all orange figures !");
 
 			}
 			else if (Fig->GetGfxInfo().FillClr == RED)
 			{
-				NumOfColorsToPicked = ArrOfColors[3];
+				NumOfColorsToPicked = ArrayOfColors[3];
 				pOut->PrintMessage("pick all red figures!");
 
 			}
 			else if (Fig->GetGfxInfo().FillClr == GREEN)
 			{
-				NumOfColorsToPicked = ArrOfColors[4];
+				NumOfColorsToPicked = ArrayOfColors[4];
 				pOut->PrintMessage("pick all green figures!");
 
 			}
 			else if (Fig->GetGfxInfo().FillClr == BLUE)
 			{
-				NumOfColorsToPicked = ArrOfColors[5];
+				NumOfColorsToPicked = ArrayOfColors[5];
 				pOut->PrintMessage("pick all blue figures!");
 
 			}
@@ -153,7 +129,7 @@ void PickByColor::Execute(bool WillRecord, string filename, bool where )
 		pOut->PrintMessage("Sorry you should have 2 or more filled colors to play pick by color");
 	
 	
-	
+	pManager->ResetArrOfclr();
 	//delete L;
 }
 

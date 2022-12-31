@@ -6,6 +6,11 @@ CFigure::CFigure(GfxInfo FigureGfxInfo)
 	FigGfxInfo = FigureGfxInfo;	//Default status is non-filled.
 	Selected = false;
 	ID = count++;
+	
+	for (int i = 0; i < 6; i++)
+	{
+		ArrOfColors[i] = 0;
+	}
 }
 
 GfxInfo CFigure::GetGfxInfo() const
@@ -114,3 +119,62 @@ void CFigure::resetID()
 {
 	count = 1;
 }
+
+void CFigure::incrementArrOfClrs() {
+	if (FigGfxInfo.FillClr == BLACK)
+	{
+		ArrOfColors[0]++;
+		
+	}
+	else if (FigGfxInfo.FillClr == YELLOW)
+	{
+		ArrOfColors[1]++;
+	}
+	else if (FigGfxInfo.FillClr == ORANGE)
+	{
+		ArrOfColors[2]++;
+	}
+	else if (FigGfxInfo.FillClr == RED)
+	{
+		ArrOfColors[3]++;
+	}
+	else if (FigGfxInfo.FillClr == GREEN)
+	{
+		ArrOfColors[4]++;
+	}
+	else if (FigGfxInfo.FillClr == BLUE)
+	{
+		ArrOfColors[5]++;
+	}
+}
+int* CFigure::getArrOfColors() {
+	return ArrOfColors;
+}
+void CFigure::ResetArrOfClrs() {
+	if (FigGfxInfo.FillClr == BLACK)
+	{
+		ArrOfColors[0]--;
+
+	}
+	else if (FigGfxInfo.FillClr == YELLOW)
+	{
+		ArrOfColors[1]--;
+	}
+	else if (FigGfxInfo.FillClr == ORANGE)
+	{
+		ArrOfColors[2]--;
+	}
+	else if (FigGfxInfo.FillClr == RED)
+	{
+		ArrOfColors[3]--;
+	}
+	else if (FigGfxInfo.FillClr == GREEN)
+	{
+		ArrOfColors[4]--;
+	}
+	else if (FigGfxInfo.FillClr == BLUE)
+	{
+		ArrOfColors[5]--;
+	}
+}
+int CFigure::ArrOfColors[6];

@@ -129,7 +129,7 @@ void PickByColor::Execute(bool WillRecord, string filename, bool where )
 		pOut->PrintMessage("Sorry you should have 2 or more filled colors to play pick by color");
 	
 	
-	
+	pManager->ResetArrOfclr();
 	//delete L;
 }
 

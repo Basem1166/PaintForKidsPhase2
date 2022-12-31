@@ -38,7 +38,7 @@ private:
 public:	
 	ApplicationManager(); 
 	~ApplicationManager();
-	
+	void ResetArrOfclr();
 	// -- Action-Related Functions
 	//Reads the input command from the user and returns the corresponding action type
 	ActionType GetUserAction() const;

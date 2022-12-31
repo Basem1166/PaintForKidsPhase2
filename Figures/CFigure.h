@@ -16,7 +16,7 @@ protected:
 	Point Center; //Center of the figure
 	bool Hidden;
 	/// Add more parameters if needed.
-	static int ArrOfColors[6];
+	static int ArrOfColors[];
 
 public:
 	
@@ -24,6 +24,7 @@ public:
 
 	CFigure(); //to allow zero argument constructor in children
 	CFigure(GfxInfo FigureGfxInfo);
+	void ResetArrOfClrs();
 	static void resetID();
 	void SetSelected(bool s);	//select/unselect the figure
 	bool IsSelected() const;	//check whether fig is selected

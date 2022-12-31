@@ -501,3 +501,9 @@ void ApplicationManager::ArrOfclr() {
 		FigList[i]->incrementArrOfClrs();
 	}
 }
+
+void ApplicationManager::ResetArrOfclr() {
+	for (int i = 0; i < FigCount; i++) {
+		FigList[i]->ResetArrOfClrs();
+	}
+}

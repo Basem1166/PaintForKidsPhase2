@@ -72,6 +72,7 @@ public:
 	void AddActionToActionsList(Action*);
 	bool getWillRecord();// setter and getter fir the will record boolean.
 	void setWillRecord(bool willrecord);
+	int GetRecordingListCount();
 	//Play functions
 	CFigure* GetRandFig();
 	int GetNumberofSelectedFigure(CFigure* PlayFig);

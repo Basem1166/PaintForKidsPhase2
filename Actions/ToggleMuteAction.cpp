@@ -29,10 +29,7 @@ void ToggleMuteAction::Execute(bool WillRecord, string filename, bool where)
 
 	pManager->ToggleMute();
 
-	if (pManager->getWillRecord())
-	{
-		pManager->AddRecordingFigure(this);
-	}
+	
 }
 
 void ToggleMuteAction::Undo(){}

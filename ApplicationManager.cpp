@@ -202,7 +202,6 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			pAct = new StopRecordingAction(this);
 			break;
 		case PLAY_RECORDING:
-			if (RecordingListCount != 0)
 				pAct = new PlayRecordingAction(this);
 			break;
 		case By_Type:
@@ -408,7 +407,11 @@ void ApplicationManager::PlayRecording()
 
 		RecordingList[i]->Execute(1, "dummy", 1);
 		UpdateInterface();
-		Sleep(1000);
+		
+		if (i%2!=0)
+		{
+			Sleep(1000);
+		}
 		
 
 	}
@@ -439,6 +442,10 @@ bool ApplicationManager::getWillRecord()
 void ApplicationManager::setWillRecord(bool willrecord)
 {
 	WillRecord = willrecord;
+}
+int ApplicationManager::GetRecordingListCount()
+{
+	return RecordingListCount;
 }
 void ApplicationManager::clearAll() {
 	pOut->ClearDrawArea();

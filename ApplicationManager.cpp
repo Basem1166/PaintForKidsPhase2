@@ -415,7 +415,7 @@ void ApplicationManager::PlayRecording()
 		
 
 	}
-	pOut->PrintMessage("Recording Played");
+	
 }
 CFigure* ApplicationManager::drawnFigures(int i) const
 {

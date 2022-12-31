@@ -95,9 +95,8 @@ void Output::CreateDrawToolBar() const
 	MenuItemImages[ITM_BLUE] = "images\\MenuItems\\Menu_blue.jpg";
 
 	MenuItemImages[ITM_SelectOne] = "images\\MenuItems\\Menu_SelectOne.jpg";
-	MenuItemImages[ITM_ChangeDraw] = "images\\MenuItems\\Menu_ChangeDraw.jpg";
+	MenuItemImages[ITM_ChangeDraw] = "images\\MenuItems\\Menu_Unhighlight.jpg";
 	MenuItemImages[ITM_FILL] = "images\\MenuItems\\Menu_fill.jpg";
-	MenuItemImages[ITM_UN_HIGHLIGHT] = "images\\MenuItems\\Menu_Unhighlight.jpg";
 	MenuItemImages[ITM_MOVE_SHAPE] = "images\\MenuItems\\Menu_MoveShape.jpg";
 	MenuItemImages[ITM_DELETE] = "images\\MenuItems\\Menu_Delete.jpg";
 	MenuItemImages[ITM_CLEAN_ALL] = "images\\MenuItems\\Menu_ClearAll.jpg";
@@ -143,7 +142,6 @@ void Output::CreatePlayToolBar() const
 	PlayItemImages[ITM_Type_color] = "images\\PlayItems\\Playitems_bytype&color.jpg";
 
 	PlayItemImages[ITM_To_Draw_Mode] = "images\\PlayItems\\Playitems_To_Draw.jpg";
-	PlayItemImages[ITM_P_Mute] = "images\\PlayItems\\Playitems_Mute.jpg";
 	PlayItemImages[ITM_P_EXIT] = "images\\PlayItems\\Playitems_Exit.jpg";
 	PlayItemImages[ITM_WHITE] = "images\\PlayItems\\square-512.jpg";
 	for (int i = 0; i < PLAY_ITM_COUNT - 1; i++)

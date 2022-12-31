@@ -65,7 +65,6 @@ ActionType Input::GetUserAction() const
 			case ITM_SelectOne: return SelectOne;
 			case ITM_ChangeDraw: return ChangeDraw;
 			case ITM_FILL: return FILL;
-			case ITM_UN_HIGHLIGHT: return UN_HIGHLIGHT;
 			case ITM_MOVE_SHAPE:  return MOVE_SHAPE;
 			case ITM_DELETE: return _DELETE;
 			case ITM_CLEAN_ALL: return CLEAN_ALL;
@@ -111,7 +110,6 @@ ActionType Input::GetUserAction() const
 				case ITM_By_color:return By_color;
 				case ITM_Type_color: return Type_color;
 				case ITM_To_Draw_Mode: return TO_DRAW;
-				case ITM_P_Mute: return Mute;
 				case ITM_P_EXIT: return EXIT;
 				default: return EMPTY;	//A click on empty place in desgin toolbar
 				}

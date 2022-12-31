@@ -407,8 +407,9 @@ void ApplicationManager::PlayRecording()
 	{
 
 		RecordingList[i]->Execute(1, "dummy", 1);
-		Sleep(1000);
 		UpdateInterface();
+		Sleep(1000);
+		
 
 	}
 	pOut->PrintMessage("Recording Played");

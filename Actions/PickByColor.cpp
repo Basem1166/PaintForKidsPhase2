@@ -109,6 +109,7 @@ void PickByColor::Execute(bool WillRecord, string filename, bool where )
 					else
 					{
 						PrntScore(2);
+						ClickedFigure->SetHidden(0);
 						pManager->UpdateInterface();
 					}
 				}

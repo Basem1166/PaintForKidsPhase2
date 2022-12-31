@@ -43,7 +43,7 @@ void PickByShapeAction::Execute(bool WillRecord, string filename, bool where)
 	pManager->UpdateInterface();
 	Output* pOut = pManager->GetOutput();
 	if (NumberOfFiguresOnScreen < 2) {
-		pOut->PrintMessage("You must have at least two or more colors to play pick by shape!");
+		pOut->PrintMessage("You must have at least two or more Shapes to play pick by shape!");
 		return;
 	}
 	

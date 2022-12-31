@@ -43,7 +43,7 @@ void PickByBothAction::Execute(bool WillRecord, string filename, bool where)
 	pManager->UpdateInterface();
 	Output* pOut = pManager->GetOutput();
 	if (NumberOfFiguresOnScreen < 2) {
-		pOut->PrintMessage("You must have at least two or more colors to play pick by both Shape and Color!");
+		pOut->PrintMessage("You must have at least two or more Shapes to play pick by both Shape and Color!");
 		return;
 	}
 
@@ -81,7 +81,7 @@ void PickByBothAction::Execute(bool WillRecord, string filename, bool where)
 		}
 
 
-		if (PlayFigureName == FigNew->GetFigureType()&& PlayFig->GetGfxInfo().FillClr == FigNew->GetGfxInfo().FillClr)
+		if (PlayFigureName == FigNew->GetFigureType() && PlayFig->GetGfxInfo().FillClr == FigNew->GetGfxInfo().FillClr && PlayFig->GetGfxInfo().isFilled == FigNew->GetGfxInfo().FillClr);
 		{
 
 			UpdateScore(1);

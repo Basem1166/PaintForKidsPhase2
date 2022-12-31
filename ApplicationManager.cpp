@@ -220,16 +220,8 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case EXIT:
 			pAct = new ExitAction(this);
 			break;
-		
-<<<<<<< HEAD
-		case STATUS:	//a click on the status bar ==> no action
-		case DRAWING_AREA:  //a click in the drawing area ==> no action
-			return;
 		default:
 			return;
-=======
-			default: return;
->>>>>>> REDO_UNDO
 	}
 
 	//Execute the created action

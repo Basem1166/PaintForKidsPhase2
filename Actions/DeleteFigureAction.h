@@ -17,6 +17,8 @@ public:
 	void Undo();
 
 	void Redo();
+
+	~DeleteFigureAction();
 };
 
 #endif

@@ -15,8 +15,6 @@ public:
 
 	string convertcolorToString(color color);
 
-	~SaveAction(void);
-
 	void ReadActionParameters(); //reads file name and current clr 
 
 	void Execute(bool WillRecord, string filename, bool where = true);
@@ -24,4 +22,6 @@ public:
 	void Undo();
 
 	void Redo();
+
+	~SaveAction();
 };

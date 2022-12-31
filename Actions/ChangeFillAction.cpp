@@ -101,3 +101,8 @@ void ChangeFillAction::Redo()
 {
 	FigPtr->ChngGfxInfo(NewGfxInfo);
 }
+
+ChangeFillAction::~ChangeFillAction()
+{
+
+}

@@ -119,3 +119,8 @@ void LoadAction::Redo()
 {
 
 }
+
+LoadAction::~LoadAction()
+{
+
+}

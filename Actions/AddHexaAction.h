@@ -22,6 +22,8 @@ public:
 	void Undo();
 
 	void Redo();
+
+	~AddHexaAction();
 };
 
 #endif

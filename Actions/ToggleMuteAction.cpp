@@ -38,3 +38,8 @@ void ToggleMuteAction::Execute(bool WillRecord, string filename, bool where)
 void ToggleMuteAction::Undo(){}
 
 void ToggleMuteAction::Redo() {}
+
+ToggleMuteAction::~ToggleMuteAction()
+{
+
+}

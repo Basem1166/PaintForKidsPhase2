@@ -32,7 +32,8 @@ void ToDraw::Execute(bool WillRecord, string filename, bool where ) {
 	//delete L;
 }
 
-ToDraw::~ToDraw(void) {
+ToDraw::~ToDraw()
+{
 	
 }
 

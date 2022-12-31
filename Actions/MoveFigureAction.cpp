@@ -55,3 +55,8 @@ void MoveFigureAction::Redo()
 {
 	FigPtr->Move(PNew.x, PNew.y);
 }
+
+MoveFigureAction::~MoveFigureAction()
+{
+
+}

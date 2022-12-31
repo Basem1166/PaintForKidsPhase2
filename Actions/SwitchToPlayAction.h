@@ -14,12 +14,8 @@ public:
 	virtual void Execute(bool WillRecord, string filename, bool where = true);
 	virtual void ReadActionParameters();
 	virtual void Undo();
-
 	virtual void Redo();
-
-
-
-
+	~SwitchToPlayAction();
 };
 
 

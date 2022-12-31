@@ -22,6 +22,7 @@ public:
 
 	void Redo();
 
+	~AddCircAction();
 };
 
 #endif

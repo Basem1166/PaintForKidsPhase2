@@ -60,3 +60,8 @@ void SelectOneAction::Redo()
 {
 
 }
+
+SelectOneAction::~SelectOneAction()
+{
+
+}

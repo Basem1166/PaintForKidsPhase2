@@ -25,6 +25,8 @@
 #include"Actions\PickByShapeAction.h"
 #include"Actions\ToggleMuteAction.h"
 #include"Actions\PickByBothAction.h"
+#include"Actions\ClearAllAction.h"
+#include"Actions\ExitAction.h"
 #include<Windows.h>
 
 //Constructor
@@ -37,6 +39,7 @@ ApplicationManager::ApplicationManager()
 	UndoListCurrentSize = 0;
 	RedoListCurrentSize = 0;
 	RecordingListCount = 0;
+	ActionsListCurrentSize = 0;
 	WillRecord = 0;
 	MuteState = false;
 	SelectedFig = NULL;
@@ -47,6 +50,10 @@ ApplicationManager::ApplicationManager()
 	{
 		UndoList[i] = NULL;
 		RedoList[i] = NULL;
+	}
+	for (int i = 0; i < 200; i++)
+	{
+		ActionsList[i] = NULL;
 	}
 }
 
@@ -75,10 +82,26 @@ void ApplicationManager::AddActionToUndoList(Action* pAct)
 	RedoListCurrentSize = 0;
 	for (int i = 0; i < 5; i++)
 	{
-		if (RedoList[i] != NULL)
+		RedoList[i] = NULL;
+	}
+}
+void ApplicationManager::AddActionToActionsList(Action* pAct)
+{
+	if (ActionsListCurrentSize < 200)
+	{
+		ActionsList[ActionsListCurrentSize++] = pAct;
+	}
+	else
+	{
+		if (ActionsList[0] != NULL)
 		{
-			RedoList[i] = NULL;
+			delete ActionsList[0];
 		}
+		for (int i = 0; i < 199; i++)
+		{
+			ActionsList[i] = ActionsList[i + 1];
+		}
+		ActionsList[199] = pAct;
 	}
 }
 void ApplicationManager::UndoPrevAction()
@@ -101,7 +124,17 @@ void ApplicationManager::RedoPrevAction()
 		RedoList[RedoListCurrentSize] = NULL;
 	}
 }
-
+bool ApplicationManager::IsFoundInFigList(CFigure* PassedFig)
+{
+	for (int i = 0; i < FigCount; i++)
+	{
+		if (PassedFig == FigList[i])
+		{
+			return true;
+		}
+	}
+	return false;
+}
 ////////////////////////////////////////////////////////////////////////////////////
 //Creates an action and executes it
 void ApplicationManager::ExecuteAction(ActionType ActType)
@@ -181,19 +214,26 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case Type_color:
 			pAct = new PickByBothAction(this);
 			break;
+		case CLEAN_ALL:
+			pAct = new ClearAllAction(this);
+			break;
 		case EXIT:
-			///create ExitAction here
-			
+			pAct = new ExitAction(this);
 			break;
 		
+<<<<<<< HEAD
 		case STATUS:	//a click on the status bar ==> no action
 		case DRAWING_AREA:  //a click in the drawing area ==> no action
 			return;
 		default:
 			return;
+=======
+			default: return;
+>>>>>>> REDO_UNDO
 	}
 
 	//Execute the created action
+	AddActionToActionsList(pAct);
 	pAct->Execute(0, "dummy", 1);
 }
 void ApplicationManager::SetSelectedFigure(CFigure* fig)
@@ -233,8 +273,10 @@ void ApplicationManager::DeleteFigure(CFigure* pFig) {
 
 	FigList[FigCount-1] = NULL;
 	--FigCount;
-	if(pFig==SelectedFig)
+	if (pFig == SelectedFig)
+	{
 		SelectedFig = NULL;
+	}
 }
 ////////////////////////////////////////////////////////////////////////////////////
 CFigure *ApplicationManager::GetFigure(int x, int y) const
@@ -407,8 +449,49 @@ void ApplicationManager::setWillRecord(bool willrecord)
 }
 void ApplicationManager::clearAll() {
 	pOut->ClearDrawArea();
-	for (int i = 0;i < FigCount;i++) {
+	for (int i = 0; i < FigCount; i++) {
 		FigList[i] = NULL;
 	}
 	FigCount = 0;
+}
+void ApplicationManager::ResetData()
+{
+	pOut->ClearDrawArea();
+	for (int i = 0; i < 200; i++)
+	{
+		if (ActionsList[i])
+		{
+			delete ActionsList[i];
+			ActionsList[i] = NULL;
+		}
+	}
+	for (int i = 0; i < 5; i++)
+	{
+		UndoList[i] = NULL;
+	}
+	for (int i = 0; i < 5; i++)
+	{
+		RedoList[i] = NULL;
+	}
+	for (int i = 0; i < RecordingListCount; i++)
+	{
+		RecordingList[i] = NULL;
+	}
+	for (int i = 0; i < MaxFigCount; i++)
+	{
+		if (FigList[i])
+			delete FigList[i];
+		FigList[i] = NULL;
+	}
+	FigCount = 0;
+	UndoListCurrentSize = 0;
+	RedoListCurrentSize = 0;
+	RecordingListCount = 0;
+	ActionsListCurrentSize = 0;
+	WillRecord = 0;
+	MuteState = false;
+	SelectedFig = NULL;
+	CFigure::resetID();
+	UI.isFilled = false;
+	UI.DrawColor = BLUE;
 }

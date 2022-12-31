@@ -28,5 +28,6 @@ public:
 	void Undo();
 
 	void Redo();
-	~LoadAction(void);
+
+	~LoadAction();
 };

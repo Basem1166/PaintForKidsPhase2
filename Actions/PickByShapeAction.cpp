@@ -12,11 +12,6 @@ PickByShapeAction::PickByShapeAction(ApplicationManager* pApp) :Action(pApp)
 	WrongCounter = 0;
 }
 
-PickByShapeAction::~PickByShapeAction()
-{
-
-}
-
 void PickByShapeAction::UpdateScore(bool Correct)
 {
 	Output* pOut = pManager->GetOutput();
@@ -94,8 +89,15 @@ void PickByShapeAction::Execute(bool WillRecord, string filename, bool where)
 
 void PickByShapeAction::Undo()
 {
+
 }
 
 void PickByShapeAction::Redo()
 {
+
+}
+
+PickByShapeAction::~PickByShapeAction()
+{
+
 }

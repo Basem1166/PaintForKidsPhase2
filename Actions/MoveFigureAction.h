@@ -17,8 +17,12 @@ public:
 
 	//Add rectangle to the ApplicationManager
 	virtual void Execute(bool WillRecord, string filename, bool where = true);
+
 	void Undo();
+
 	void Redo();
+
+	~MoveFigureAction();
 };
 
 #endif

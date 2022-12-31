@@ -103,3 +103,8 @@ void ChangeHighlightAction::Redo()
 {
 	FigPtr->ChngGfxInfo(NewGfxInfo);
 }
+
+ChangeHighlightAction::~ChangeHighlightAction()
+{
+
+}

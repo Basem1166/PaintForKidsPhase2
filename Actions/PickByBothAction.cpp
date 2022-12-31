@@ -12,11 +12,6 @@ PickByBothAction::PickByBothAction(ApplicationManager* pApp) :Action(pApp)
 	WrongCounter = 0;
 }
 
-PickByBothAction::~PickByBothAction()
-{
-
-}
-
 void PickByBothAction::UpdateScore(bool Correct)
 {
 	Output* pOut = pManager->GetOutput();
@@ -107,8 +102,15 @@ void PickByBothAction::Execute(bool WillRecord, string filename, bool where)
 
 void PickByBothAction::Undo()
 {
+
 }
 
 void PickByBothAction::Redo()
 {
+
+}
+
+PickByBothAction::~PickByBothAction()
+{
+
 }

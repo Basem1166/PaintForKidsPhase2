@@ -19,9 +19,11 @@ private:
 	Action* UndoList[5];
 	Action* RedoList[5];
 	Action* RecordingList[20];
+	Action* ActionsList[200];
 	int RecordingListCount;
 	int UndoListCurrentSize;
 	int RedoListCurrentSize;
+	int ActionsListCurrentSize;
 	bool MuteState;
 	CFigure* FigList[MaxFigCount];	//List of all figures (Array of pointers)
 
@@ -49,6 +51,7 @@ public:
 	void DeleteFigure(CFigure*); //Delete the figure from FigList
 	bool IsMute();
 	void ToggleMute();
+	bool IsFoundInFigList(CFigure*);
 	// -- Interface Management Functions
 	Input *GetInput() const; //Return pointer to the input
 	Output *GetOutput() const; //Return pointer to the output
@@ -57,6 +60,7 @@ public:
 	//-- Save Management Functions RHG
 	void SaveFigcount(ofstream & outputFile);
 	void clearAll();
+	void ResetData();
 	void SaveAll(ofstream& outputFile);
 	CFigure* drawnFigures(int) const;
 	int getFigCount();
@@ -65,6 +69,7 @@ public:
 	void PlayRecording();
 	void AddRecordingFigure(Action* rAction);//adds figures to the recording list
 	void AddActionToUndoList(Action*);
+	void AddActionToActionsList(Action*);
 	bool getWillRecord();// setter and getter fir the will record boolean.
 	void setWillRecord(bool willrecord);
 	//Play functions

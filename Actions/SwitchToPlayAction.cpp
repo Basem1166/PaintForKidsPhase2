@@ -39,3 +39,8 @@ void SwitchToPlayAction::Undo()
 void SwitchToPlayAction::Redo()
 {
 }
+
+SwitchToPlayAction::~SwitchToPlayAction()
+{
+
+}

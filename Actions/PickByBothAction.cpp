@@ -81,7 +81,7 @@ void PickByBothAction::Execute(bool WillRecord, string filename, bool where)
 		}
 
 
-		if (PlayFigureName == FigNew->GetFigureType() && PlayFig->GetGfxInfo().FillClr == FigNew->GetGfxInfo().FillClr && PlayFig->GetGfxInfo().isFilled == FigNew->GetGfxInfo().FillClr);
+		if (PlayFigureName == FigNew->GetFigureType() && PlayFig->GetGfxInfo().FillClr == FigNew->GetGfxInfo().FillClr && PlayFig->GetGfxInfo().isFilled == FigNew->GetGfxInfo().isFilled);
 		{
 
 			UpdateScore(1);

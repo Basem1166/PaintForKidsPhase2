@@ -76,10 +76,15 @@ void PickByShapeAction::Execute(bool WillRecord, string filename, bool where)
 			FigNew->SetHidden(false);
 			pManager->UpdateInterface();
 			NumberofPlayFigures--;
+			pOut->PrintMessage("Correct! Current Score = " + to_string(CorrectCounter) + " Right, and " + to_string(WrongCounter) + " Wrong.");
 			continue;
+			
 		}
-		pOut->PrintMessage("Wrong! Try Again!");
 		UpdateScore(0);
+		FigNew->SetHidden(false);
+		pManager->UpdateInterface();
+		pOut->PrintMessage("Wrong! Try Again! Current Score = " +to_string(CorrectCounter) + " Right, and " + to_string(WrongCounter) + " Wrong.");
+		
 	}
 
 	pOut->PrintMessage("Congratulations YOU WIN!, Final Score = " + to_string(CorrectCounter) + " Right, and " + to_string(WrongCounter) + " Wrong.");

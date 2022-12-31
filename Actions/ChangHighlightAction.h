@@ -8,6 +8,7 @@ class ChangeHighlightAction : public Action
 private:
 	ActionType ColorAct; //Changed color
 	GfxInfo OldGfxInfo, NewGfxInfo;
+	bool SelectedFlag;
 public:
 	ChangeHighlightAction(ApplicationManager* pApp);
 	virtual void Execute(bool WillRecord, string filename, bool where = true);

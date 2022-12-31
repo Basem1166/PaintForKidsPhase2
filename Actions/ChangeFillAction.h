@@ -8,6 +8,7 @@ class ChangeFillAction : public Action
 private:
 	ActionType ColorAct; //CLICKED COLOR
 	GfxInfo OldGfxInfo, NewGfxInfo;
+	bool SelectedFlag;
 
 public:
 	ChangeFillAction(ApplicationManager* pApp);

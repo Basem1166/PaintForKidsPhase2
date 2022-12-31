@@ -9,6 +9,7 @@ class MoveFigureAction : public Action
 private:
 	Point PNew, POld;
 	GfxInfo RectGfxInfo;
+	bool SelectedFlag;
 public:
 	MoveFigureAction(ApplicationManager* pApp);
 

@@ -417,10 +417,7 @@ void ApplicationManager::PlayRecording()
 	}
 	
 }
-CFigure* ApplicationManager::drawnFigures(int i) const
-{
-	return FigList[i];
-}
+
 void ApplicationManager::AddRecordingFigure(Action* rAction)
 {
 	if (RecordingListCount < 20) {

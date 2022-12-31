@@ -67,7 +67,6 @@ public:
 
 	//-- Pick By color Function RHG
 	void ArrOfclr();
-	CFigure* drawnFigures(int) const;
 	int getFigCount();
 
 	//Recording Functions

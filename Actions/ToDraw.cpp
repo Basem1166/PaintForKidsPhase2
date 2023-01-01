@@ -9,12 +9,14 @@ void ToDraw::ReadActionParameters() {
 }
 
 void ToDraw::Execute(bool WillRecord, string filename, bool where ) {
+
 	//Get a Pointer to the Input / Output Interfaces
 	Output* pOut = pManager->GetOutput();
-	Input* pIn = pManager->GetInput();
+	
 
 	pOut->PrintMessage("Action: Switch to Draw Mode, creating simualtion tool bar");
 
+	//alternative method
 	//LoadAction* L = new LoadAction(pManager);
 	//L->Execute(false, "Details", 0);
 
@@ -25,11 +27,10 @@ void ToDraw::Execute(bool WillRecord, string filename, bool where ) {
 
 	pOut->CreateDrawToolBar();
 	pOut->CreateDrawToolBar();
+
 	//any cleanup have been implmented in distructor of appmanager
-	//TODO:i should here load the graph saved in toplaymode RHG
-	
+
 	pOut->ClearStatusBar();
-	//delete L;
 }
 
 ToDraw::~ToDraw()

@@ -2,8 +2,7 @@
 #include "..\Figures\CFigure.h"
 #include "Action.h"
 
-class PickByColor :
-	public Action
+class PickByColor :public Action
 {
 	CFigure* Fig;
 	Point point;
@@ -12,7 +11,6 @@ class PickByColor :
 	int NumOfColorsToPicked;
 	int WrongPicks;
 	int CorrestPicks;
-	//int ArrOfColors[6];
 	int* ArrayOfColors;
 	
 public:
@@ -20,7 +18,7 @@ public:
 	PickByColor(ApplicationManager*);
 
 
-	void PrntScore(int);
+	void PrntScore(int); //printing score according to case right or wrong ,final result
 
 	void ReadActionParameters();
 

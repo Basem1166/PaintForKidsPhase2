@@ -11,12 +11,15 @@ public:
 
 	ToDraw(ApplicationManager* pApp);
 
-	~ToDraw();
+
 
 	void ReadActionParameters();
+
 	void Execute(bool WillRecord, string filename, bool where = true);
 
 	void Undo();
 
 	void Redo();
+
+	~ToDraw();
 };

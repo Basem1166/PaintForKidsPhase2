@@ -9,6 +9,7 @@ class SaveAction :public Action
 {
 	string filename5;		//the name of file that we will save data into
 	GfxInfo currentGfxInfo; // to get current color and current fill color from gfxinfo
+
 public:
 
 	SaveAction(ApplicationManager* pApp);

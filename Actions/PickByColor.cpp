@@ -14,12 +14,12 @@ PickByColor::PickByColor(ApplicationManager* pApp) :Action(pApp)
 
 void PickByColor::ReadActionParameters()
 {
-	pManager->ArrOfclr();
+	pManager->ArrOfclr(); // calculating number of each color in array by calling each figure increment function
 
-	 ArrayOfColors = Fig->getArrOfColors();
+	 ArrayOfColors = Fig->getArrOfColors();  //getting array of colors which is static  ;so at the end we reset it in the end game
 
 	for (int i = 0;i < 6;i++)
-		if (ArrayOfColors[i] != 0)numOfcolors++;
+		if (ArrayOfColors[i] != 0)numOfcolors++; //calculating variety of colors
 	
 
 }
@@ -28,11 +28,11 @@ void PickByColor::ReadActionParameters()
 void PickByColor::Execute(bool WillRecord, string filename, bool where )
 {
 	pManager->Reset();
-	//for (int i = 0; i < pManager->getFigCount();i++)
-	//	pManager->drawnFigures(i)->SetHidden(false);
-	//pManager->UpdateInterface();
+	
+	// alternative
 	//LoadAction* L = new LoadAction(pManager);
 	//L->Execute(false, "Details", 0);
+
 	pManager->UpdateInterface();
 
 	Output* pOut = pManager->GetOutput();
@@ -43,16 +43,18 @@ void PickByColor::Execute(bool WillRecord, string filename, bool where )
 	if (numOfcolors > 1)
 	{
 
-		CFigure* ClickedFigure;
-
+		
+		// alterntaive 
 		//RandomFigNum = rand() % pManager->getFigCount();
-		Fig = pManager->GetRandFig();
 
-		if (Fig->GetGfxInfo().isFilled)
+		Fig = pManager->GetRandFig(); //random figure returned 
+
+		//use randfig to determine the promt for the game 
+		if (Fig->GetGfxInfo().isFilled) //checking firt if shape is filled to be valid for pick by color game
 		{
 			if (Fig->GetGfxInfo().FillClr == BLACK)
 			{
-				NumOfColorsToPicked = ArrayOfColors[0];
+				NumOfColorsToPicked = ArrayOfColors[0]; //if random is color black then num of colors to picked is number of colors black
 				pOut->PrintMessage("pick all black figures !");
 			}
 			else if (Fig->GetGfxInfo().FillClr == YELLOW)
@@ -86,6 +88,10 @@ void PickByColor::Execute(bool WillRecord, string filename, bool where )
 			}
 		}
 
+		//after promiting the kid 
+		//we get click from the kid and check if the clicked fig color is the same as fig
+		CFigure* ClickedFigure;
+
 		while (NumOfColorsToPicked > 0)
 		{
 
@@ -102,7 +108,10 @@ void PickByColor::Execute(bool WillRecord, string filename, bool where )
 					{
 						PrntScore(1);
 						ClickedFigure->SetHidden(0);
+
+						//alternative
 						//pManager->DeleteFigure(ClickedFigure);
+
 						pManager->UpdateInterface();
 						NumOfColorsToPicked--;
 					}

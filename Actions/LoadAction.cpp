@@ -46,6 +46,7 @@ void LoadAction::Execute(bool WillRecord, string filename2, bool where ) {
 	int figcount;
 	inputFile >> figcount;
 
+	//Determine and constructing shapes 
 	CFigure* myFigure = NULL;
 	for (size_t i = 0; i < figcount; i++)
 	{

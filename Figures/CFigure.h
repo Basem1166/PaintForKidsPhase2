@@ -52,7 +52,7 @@ public:
 	virtual void PrintInfo(Output*) = 0;	//print all figure info on the status bar
 
 	//converting color type to string to be able to write it in text files
-	string convertcolorToString(color color);
+	string convertcolorToString(color color); //note i should have used those conversions static in load,save but when i did it gets errors
 	//converting string type to color to be able to read it from text files
 	color convertStringToColor(string color);
 	virtual string GetFigureType()=0;

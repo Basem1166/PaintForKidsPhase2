@@ -62,7 +62,7 @@ void PickByShapeAction::Execute(bool WillRecord, string filename, bool where)
 		CFigure* FigNew = pManager->GetFigure(P.x, P.y); //Checks if the points clicked are inside a figure
 
 
-		if (FigNew == NULL)// if clicked on nothing
+		if (FigNew == NULL||!FigNew->IsHidden())// if clicked on nothing
 		{
 			pOut->PrintMessage("You Clicked An Empty Area");
 			continue;

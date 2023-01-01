@@ -95,7 +95,7 @@ void PickByColor::Execute(bool WillRecord, string filename, bool where )
 			{
 				ClickedFigure = pManager->GetFigure(point.x, point.y);
 
-				if (ClickedFigure != NULL)
+				if (ClickedFigure != NULL&&ClickedFigure->IsHidden())
 				{
 
 					if ( Fig->GetGfxInfo().FillClr == ClickedFigure->GetGfxInfo().FillClr)

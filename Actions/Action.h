@@ -11,7 +11,7 @@ class ApplicationManager; //forward class declaration
 class Action
 {
 protected:
-	CFigure* FigPtr;
+	CFigure* FigPtr;  //Pointer to any figure
 	ApplicationManager *pManager;	//Actions needs AppMngr to do their job
 
 public:
@@ -24,11 +24,11 @@ public:
 	//Execute action (code depends on action type)
 	virtual void Execute(bool WillRecord, string filename, bool where = true) =0;
 
-	virtual void Undo() = 0;
+	virtual void Undo() = 0; //Virtual member funtion to undo the action
 
-	virtual void Redo() = 0;
+	virtual void Redo() = 0; //Virtual member funtion to redo the action
 
-	virtual ~Action() {};
+	virtual ~Action() {}; //Virtual Destructor
 };
 
 #endif

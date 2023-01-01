@@ -8,21 +8,19 @@ class AddSqrAction : public Action
 {
 private:
 	Point P1; //Square Center
-	GfxInfo SqrGfxInfo;
+	GfxInfo SqrGfxInfo; //Square graphics info
 public:
-	AddSqrAction(ApplicationManager* pApp);
+	AddSqrAction(ApplicationManager* pApp); //Constructor
 
-	//Reads square parameters
-	virtual void ReadActionParameters();
+	virtual void ReadActionParameters(); //Reads square parameters
 
-	//Add square to the ApplicationManager
-	virtual void Execute(bool WillRecord, string filename, bool where = true);
+	virtual void Execute(bool WillRecord, string filename, bool where = true); //Execute the action
 
-	void Undo();
+	void Undo(); //Undo the action
 
-	void Redo();
+	void Redo(); //Redo the action
 
-	~AddSqrAction();
+	~AddSqrAction(); //Destructor
 };
 
 #endif

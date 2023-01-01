@@ -8,21 +8,19 @@ class AddCircAction : public Action
 {
 private:
 	Point P1, P2; //Circle Center and Radius
-	GfxInfo CircGfxInfo;
+	GfxInfo CircGfxInfo; //Circle graphics info
 public:
-	AddCircAction(ApplicationManager* pApp);
+	AddCircAction(ApplicationManager* pApp); //Constructor
 
-	//Reads Circle parameters
-	virtual void ReadActionParameters();
+	virtual void ReadActionParameters(); //Reads Circle parameters
 
-	//Add circle to the ApplicationManager
-	virtual void Execute(bool WillRecord, string filename, bool where = true);
+	virtual void Execute(bool WillRecord, string filename, bool where = true); //Execute the action
 
-	void Undo();
+	void Undo(); //Undo the action
 
-	void Redo();
+	void Redo(); //Redo the action
 
-	~AddCircAction();
+	~AddCircAction(); //Destructor
 };
 
 #endif

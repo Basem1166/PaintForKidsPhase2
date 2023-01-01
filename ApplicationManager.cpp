@@ -35,6 +35,7 @@ ApplicationManager::ApplicationManager()
 	//Create Input and output
 	pOut = new Output;
 	pIn = pOut->CreateInput();
+
 	FigCount = 0;
 	UndoListCurrentSize = 0;
 	RedoListCurrentSize = 0;
@@ -43,14 +44,17 @@ ApplicationManager::ApplicationManager()
 	WillRecord = 0;
 	MuteState = false;
 	SelectedFig = NULL;
-	//Create an array of figure pointers and set them to NULL		
+
+	//Set pointers = NULL		
 	for(int i=0; i<MaxFigCount; i++)
 		FigList[i] = NULL;
+
 	for(int i=0;i<5;i++)
 	{
 		UndoList[i] = NULL;
 		RedoList[i] = NULL;
 	}
+
 	for (int i = 0; i < 200; i++)
 	{
 		ActionsList[i] = NULL;
@@ -60,31 +64,41 @@ ApplicationManager::ApplicationManager()
 //==================================================================================//
 //								Actions Related Functions							//
 //==================================================================================//
+
 ActionType ApplicationManager::GetUserAction() const
 {
 	//Ask the input to get the action from the user.
 	return pIn->GetUserAction();		
 }
+
+//Add action to undo list
 void ApplicationManager::AddActionToUndoList(Action* pAct)
 {
+	//Check if Undo List reached its max size
 	if (UndoListCurrentSize < 5)
 	{
 		UndoList[UndoListCurrentSize++] = pAct;
 	}
 	else
 	{
+		//Remove the action with index 0 and shift the array left to add the new action in index 4
 		for (int i = 0; i < 4; i++)
 		{
 			UndoList[i] = UndoList[i + 1];
 		}
 		UndoList[4] = pAct;
 	}
+
+	//Resets Redo List
 	RedoListCurrentSize = 0;
+
 	for (int i = 0; i < 5; i++)
 	{
 		RedoList[i] = NULL;
 	}
 }
+
+//Add the action to Actions List
 void ApplicationManager::AddActionToActionsList(Action* pAct)
 {
 	if (ActionsListCurrentSize < 200)
@@ -97,45 +111,42 @@ void ApplicationManager::AddActionToActionsList(Action* pAct)
 		{
 			delete ActionsList[0];
 		}
+
 		for (int i = 0; i < 199; i++)
 		{
 			ActionsList[i] = ActionsList[i + 1];
 		}
+
 		ActionsList[199] = pAct;
 	}
 }
+
+//Undo Previous Action
 void ApplicationManager::UndoPrevAction()
 {
+	//Check of Undo List has action to undo
 	if (UndoListCurrentSize > 0)
 	{
 		UndoListCurrentSize--;
-		RedoList[RedoListCurrentSize++] = UndoList[UndoListCurrentSize];
-		UndoList[UndoListCurrentSize]->Undo();
-		UndoList[UndoListCurrentSize] = NULL;
+		RedoList[RedoListCurrentSize++] = UndoList[UndoListCurrentSize]; //Add the action to Redo List
+		UndoList[UndoListCurrentSize]->Undo(); //Undo the action
+		UndoList[UndoListCurrentSize] = NULL; //Remove the action from Undo List
 	}
 }
+
+//Redo Last undone action
 void ApplicationManager::RedoPrevAction()
 {
+	//Check of Redo List has action to redo
 	if(RedoListCurrentSize>0)
 	{
 		RedoListCurrentSize--;
-		UndoList[UndoListCurrentSize++] = RedoList[RedoListCurrentSize];
-		RedoList[RedoListCurrentSize]->Redo();
-		RedoList[RedoListCurrentSize] = NULL;
+		UndoList[UndoListCurrentSize++] = RedoList[RedoListCurrentSize]; //Add the action to Undo List
+		RedoList[RedoListCurrentSize]->Redo(); //Redo the action
+		RedoList[RedoListCurrentSize] = NULL; //Remove the action from Redo List
 	}
 }
-bool ApplicationManager::IsFoundInFigList(CFigure* PassedFig)
-{
-	for (int i = 0; i < FigCount; i++)
-	{
-		if (PassedFig == FigList[i])
-		{
-			return true;
-		}
-	}
-	return false;
-}
-////////////////////////////////////////////////////////////////////////////////////
+
 //Creates an action and executes it
 void ApplicationManager::ExecuteAction(ActionType ActType)
 {
@@ -222,16 +233,16 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		default:
 			return;
 	}
-
-	//Execute the created action
-	AddActionToActionsList(pAct);
-	pAct->Execute(0, "dummy", 1);
+	AddActionToActionsList(pAct); //Add the action to Actions List
+	pAct->Execute(0, "dummy", 1); //Execute the created action
 }
-void ApplicationManager::SetSelectedFigure(CFigure* fig)//sets selected figure pointer
+
+void ApplicationManager::SetSelectedFigure(CFigure* fig) //sets selected figure pointer
 {
 	SelectedFig = fig;
 }
-CFigure* ApplicationManager::GetSelectedFigure()//returns a pointer to the selected figure
+
+CFigure* ApplicationManager::GetSelectedFigure() //returns a pointer to the selected figure
 {
 	return SelectedFig;
 }
@@ -246,38 +257,49 @@ void ApplicationManager::AddFigure(CFigure* pFig)
 		FigList[FigCount++] = pFig;
 	}
 }
-/////////////////////////////////////////////////////////////////////////////////////
-void ApplicationManager::DeleteFigure(CFigure* pFig) {
-	int c=-1 ;
 
-	for (int i = 0; i < FigCount; i++) {
-		
-		if(FigList[i] == pFig) {
-			c = i;
+void ApplicationManager::DeleteFigure(CFigure* pFig) {
+	int c = -1;
+
+	for (int i = 0; i < FigCount; i++)
+	{
+		if (FigList[i] == pFig)
+		{
+			c = i; //stores the index of the figure to be removed
 			break;
 		}
 	}
-	
+
 	for (int i = c; i < FigCount - 1; i++) {
-		FigList[i] = FigList[i + 1];
+		FigList[i] = FigList[i + 1]; //Removes the figure from FigList and shift the array left
 	}
 
-	FigList[FigCount-1] = NULL;
+	FigList[FigCount - 1] = NULL;
 	--FigCount;
+
 	if (pFig == SelectedFig)
 	{
 		SelectedFig = NULL;
 	}
 }
-////////////////////////////////////////////////////////////////////////////////////
+
+//Check if the passed figure is in FigList
+bool ApplicationManager::IsFoundInFigList(CFigure* PassedFig)
+{
+	for (int i = 0; i < FigCount; i++)
+	{
+		if (PassedFig == FigList[i])
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
 CFigure *ApplicationManager::GetFigure(int x, int y) const
 {
 	//If a figure is found return a pointer to it.
 	//if this point (x,y) does not belong to any figure return NULL
-
-
-	//Add your code here to search for a figure given a point x,y	
-	//Remember that ApplicationManager only calls functions do NOT implement it.
 	for (int i = FigCount - 1; i >= 0; i--) {
 		if (FigList[i]->IsInside(x, y)) {
 			return FigList[i];
@@ -289,13 +311,17 @@ CFigure *ApplicationManager::GetFigure(int x, int y) const
 int ApplicationManager:: getFigCount() {
 	return FigCount;
 }
-bool ApplicationManager::IsMute()
-{
-	return MuteState;
-}
+
+//Flip Mute State
 void ApplicationManager::ToggleMute()
 {
 	MuteState = !MuteState;
+}
+
+//Get Mute state
+bool ApplicationManager::IsMute()
+{
+	return MuteState;
 }
 //==================================================================================//
 //							Interface Management Functions							//
@@ -313,15 +339,14 @@ void ApplicationManager::UpdateInterface() const
 		}
 		
 	}
-	
-	
-		
 }
+
 CFigure* ApplicationManager::GetRandFig()
 {
 	int RandIndex = rand() % FigCount + 0;
 	return FigList[RandIndex];
 }
+
 int ApplicationManager::GetNumberofSelectedFigure(CFigure* PlayFig)
 {
 	int counter = 0;
@@ -335,6 +360,7 @@ int ApplicationManager::GetNumberofSelectedFigure(CFigure* PlayFig)
 	}
 	return counter;
 }
+
 int ApplicationManager::GetNumberofSelectedFigure(CFigure* PlayFig, GfxInfo GfxInfo)
 {
 	int counter = 0;
@@ -348,6 +374,7 @@ int ApplicationManager::GetNumberofSelectedFigure(CFigure* PlayFig, GfxInfo GfxI
 	}
 	return counter;
 }
+
 void ApplicationManager::Reset() {
 	for (int i = 0; i < FigCount; i++)
 	{
@@ -355,6 +382,7 @@ void ApplicationManager::Reset() {
 	}
 }
 ////////////////////////////////////////////////////////////////////////////////////
+
 //Return a pointer to the input
 Input *ApplicationManager::GetInput() const
 {	return pIn; }
@@ -362,6 +390,7 @@ Input *ApplicationManager::GetInput() const
 Output *ApplicationManager::GetOutput() const
 {	return pOut; }
 ////////////////////////////////////////////////////////////////////////////////////
+
 //Destructor
 ApplicationManager::~ApplicationManager()
 {
@@ -373,7 +402,7 @@ ApplicationManager::~ApplicationManager()
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
-//save & load management functions RHG
+//save & load management functions
 
 
 void ApplicationManager::SaveFigcount(ofstream& outputFile) { //writing figcount into the file
@@ -432,18 +461,22 @@ void ApplicationManager::AddRecordingFigure(Action* rAction)
 		delete pAct;
 	}
 }
+
 bool ApplicationManager::getWillRecord()
 {
 	return WillRecord;
 }
+
 void ApplicationManager::setWillRecord(bool willrecord)
 {
 	WillRecord = willrecord;
 }
+
 int ApplicationManager::GetRecordingListCount()
 {
 	return RecordingListCount;
 }
+
 void ApplicationManager::clearAll() {
 	pOut->ClearDrawArea();
 	for (int i = 0; i < FigCount; i++) {
@@ -451,9 +484,13 @@ void ApplicationManager::clearAll() {
 	}
 	FigCount = 0;
 }
+
+//Reset Data Function. It dellocates memory and resets the variables
 void ApplicationManager::ResetData()
 {
 	pOut->ClearDrawArea();
+
+	//Deallocate Actions
 	for (int i = 0; i < 200; i++)
 	{
 		if (ActionsList[i])
@@ -462,24 +499,31 @@ void ApplicationManager::ResetData()
 			ActionsList[i] = NULL;
 		}
 	}
+
+	//Make Undo List, Redo List and Recording List pointers point to NULL
 	for (int i = 0; i < 5; i++)
 	{
 		UndoList[i] = NULL;
 	}
+
 	for (int i = 0; i < 5; i++)
 	{
 		RedoList[i] = NULL;
 	}
+
 	for (int i = 0; i < RecordingListCount; i++)
 	{
 		RecordingList[i] = NULL;
 	}
+
+	//Deallocate Figures
 	for (int i = 0; i < MaxFigCount; i++)
 	{
 		if (FigList[i])
 			delete FigList[i];
 		FigList[i] = NULL;
 	}
+
 	FigCount = 0;
 	UndoListCurrentSize = 0;
 	RedoListCurrentSize = 0;
@@ -492,6 +536,7 @@ void ApplicationManager::ResetData()
 	UI.isFilled = false;
 	UI.DrawColor = BLUE;
 }
+
 //pick by color 
 void ApplicationManager::ArrOfclr() {
 	for (int i = 0; i < FigCount; i++) {

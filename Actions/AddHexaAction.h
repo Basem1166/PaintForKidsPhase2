@@ -9,21 +9,19 @@ class AddHexaAction : public Action
 {
 private:
 	Point P1; //Hexagon center
-	GfxInfo HexaGfxInfo;
+	GfxInfo HexaGfxInfo; //Hexagon graphics info
 public:
-	AddHexaAction(ApplicationManager* pApp);
+	AddHexaAction(ApplicationManager* pApp); //Constructor
 
-	//Reads hexagon parameters
-	virtual void ReadActionParameters();
+	virtual void ReadActionParameters(); //Reads hexagon parameters
 
-	//Add hexagon to the ApplicationManager
-	virtual void Execute(bool WillRecord, string filename, bool where = true);
+	virtual void Execute(bool WillRecord, string filename, bool where = true); //Execute the action
 
-	void Undo();
+	void Undo(); //Undo the action
 
-	void Redo();
+	void Redo(); //Redo the action
 
-	~AddHexaAction();
+	~AddHexaAction(); //Destructor
 };
 
 #endif

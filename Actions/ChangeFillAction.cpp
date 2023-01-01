@@ -1,13 +1,13 @@
 #include "ChangeFillAction.h"
 #include "..\Figures\CFigure.h"
-
 #include "..\ApplicationManager.h"
-
 #include "..\GUI\input.h"
 #include "..\GUI\Output.h"
 #include "../DEFS.h"
-ChangeFillAction::ChangeFillAction(ApplicationManager* pApp) :Action(pApp)
-{}
+
+ChangeFillAction::ChangeFillAction(ApplicationManager* pApp) :Action(pApp) {} //Constructor
+
+//Reading some parameters
 void ChangeFillAction::ReadActionParameters()
 {
     //Get a Pointer to the Input / Output Interfaces
@@ -15,7 +15,7 @@ void ChangeFillAction::ReadActionParameters()
     Input* pIn = pManager->GetInput();
     //Get the selected figure
     FigPtr = pManager->GetSelectedFigure();
-    if (FigPtr == NULL) //chrecking if he selected a figure first
+    if (FigPtr == NULL) //checking if he selected a figure first
     {
         pOut->PrintMessage("Error! Please Select a figure first");
         SelectedFlag = false;
@@ -26,6 +26,7 @@ void ChangeFillAction::ReadActionParameters()
     pOut->ClearStatusBar();
 
 }
+
 bool ChangeFillAction::GetFillColour(ActionType ColorAct) //Checking the color clicked or if he didnt click on a color
 {
     if (ColorAct == C_BLACK)
@@ -74,13 +75,15 @@ void ChangeFillAction::Execute(bool WillRecord, string filename, bool where) {
     if (!WillRecord)
         //This action needs to read some parameters first
         ReadActionParameters();
+
     if (!SelectedFlag)//checking if he selected a figure first
     {
         return;
     }
+
     FigPtr = pManager->GetSelectedFigure();
     Output* pOut = pManager->GetOutput();
-    OldGfxInfo = FigPtr->GetGfxInfo();
+    OldGfxInfo = FigPtr->GetGfxInfo(); //Stores old graphics info of the figure
     NewGfxInfo = OldGfxInfo;
 
     if (GetFillColour(ColorAct))//changing the color if he clicked on a color icon
@@ -89,25 +92,33 @@ void ChangeFillAction::Execute(bool WillRecord, string filename, bool where) {
         NewGfxInfo.isFilled = true;
         FigPtr->ChngFillClr(UI.FillColor); //changing the fill color
     }
-    else {
+    else
+    {
         pOut->PrintMessage("Please Click on a Colour icon");
     }
+
     if (pManager->getWillRecord())
     {
         pManager->AddRecordingFigure(this);
     }
-    if (GetFillColour(ColorAct)) {
-        pManager->AddActionToUndoList(this);
+
+    if (GetFillColour(ColorAct))
+    {
+        pManager->AddActionToUndoList(this); //Add the action to the undo list
     }
 }
 
+//Undo the action
 void ChangeFillAction::Undo()
 {
-    FigPtr->ChngGfxInfo(OldGfxInfo);
+    FigPtr->ChngGfxInfo(OldGfxInfo); //Set the graphics info of the figure with the old one
 }
 
+//Redo the action
 void ChangeFillAction::Redo()
 {
-    FigPtr->ChngGfxInfo(NewGfxInfo);
+    FigPtr->ChngGfxInfo(NewGfxInfo); //Set the graphics info of the figure with the new stored one
 }
+
+//Destructor
 ChangeFillAction::~ChangeFillAction() {}

@@ -15,20 +15,17 @@ class ApplicationManager
 
 private:
 	int WillRecord;
-	int FigCount;//Actual number of figures
-	Action* UndoList[5];
-	Action* RedoList[5];
+	int FigCount; //Actual number of figures
+	Action* UndoList[5]; //Undo List
+	Action* RedoList[5]; //Redo List
 	Action* RecordingList[20];
-	Action* ActionsList[200];
-	int RecordingListCount;
-	int UndoListCurrentSize;
-	int RedoListCurrentSize;
-	int ActionsListCurrentSize;
-	bool MuteState;
+	Action* ActionsList[200]; //Last 200 Actions List
+	int RecordingListCount; //Current size of Recording List
+	int UndoListCurrentSize; //Current size of Undo List
+	int RedoListCurrentSize; //Current size of Redo List
+	int ActionsListCurrentSize; //Current size of Actions List
+	bool MuteState; // Mute State
 	CFigure* FigList[MaxFigCount];	//List of all figures (Array of pointers)
-
-	//CFigure* ArrOfColors[6];
-
 	CFigure* SelectedFig; //Pointer to the selected figure
 
 	//Pointers to Input and Output classes
@@ -36,24 +33,25 @@ private:
 	Output *pOut;
 
 public:	
-	ApplicationManager(); 
-	~ApplicationManager();
+	ApplicationManager(); //Constructor
+	~ApplicationManager(); //Destructor
 	void ResetArrOfclr();
 	// -- Action-Related Functions
-	//Reads the input command from the user and returns the corresponding action type
-	ActionType GetUserAction() const;
+	ActionType GetUserAction() const; //Reads the input command from the user and returns the corresponding action type
 	void ExecuteAction(ActionType) ; //Creates an action and executes it
 	void SetSelectedFigure(CFigure*);
 	CFigure* GetSelectedFigure();
-	void UndoPrevAction();
-	void RedoPrevAction();
+	void UndoPrevAction(); //Undo Last Action
+	void RedoPrevAction(); //Redo Last Undone Action 
+	void ToggleMute(); //Change Mute State
+	bool IsMute(); //Get Mute State
+
 	// -- Figures Management Functions
 	void AddFigure(CFigure* pFig);          //Adds a new figure to the FigList
 	CFigure *GetFigure(int x, int y) const; //Search for a figure given a point inside the figure
 	void DeleteFigure(CFigure*); //Delete the figure from FigList
-	bool IsMute();
-	void ToggleMute();
 	bool IsFoundInFigList(CFigure*);
+
 	// -- Interface Management Functions
 	Input *GetInput() const; //Return pointer to the input
 	Output *GetOutput() const; //Return pointer to the output
@@ -78,6 +76,7 @@ public:
 	bool getWillRecord();// setter and getter fir the will record boolean.
 	void setWillRecord(bool willrecord);
 	int GetRecordingListCount();
+
 	//Play functions
 	CFigure* GetRandFig();
 	int GetNumberofSelectedFigure(CFigure* PlayFig);

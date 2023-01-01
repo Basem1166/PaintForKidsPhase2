@@ -2,26 +2,30 @@
 #define CHANGE_FILL_ACTION_H
 
 #include "Action.h"
+
 //Add Change Highlight Colour Action class
 class ChangeFillAction : public Action
 {
 private:
 	ActionType ColorAct; //CLICKED COLOR
-	GfxInfo OldGfxInfo, NewGfxInfo;
+	GfxInfo OldGfxInfo, NewGfxInfo; //Old and new graphics info
 	bool SelectedFlag;
 
 public:
-	ChangeFillAction(ApplicationManager* pApp);
-	virtual void Execute(bool WillRecord, string filename, bool where = true);
+	ChangeFillAction(ApplicationManager* pApp); //Constructor
 
 	virtual void ReadActionParameters();
 
-	bool GetFillColour(ActionType);//function for changing the fill ui color
+	virtual void Execute(bool WillRecord, string filename, bool where = true); //Execute the action
 
-	void Undo();
 
-	void Redo();
+	bool GetFillColour(ActionType); //function for changing the fill ui color
 
-	~ChangeFillAction();
+	void Undo(); //Undo the action
+
+	void Redo(); //Redo the action
+
+	~ChangeFillAction(); //Destructor
 };
+
 #endif

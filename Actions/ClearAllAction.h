@@ -3,14 +3,21 @@
 
 #include "Action.h"
 
+//Clear All Action Class
 class ClearAllAction :public Action
 {
 public:
-	ClearAllAction(ApplicationManager* pApp);
+	ClearAllAction(ApplicationManager* pApp); //Constructor
+
 	virtual void ReadActionParameters();
-	virtual void Execute(bool WillRecord, string filename, bool where);
+
+	virtual void Execute(bool WillRecord, string filename, bool where); //Execute the action
+
 	void Undo();
+
 	void Redo();
-	~ClearAllAction();
+
+	~ClearAllAction(); //Destructor
 };
+
 #endif

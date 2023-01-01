@@ -3,14 +3,21 @@
 
 #include "Action.h"
 
+//Redo Action Class
 class RedoAction :public Action
 {
 public:
-	RedoAction(ApplicationManager* pApp);
+	RedoAction(ApplicationManager* pApp); //Constructor
+
 	virtual void ReadActionParameters();
-	virtual void Execute(bool WillRecord, string filename, bool where = true);
+
+	virtual void Execute(bool WillRecord, string filename, bool where = true); //Execute the action
+
 	void Undo();
+
 	void Redo();
-	~RedoAction();
+
+	~RedoAction(); //Destructor
 };
+
 #endif

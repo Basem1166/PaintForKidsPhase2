@@ -8,21 +8,19 @@ class AddRectAction: public Action
 {
 private:
 	Point P1, P2; //Rectangle Corners
-	GfxInfo RectGfxInfo;
+	GfxInfo RectGfxInfo; //Rectangle graphics info
 public:
-	AddRectAction(ApplicationManager *pApp);
+	AddRectAction(ApplicationManager *pApp); //Constructor
 
-	//Reads rectangle parameters
-	virtual void ReadActionParameters();
+	virtual void ReadActionParameters(); //Reads rectangle parameters
 	
-	//Add rectangle to the ApplicationManager
-	virtual void Execute(bool WillRecord, string filename, bool where = true) ;
+	virtual void Execute(bool WillRecord, string filename, bool where = true) ; //Execute the action
 
-	void Undo();
+	void Undo(); //Undo the action
 
-	void Redo();
+	void Redo(); //Redo the action
 
-	~AddRectAction();
+	~AddRectAction(); //Destructor
 };
 
 #endif

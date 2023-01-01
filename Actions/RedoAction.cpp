@@ -1,33 +1,26 @@
 #include "RedoAction.h"
-
 #include "..\ApplicationManager.h"
-
 #include "..\GUI\input.h"
 #include "..\GUI\Output.h"
 
-RedoAction::RedoAction(ApplicationManager* pApp) :Action(pApp)
-{}
-void RedoAction::ReadActionParameters()
-{}
+RedoAction::RedoAction(ApplicationManager* pApp) :Action(pApp) {} //Constructor
+
+void RedoAction::ReadActionParameters() {}
+
+//Execute the action
 void RedoAction::Execute(bool WillRecord, string filename, bool where )
 {
-	pManager->RedoPrevAction();
+	pManager->RedoPrevAction(); //Calls RedoPrevAction function in Application Manager
+
 	if (pManager->getWillRecord())
 	{
 		pManager->AddRecordingFigure(this);
 	}
 }
-void RedoAction::Undo()
-{
 
-}
+void RedoAction::Undo() {}
 
-void RedoAction::Redo()
-{
+void RedoAction::Redo() {}
 
-}
-
-RedoAction::~RedoAction()
-{
-
-}
+//Destructor
+RedoAction::~RedoAction() {}

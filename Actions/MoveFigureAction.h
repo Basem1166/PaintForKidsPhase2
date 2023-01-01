@@ -3,27 +3,25 @@
 
 #include "Action.h"
 
-//Add MoveFigure Action class
+//Move Figure Action class
 class MoveFigureAction : public Action
 {
 private:
-	Point PNew, POld;
+	Point POld, PNew; //Old and new centers
 	GfxInfo RectGfxInfo;
 	bool SelectedFlag;
 public:
-	MoveFigureAction(ApplicationManager* pApp);
+	MoveFigureAction(ApplicationManager* pApp); //Constructor
 
-	//Reads move parameters
-	virtual void ReadActionParameters();
+	virtual void ReadActionParameters(); //Reads move parameters
 
-	//Add new moved shape to the ApplicationManager
-	virtual void Execute(bool WillRecord, string filename, bool where = true);
+	virtual void Execute(bool WillRecord, string filename, bool where = true); //Execute the action
 
-	void Undo();
+	void Undo(); //Undo the action
 
-	void Redo();
+	void Redo(); //Redo the action
 
-	~MoveFigureAction();
+	~MoveFigureAction(); //Destructor
 };
 
 #endif

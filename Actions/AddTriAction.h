@@ -8,21 +8,19 @@ class AddTriAction : public Action
 {
 private:
 	Point P1, P2, P3; //Triangle Corners
-	GfxInfo TriGfxInfo;
+	GfxInfo TriGfxInfo; //Triangle graphics info
 public:
-	AddTriAction(ApplicationManager* pApp);
+	AddTriAction(ApplicationManager* pApp); //Constructor
 
-	//Reads Triangle parameters
-	virtual void ReadActionParameters();
+	virtual void ReadActionParameters(); //Reads Triangle parameters
 
-	//Add Triangle to the ApplicationManager
-	virtual void Execute(bool WillRecord, string filename, bool where = true);
+	virtual void Execute(bool WillRecord, string filename, bool where = true); //Execute the action
 
-	void Undo();
+	void Undo(); //Undo the action
 
-	void Redo();
+	void Redo(); //Redo the action
 
-	~AddTriAction();
+	~AddTriAction(); //Destructor
 };
 
 #endif

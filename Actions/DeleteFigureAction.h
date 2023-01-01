@@ -7,18 +7,17 @@
 class DeleteFigureAction : public Action
 {
 public:
-	DeleteFigureAction(ApplicationManager* pApp);
+	DeleteFigureAction(ApplicationManager* pApp); //Constructor
 
 	void ReadActionParameters();
 
-	//Delete selected figure from FigList ApplicationManager
-	virtual void Execute(bool WillRecord, string filename, bool where = true);
+	virtual void Execute(bool WillRecord, string filename, bool where = true); //Execute the action
+	
+	void Undo(); //Undo the action
+	
+	void Redo(); //Redo the action
 
-	void Undo();
-
-	void Redo();
-
-	~DeleteFigureAction();
+	~DeleteFigureAction(); //Destructor
 };
 
 #endif

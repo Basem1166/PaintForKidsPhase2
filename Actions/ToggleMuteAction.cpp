@@ -3,22 +3,21 @@
 #include "..\GUI\input.h"
 #include "..\GUI\Output.h"
 
-ToggleMuteAction::ToggleMuteAction(ApplicationManager* pApp) :Action(pApp)
-{}
+ToggleMuteAction::ToggleMuteAction(ApplicationManager* pApp) :Action(pApp) {} //Constructor
 
 void ToggleMuteAction::ReadActionParameters(){}
 
+//Execute the action
 void ToggleMuteAction::Execute(bool WillRecord, string filename, bool where)
 {
+	//Get a Pointer to the Output Interfaces
 	Output* pOut = pManager->GetOutput();
-	Input* pIn = pManager->GetInput();
 
 	if (!WillRecord)
 		//This action needs to read some parameters first
 		ReadActionParameters();
 
-	//Add the rectangle to the list of figures
-	if (pManager->IsMute()==0)
+	if (pManager->IsMute()==0) //Check if the sound isn't muted
 	{
 		pOut->PrintMessage("Muted");
 	}
@@ -27,7 +26,7 @@ void ToggleMuteAction::Execute(bool WillRecord, string filename, bool where)
 		pOut->PrintMessage("Unmuted");
 	}
 
-	pManager->ToggleMute();
+	pManager->ToggleMute(); //Change Mute state;
 
 	
 }
@@ -36,7 +35,5 @@ void ToggleMuteAction::Undo(){}
 
 void ToggleMuteAction::Redo() {}
 
-ToggleMuteAction::~ToggleMuteAction()
-{
-
-}
+//Destructor
+ToggleMuteAction::~ToggleMuteAction() {}

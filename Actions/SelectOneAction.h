@@ -11,7 +11,9 @@ private:
 	Point P;
 public:
 	SelectOneAction(ApplicationManager* pApp);
+	//Reads click parameters
 	virtual void ReadActionParameters();
+	//Selecting a figure
 	virtual void Execute(bool WillRecord, string filename, bool where = true);
 	void Undo();
 	void Redo();

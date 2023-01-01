@@ -13,10 +13,10 @@ private:
 public:
 	MoveFigureAction(ApplicationManager* pApp);
 
-	//Reads rectangle parameters
+	//Reads move parameters
 	virtual void ReadActionParameters();
 
-	//Add rectangle to the ApplicationManager
+	//Add new moved shape to the ApplicationManager
 	virtual void Execute(bool WillRecord, string filename, bool where = true);
 
 	void Undo();

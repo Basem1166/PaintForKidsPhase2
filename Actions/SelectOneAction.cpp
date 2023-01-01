@@ -28,18 +28,21 @@ void SelectOneAction::Execute(bool WillRecord, string filename, bool where ) {
 	if (FigNew == NULL) {
 		pOut->PrintMessage("A Click on an Empty Area");
 	}
-	else if (SelectedFig == NULL && FigNew != NULL) {
+	else if (SelectedFig == NULL && FigNew != NULL)//if there is no selected figure and you clicked on a new figure
+	{
 		FigNew->SetSelected(1);
 		pManager->SetSelectedFigure(FigNew);
 		FigNew->PrintInfo(pOut);
 	}
-	else if (SelectedFig == FigNew) {
+	else if (SelectedFig == FigNew) //Clicked on an already selected figure
+	{
 		SelectedFig->SetSelected(0);
 		FigNew->SetSelected(0);
 		pManager->SetSelectedFigure(NULL);
 		pOut->PrintMessage("Figure Unselected");
 	}
-	else if (SelectedFig->IsSelected() == 1 && FigNew != NULL) {
+	else if (SelectedFig->IsSelected() == 1 && FigNew != NULL)//if there is a selected figure and you clicked on a new figure
+	{
 		SelectedFig->SetSelected(0);
 		FigNew->SetSelected(1);
 		pManager->SetSelectedFigure(FigNew);

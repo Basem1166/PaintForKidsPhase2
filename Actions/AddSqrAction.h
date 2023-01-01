@@ -12,10 +12,10 @@ private:
 public:
 	AddSqrAction(ApplicationManager* pApp);
 
-	//Reads rectangle parameters
+	//Reads square parameters
 	virtual void ReadActionParameters();
 
-	//Add rectangle to the ApplicationManager
+	//Add square to the ApplicationManager
 	virtual void Execute(bool WillRecord, string filename, bool where = true);
 
 	void Undo();

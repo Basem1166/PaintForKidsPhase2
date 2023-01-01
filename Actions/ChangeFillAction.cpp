@@ -10,20 +10,24 @@ ChangeFillAction::ChangeFillAction(ApplicationManager* pApp) :Action(pApp)
 {}
 void ChangeFillAction::ReadActionParameters()
 {
+    //Get a Pointer to the Input / Output Interfaces
     Output* pOut = pManager->GetOutput();
     Input* pIn = pManager->GetInput();
+    //Get the selected figure
     FigPtr = pManager->GetSelectedFigure();
-    if (FigPtr == NULL) {
+    if (FigPtr == NULL) //chrecking if he selected a figure first
+    {
         pOut->PrintMessage("Error! Please Select a figure first");
         SelectedFlag = false;
-        return;
+        return; // so he doesnt read further parameters("action wont be executed")
     }
     pOut->PrintMessage("Please Choose Fill Colour");
-    ColorAct = pIn->GetUserAction();
+    ColorAct = pIn->GetUserAction();//getting the point clicked after choosing to change the fill color
     pOut->ClearStatusBar();
 
 }
-bool ChangeFillAction::GetFillColour(ActionType ColorAct) {
+bool ChangeFillAction::GetFillColour(ActionType ColorAct) //Checking the color clicked or if he didnt click on a color
+{
     if (ColorAct == C_BLACK)
     {
         UI.FillColor = BLACK;
@@ -70,7 +74,7 @@ void ChangeFillAction::Execute(bool WillRecord, string filename, bool where) {
     if (!WillRecord)
         //This action needs to read some parameters first
         ReadActionParameters();
-    if (!SelectedFlag)
+    if (!SelectedFlag)//checking if he selected a figure first
     {
         return;
     }
@@ -79,7 +83,8 @@ void ChangeFillAction::Execute(bool WillRecord, string filename, bool where) {
     OldGfxInfo = FigPtr->GetGfxInfo();
     NewGfxInfo = OldGfxInfo;
 
-    if (GetFillColour(ColorAct)) {
+    if (GetFillColour(ColorAct))//changing the color if he clicked on a color icon
+    {
         UI.isFilled = true;
         NewGfxInfo.isFilled = true;
         FigPtr->ChngFillClr(UI.FillColor); //changing the fill color

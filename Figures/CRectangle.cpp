@@ -34,7 +34,8 @@ void CRectangle :: Move(int x, int y) {
 	Corner2.x -= xtranslate;
 	Corner2.y -= ytranslate;
 }
-void CRectangle::PrintInfo(Output* pOut) {
+void CRectangle::PrintInfo(Output* pOut) 
+{
 	int length = abs(Corner1.x-Corner2.x)>=abs(Corner1.y-Corner2.y)? abs(Corner1.x - Corner2.x): abs(Corner1.y - Corner2.y);
 	int width = abs(Corner1.x - Corner2.x) < abs(Corner1.y - Corner2.y) ? abs(Corner1.x - Corner2.x) : abs(Corner1.y - Corner2.y);
 	string MESSAGE = "Figure Type: Rectangle, ID: " + to_string(ID) + ", Corners Points:(" + to_string(Corner1.x) + "," + to_string(Corner1.y) + ")-(" + to_string(Corner2.x) + "," + to_string(Corner2.y) + "), Length="+to_string(length)+", Width="+to_string(width);

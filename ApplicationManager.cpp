@@ -227,7 +227,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	AddActionToActionsList(pAct);
 	pAct->Execute(0, "dummy", 1);
 }
-void ApplicationManager::SetSelectedFigure(CFigure* fig)
+void ApplicationManager::SetSelectedFigure(CFigure* fig)//sets selected figure pointer
 {
 	SelectedFig = fig;
 }

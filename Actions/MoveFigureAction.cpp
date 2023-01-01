@@ -15,10 +15,11 @@ void MoveFigureAction::ReadActionParameters()
 	Output* pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();
 	FigPtr = pManager->GetSelectedFigure();
-	if (FigPtr == NULL) {
+	if (FigPtr == NULL)//chrecking if he selected a figure first
+	{
 		pOut->PrintMessage("Error! Please Select a figure first");
 		SelectedFlag = false;
-		return;
+		return;// so he doesnt read further parameters("action wont be executed")
 	}
 	pOut->PrintMessage("Moving Selected Figure: Click on new center");
 
@@ -37,12 +38,11 @@ void MoveFigureAction::Execute(bool WillRecord, string filename, bool where)
 	if (!WillRecord)
 		//This action needs to read some parameters first
 		ReadActionParameters();
-	if (!SelectedFlag)
+	if (!SelectedFlag)//checking if he selected a figure first
 	{
 		return;
 	}
 	Output* pOut = pManager->GetOutput();
-	Input* pIn = pManager->GetInput();
 	FigPtr = pManager->GetSelectedFigure();
 	POld = FigPtr->GetCenter();
 	FigPtr->Move(PNew.x, PNew.y); // Moves Figure to new Center;

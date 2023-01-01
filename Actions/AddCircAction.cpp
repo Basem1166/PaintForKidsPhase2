@@ -42,7 +42,7 @@ void AddCircAction::Execute(bool WillRecord, string filename, bool where )
 	//This action needs to read some parameters first
 	ReadActionParameters();
 
-	//Create a rectangle with the parameters read from the user
+	//Create a Circle with the parameters read from the user
 	FigPtr = new CCircle(P1, P2, CircGfxInfo);
 
 	//Add the circle to the list of figures

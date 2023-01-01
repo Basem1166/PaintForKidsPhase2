@@ -340,13 +340,13 @@ void ApplicationManager::UpdateInterface() const
 		
 	}
 }
-
+// Random Figure
 CFigure* ApplicationManager::GetRandFig()
 {
 	int RandIndex = rand() % FigCount + 0;
 	return FigList[RandIndex];
 }
-
+// Number of passed in figure 
 int ApplicationManager::GetNumberofSelectedFigure(CFigure* PlayFig)
 {
 	int counter = 0;
@@ -374,7 +374,7 @@ int ApplicationManager::GetNumberofSelectedFigure(CFigure* PlayFig, GfxInfo GfxI
 	}
 	return counter;
 }
-
+// Resets drawing board
 void ApplicationManager::Reset() {
 	for (int i = 0; i < FigCount; i++)
 	{
@@ -414,7 +414,7 @@ void ApplicationManager::SaveAll(ofstream& outputFile) {
 		FigList[i]->Save(outputFile);
 	}
 }
-
+// Figure list is empty
 bool ApplicationManager::IsEmpty()
 {
 	if (FigCount == 0)
@@ -426,12 +426,12 @@ bool ApplicationManager::IsEmpty()
 		return false;
 	};
 }
-
+// plays an action from recording list
 void ApplicationManager::PlayRecording(int RecordingListNumber)
 {
 	RecordingList[RecordingListNumber]->Execute(1, "dummy", 1);
 }
-
+// adds action to recording list
 void ApplicationManager::AddRecordingFigure(Action* rAction)
 {
 	if (RecordingListCount < 20) {
@@ -446,17 +446,17 @@ void ApplicationManager::AddRecordingFigure(Action* rAction)
 		delete pAct;
 	}
 }
-
+//getter for willrecord
 bool ApplicationManager::getWillRecord()
 {
 	return WillRecord;
 }
-
+//setter for willRecord
 void ApplicationManager::setWillRecord(bool willrecord)
 {
 	WillRecord = willrecord;
 }
-
+//Recordinglist count
 int ApplicationManager::GetRecordingListCount()
 {
 	return RecordingListCount;

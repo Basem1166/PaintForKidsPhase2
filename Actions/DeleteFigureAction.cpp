@@ -18,7 +18,7 @@ void DeleteFigureAction::Execute(bool WillRecord, string filename, bool where )
 	Output* pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();
 
-	if (!WillRecord)
+	if (!WillRecord)//Checks to see of the recording is being played, when will record = 1 , the recording is being played
 	{
 		ReadActionParameters();
 	}

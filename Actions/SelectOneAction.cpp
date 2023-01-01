@@ -20,7 +20,7 @@ void SelectOneAction::ReadActionParameters() {
 	pOut->ClearStatusBar();
 }
 void SelectOneAction::Execute(bool WillRecord, string filename, bool where ) {
-	if(!WillRecord)
+	if(!WillRecord)//Checks to see of the recording is being played, when will record = 1 , the recording is being played
 	ReadActionParameters();
 	Output* pOut = pManager->GetOutput();
 	CFigure* FigNew = pManager->GetFigure(P.x, P.y); //Checks if the points clicked are inside a figure

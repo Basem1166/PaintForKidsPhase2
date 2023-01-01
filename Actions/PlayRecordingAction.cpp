@@ -15,25 +15,26 @@ PlayRecordingAction::PlayRecordingAction(ApplicationManager* pApp) :Action(pApp)
 void PlayRecordingAction::Execute(bool isBeingPlayed, string filename, bool where )
 {
 	Output* pOut = pManager->GetOutput();
-	if (pManager->GetRecordingListCount() == 0) {
+	if (pManager->GetRecordingListCount() == 0) //checks if there is anything recorded
+	{
 		pOut->PrintMessage("No Recording to Be Played!");
 		return;
 	}
-	if (pManager->getWillRecord())
+	if (pManager->getWillRecord())// checks if user is recording 
 	{
 		pOut->PrintMessage("Cannot Play Recording While Recording!");
 		return;
 	}
 	
 	pOut->PrintMessage("Playing the Recording");
-	CFigure::resetID();
-	pManager->clearAll();
+	CFigure::resetID();//resets the ID's 
+	pManager->clearAll();// clears the board
 	Sleep(1000);
 	for (int i = 0; i < pManager->GetRecordingListCount(); i++)
 	{
-		pManager->PlayRecording(i);
-		pManager->UpdateInterface();
-		if (i % 2 != 0)
+		pManager->PlayRecording(i);//plays an action 
+		pManager->UpdateInterface();//updates interface
+		if (i % 2 != 0)// sleeps every 2 actions
 		{
 			Sleep(1000);
 		}

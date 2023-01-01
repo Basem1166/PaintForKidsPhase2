@@ -17,7 +17,7 @@ void SwitchToPlayAction::Execute(bool WillRecord, string filename, bool where )
 {
 
 	Output* pOut = pManager->GetOutput();
-	pOut->CreatePlayToolBar();
+	pOut->CreatePlayToolBar();//Calls the Create tool bar
 	pManager->UpdateInterface();
 	/*ofstream outputFile;
 	string details = "Details";

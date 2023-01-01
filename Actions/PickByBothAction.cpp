@@ -39,8 +39,8 @@ void PickByBothAction::ReadActionParameters()
 
 void PickByBothAction::Execute(bool WillRecord, string filename, bool where)
 {
-	pManager->Reset();
-	pManager->UpdateInterface();
+	pManager->Reset();//sets draw are to draw mode figured
+	pManager->UpdateInterface();//updates interface 
 	Output* pOut = pManager->GetOutput();
 	if (NumberOfFiguresOnScreen < 2) {
 		pOut->PrintMessage("You must have at least two or more Shapes to play pick by both Shape and Color!");
@@ -48,9 +48,9 @@ void PickByBothAction::Execute(bool WillRecord, string filename, bool where)
 	}
 
 	CFigure* PlayFig = pManager->GetRandFig();// Random Figure
-	string PlayFigureName = PlayFig->GetFigureType();
-	GfxInfo FigureGfxInfo = PlayFig->GetGfxInfo();
-	if (FigureGfxInfo.isFilled)
+	string PlayFigureName = PlayFig->GetFigureType();//gets figure type
+	GfxInfo FigureGfxInfo = PlayFig->GetGfxInfo();//gets color
+	if (FigureGfxInfo.isFilled)//checks to see if figure is filled or not 
 	{
 		PlayFigureColor = FigureGfxInfo.FillClr;
 		StringColor = PlayFig->convertcolorToString(PlayFigureColor);
@@ -74,7 +74,7 @@ void PickByBothAction::Execute(bool WillRecord, string filename, bool where)
 		CFigure* FigNew = pManager->GetFigure(P.x, P.y); //Checks if the points clicked are inside a figure
 
 
-		if (FigNew == NULL)
+		if (FigNew == NULL)//if user clicked empty area 
 		{
 			pOut->PrintMessage("You Clicked An Empty Area");
 			continue;
@@ -84,14 +84,14 @@ void PickByBothAction::Execute(bool WillRecord, string filename, bool where)
 		if (PlayFigureName == FigNew->GetFigureType() && PlayFig->GetGfxInfo().FillClr == FigNew->GetGfxInfo().FillClr )
 		{
 
-			UpdateScore(1);
-			FigNew->SetHidden(false);
+			UpdateScore(1);//adds coorect
+			FigNew->SetHidden(false);//removes fiure from screen
 			pManager->UpdateInterface();
 			NumberofPlayFigures--;
 			pOut->PrintMessage("Correct! Current Score = " + to_string(CorrectCounter) + " Right, and " + to_string(WrongCounter) + " Wrong.");
 			continue;
 		}
-		UpdateScore(0);
+		UpdateScore(0);//adds wrong counter 
 		FigNew->SetHidden(false);
 		pManager->UpdateInterface();
 		pOut->PrintMessage("Wrong! Try Again! Current Score = " + to_string(CorrectCounter) + " Right, and " + to_string(WrongCounter) + " Wrong.");

@@ -72,7 +72,7 @@ bool ChangeFillAction::GetFillColour(ActionType ColorAct) //Checking the color c
 
 //Execute the action
 void ChangeFillAction::Execute(bool WillRecord, string filename, bool where) {
-    if (!WillRecord)
+    if (!WillRecord)//Checks to see of the recording is being played, when will record = 1 , the recording is being played
         //This action needs to read some parameters first
         ReadActionParameters();
 

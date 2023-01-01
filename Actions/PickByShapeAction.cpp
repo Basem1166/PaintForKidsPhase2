@@ -29,7 +29,7 @@ void PickByShapeAction::UpdateScore(bool Correct)
 	}
 
 }
-
+// reads input from user 
 void PickByShapeAction::ReadActionParameters()
 {
 	Input* pIn = pManager->GetInput();
@@ -39,8 +39,8 @@ void PickByShapeAction::ReadActionParameters()
 
 void PickByShapeAction::Execute(bool WillRecord, string filename, bool where)
 {
-	pManager->Reset();
-	pManager->UpdateInterface();
+	pManager->Reset();// resets the board to the draw mode figures
+	pManager->UpdateInterface();// updates interface
 	Output* pOut = pManager->GetOutput();
 	if (NumberOfFiguresOnScreen < 2) {
 		pOut->PrintMessage("You must have at least two or more Shapes to play pick by shape!");
@@ -48,7 +48,7 @@ void PickByShapeAction::Execute(bool WillRecord, string filename, bool where)
 	}
 	
 	CFigure* PlayFig = pManager->GetRandFig();// Random Figure
-	string PlayFigureName = PlayFig->GetFigureType();
+	string PlayFigureName = PlayFig->GetFigureType();// gets figure name 
 	//Check the number of this figure on the screen
 	int NumberofPlayFigures = pManager->GetNumberofSelectedFigure(PlayFig);
 	pOut->PrintMessage("Please Select All the " + PlayFigureName + "s");
@@ -62,32 +62,32 @@ void PickByShapeAction::Execute(bool WillRecord, string filename, bool where)
 		CFigure* FigNew = pManager->GetFigure(P.x, P.y); //Checks if the points clicked are inside a figure
 
 
-		if (FigNew == NULL)
+		if (FigNew == NULL)// if clicked on nothing
 		{
 			pOut->PrintMessage("You Clicked An Empty Area");
 			continue;
 		}
 		
 
-		if (PlayFigureName==FigNew->GetFigureType())
+		if (PlayFigureName==FigNew->GetFigureType())// if figure is of correct type 
 		{
 
-			UpdateScore(1);
-			FigNew->SetHidden(false);
-			pManager->UpdateInterface();
-			NumberofPlayFigures--;
+			UpdateScore(1);//adds positive counter 
+			FigNew->SetHidden(false);//hides the figure 
+			pManager->UpdateInterface();//updates interface
+			NumberofPlayFigures--;// reduces number of play figures counter 
 			pOut->PrintMessage("Correct! Current Score = " + to_string(CorrectCounter) + " Right, and " + to_string(WrongCounter) + " Wrong.");
 			continue;
 			
 		}
-		UpdateScore(0);
-		FigNew->SetHidden(false);
-		pManager->UpdateInterface();
+		UpdateScore(0);// adds wrong counter 
+		FigNew->SetHidden(false);// hides shape
+		pManager->UpdateInterface();//update interface
 		pOut->PrintMessage("Wrong! Try Again! Current Score = " +to_string(CorrectCounter) + " Right, and " + to_string(WrongCounter) + " Wrong.");
 		
 	}
 
-	pOut->PrintMessage("Congratulations YOU WIN!, Final Score = " + to_string(CorrectCounter) + " Right, and " + to_string(WrongCounter) + " Wrong.");
+	pOut->PrintMessage("Congratulations YOU WIN!, Final Score = " + to_string(CorrectCounter) + " Right, and " + to_string(WrongCounter) + " Wrong.");//prints final score
 
 
 }

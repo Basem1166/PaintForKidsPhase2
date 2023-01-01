@@ -14,7 +14,7 @@ class ApplicationManager
 	enum { MaxFigCount = 200 };	//Max no of figures
 
 private:
-	int WillRecord;
+	bool WillRecord; //if recording
 	int FigCount; //Actual number of figures
 	Action* UndoList[5]; //Undo List
 	Action* RedoList[5]; //Redo List
@@ -69,18 +69,18 @@ public:
 
 	//Recording Functions
 	bool IsEmpty();
-	void PlayRecording(int RecordingListCount);
+	void PlayRecording(int RecordingListCount);// plays an action of recording
 	void AddRecordingFigure(Action* rAction);//adds figures to the recording list
 	void AddActionToUndoList(Action*);
 	void AddActionToActionsList(Action*);
 	bool getWillRecord();// setter and getter fir the will record boolean.
 	void setWillRecord(bool willrecord);
-	int GetRecordingListCount();
+	int GetRecordingListCount();//count of recording list
 
 	//Play functions
-	CFigure* GetRandFig();
-	int GetNumberofSelectedFigure(CFigure* PlayFig);
-	int ApplicationManager::GetNumberofSelectedFigure(CFigure* PlayFig, GfxInfo GfxInfo);
+	CFigure* GetRandFig();// Random figure on screen 
+	int GetNumberofSelectedFigure(CFigure* PlayFig);// Number of passed in Figure.
+	int GetNumberofSelectedFigure(CFigure* PlayFig, GfxInfo GfxInfo);
 	
 	void Reset();
 };

@@ -53,7 +53,7 @@ void SaveAction::Execute(bool WillRecord, string filename, bool where ) {
 
 	ReadActionParameters();
 	ofstream outputFile;
-	outputFile.open(filename5, ios::out); //if we 've used ofstream(write into files) we dont need to open file  
+	outputFile.open(filename5+".txt", ios::out); //if we 've used ofstream(write into files) we dont need to open file  
 
 	//write current color & current fill color into txt file
 

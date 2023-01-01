@@ -23,7 +23,7 @@ void LoadAction::Execute(bool WillRecord, string filename2, bool where ) {
 	if (where)
 	{
 		ReadActionParameters();
-		inputFile.open(filename, ios::in);
+		inputFile.open(filename + ".txt", ios::in);
 		//input current color & current fill color from txt file
 		string Current_Draw_Color;
 		string Current_Fill_Color;
@@ -38,7 +38,7 @@ void LoadAction::Execute(bool WillRecord, string filename2, bool where ) {
 	}
 	else
 	{
-		inputFile.open(filename2, ios::in);
+		inputFile.open(filename2 + ".txt", ios::in);
 	}
 	 
 

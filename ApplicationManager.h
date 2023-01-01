@@ -69,7 +69,7 @@ public:
 
 	//Recording Functions
 	bool IsEmpty();
-	void PlayRecording();
+	void PlayRecording(int RecordingListCount);
 	void AddRecordingFigure(Action* rAction);//adds figures to the recording list
 	void AddActionToUndoList(Action*);
 	void AddActionToActionsList(Action*);

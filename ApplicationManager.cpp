@@ -427,24 +427,9 @@ bool ApplicationManager::IsEmpty()
 	};
 }
 
-void ApplicationManager::PlayRecording()
+void ApplicationManager::PlayRecording(int RecordingListNumber)
 {
-
-	Sleep(1000);
-	for (int i = 0; i < RecordingListCount; i++)
-	{
-
-		RecordingList[i]->Execute(1, "dummy", 1);
-		UpdateInterface();
-		
-		if (i%2!=0)
-		{
-			Sleep(1000);
-		}
-		
-
-	}
-	
+	RecordingList[RecordingListNumber]->Execute(1, "dummy", 1);
 }
 
 void ApplicationManager::AddRecordingFigure(Action* rAction)

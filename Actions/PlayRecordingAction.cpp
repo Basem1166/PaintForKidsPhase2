@@ -28,7 +28,17 @@ void PlayRecordingAction::Execute(bool isBeingPlayed, string filename, bool wher
 	pOut->PrintMessage("Playing the Recording");
 	CFigure::resetID();
 	pManager->clearAll();
-	pManager->PlayRecording();
+	Sleep(1000);
+	for (int i = 0; i < pManager->GetRecordingListCount(); i++)
+	{
+		pManager->PlayRecording(i);
+		pManager->UpdateInterface();
+		if (i % 2 != 0)
+		{
+			Sleep(1000);
+		}
+	}
+	
 	pOut->PrintMessage("Recording Played");
 }
 
